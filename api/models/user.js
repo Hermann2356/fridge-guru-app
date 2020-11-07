@@ -33,6 +33,19 @@ module.exports = (sequelize, DataTypes) => {
                 },
             },
         },
+        points: {
+            type: DataTypes.INTEGER,
+            defaultValue: 0,
+            validate: {
+                isInt: true,
+            }
+        },
+        status: {
+            type: DataTypes.STRING,
+            validate: {
+                len: [0,50]
+            }
+        }
     }, {
         sequelize,
         modelName : 'user'
