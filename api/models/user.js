@@ -2,65 +2,50 @@
 const { Model } = require('sequelize');
 const bcrypt = require('bcryptjs');
 
+
 module.exports = (sequelize, DataTypes) => {
-    class User extends Model {
-        getFullName() {
-            return[this.firstName, this.lastName].join(' ');
-        }
+  class User extends Model {
+    getFullname() {
+      return [this.firstName, this.lastName].join(' ');
     }
+  }
 
+  User.init({
+    firstName: { type: DataTypes.STRING },
+    lastName: { type: DataTypes.STRING },
+    email: {
+      type: DataTypes.STRING,
+      unique: true,
+      allowNull: false,
+      validate: {
+        isEmail: true,
+      },
+    },
+    passwordHash: { type: DataTypes.STRING },
+    password: { 
+      type: DataTypes.VIRTUAL,
+      validate: {
+        isLongEnough: (val) => {
+          if (val.length < 7) {
+            throw new Error("Please choose a longer password");
+          }
+        },
+      },
+    },
+  }, {
+    sequelize,
+    modelName: 'user'
+  });
 
-    // firstName, lastName, email, passwordHash, password
-    User.init({
-        firstName : { type : DataTypes.String },
-        lastName : { type: DataTypes.String },
-        email : {
-            type : DataTypes.String,
-            unique : true,
-            allowNull : false,
-            validate : {
-                isEmail : true,
-            },
-        },
-        passwordHash: { type : DataTypes.String },
-        password : {
-            type : DataTypes.VIRTUAL,
-            validate : {
-                isLongEnough :  (val) => {
-                    if(val.length < 7 ){
-                        throw new Error("Please choose a longer password");
-                    }
-                },
-            },
-        },
-        points: {
-            type: DataTypes.INTEGER,
-            defaultValue: 0,
-            validate: {
-                isInt: true,
-            }
-        },
-        status: {
-            type: DataTypes.STRING,
-            validate: {
-                len: [0,50]
-            }
-        }
-    }, {
-        sequelize,
-        modelName : 'user'
-    });
+  User.associate = (models) => {
+    // associations can be defined here
+  };
 
-    User.associate = (model) =>{
-        // associations can be defined here
+  User.beforeSave((user, options) => {
+    if(user.password) {
+      user.passwordHash = bcrypt.hashSync(user.password, 10);
     }
+  });
 
-    // Hashes the user password 10 times before it it stored
-    User.beforeSave((user, options) =>{
-        if(user.password) {
-            user.passwordHash = bcrypt.hashSync(user.password, 10);
-        }
-    });
-
-    return User;
+  return User;
 };
