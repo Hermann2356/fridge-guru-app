@@ -1,33 +1,29 @@
 const db = require('./models');
 const { ingredient, category } = db;
 
-// const GENRES = [
-//     {id: 1, name: 'Action'},
-//     {id: 2, name: 'Comedy'},
-//     {id: 3, name: 'Drama'},
-// ];
-
-
+// // const GENRES = [
+// //     {id: 1, name: 'Action'},
+// //     {id: 2, name: 'Comedy'},
+// //     {id: 3, name: 'Drama'},
+// // ];
+//
+//
 const INGREDIENT = [
-    {},
-    {},
-    {},
-    {},
-    {},
+    {id: 1, name: "Apple", description: "Its a red fruit", image: null, consistency: "Solid", fridgeSL: "1 month", cupboardSL: "4 days", freezerSL: "none"},
 ];
-
-const CATEGORY = [
-    {},
-    {},
-    {},
-    {},
-    {},
-];
-
-
-
-
-
+//
+// const CATEGORY = [
+//     {},
+//     {},
+//     {},
+//     {},
+//     {},
+// ];
+//
+//
+//
+//
+//
 const seed = () => {
     return db.sequelize.sync({force: true})
         .then(() => {
@@ -37,7 +33,7 @@ const seed = () => {
             // let actorPromises = ACTORS.map(a => Actor.create(a));
 
             let ingredientPromises = INGREDIENT.map(i => Ingredient.create(i));
-            let categoryPromises = CATEGORY.map(c => Category.create(c));
+            //let categoryPromises = CATEGORY.map(c => Category.create(c));
             return Promise.all([...ingredientPromises, ...categoryPromises]);
         });
         // .then(() => {
