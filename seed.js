@@ -1,4 +1,4 @@
-const db = require('./models');
+const db = require('./api/models');
 const { ingredient, category } = db;
 
 // // const GENRES = [
@@ -9,7 +9,7 @@ const { ingredient, category } = db;
 //
 //
 const INGREDIENT = [
-    {id: 1, name: "Apple", description: "Its a red fruit", image: null, consistency: "Solid", fridgeSL: "1 month", cupboardSL: "4 days", freezerSL: "none"},
+    {id: 1, name: "Apple", description: "Its a red fruit", image: null, consistency: "Solid", fridgeSL: "1 month", cupboardSL: "4 days", freezerSL: "none"}
 ];
 //
 // const CATEGORY = [
