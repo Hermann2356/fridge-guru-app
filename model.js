@@ -1,4 +1,4 @@
-const {Ingredient, Category} = require('./models');
+const {Ingredient, Category} = require('./api/models');
 // const db = require('./models');
 // const Movie = db.Movie;
 // const Actor = db.Actor;
@@ -10,9 +10,9 @@ const {Ingredient, Category} = require('./models');
 // function insertNewGenre() {
 //     return Genre.create({name: 'Pyschological'});
 // }
-function insertNewIngredient() {
-    return Ingredient.create({});
-}
+// function insertNewIngredient() {
+//     return Ingredient.create({});
+// }
 
 // /*
 //   currently, there are 5 movies
@@ -33,13 +33,13 @@ function insertNewIngredient() {
 //
 // /*
 //   Return an array of all the actor names
-// */
-// function getAllActors() {
-//     return Actor.findAll().then(actors => {
-//         return actors.map(actor => {
-//             return actor.name;
-//         });
-//     });
+
+function getAllIngredients() {
+    return Ingredient.findAll().then(ingredients => {
+        return ingredients.map(ingredient => {
+            return ingredient.name;
+        });
+    });
 //
 // }
 //
@@ -94,15 +94,15 @@ function insertNewIngredient() {
 //                     return movie.addActor(robert);
 //                 })
 //         });
-// }
+}
 //
-// module.exports = {
+module.exports = {
 //     insertNewGenre,
 //     insertNewMovie,
 //     getMovieWithId2,
-//     getAllActors,
+    getAllIngredients
 //     getAllMoviesFrom2008,
 //     deleteGenreYouAdded,
 //     associateRosarioToEagleEye,
 //     associateRobertToTropicThunder,
-// };
+};
