@@ -39,7 +39,7 @@ module.exports = (sequelize, DataTypes) => {
         },
       status: {
         type: DataTypes.STRING,
-        validate: {}
+        validate: {},
       },
     }, {
         sequelize,
@@ -48,6 +48,7 @@ module.exports = (sequelize, DataTypes) => {
 
     User.associate = (models) => {
         // associations can be defined here
+        models.User.belongsToMany(models.Ingredient, { through: 'fridge' });
     };
 
     User.beforeSave((user, options) => {
