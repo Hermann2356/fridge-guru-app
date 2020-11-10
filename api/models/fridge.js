@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
         expiration: {
             type: DataTypes.DATE,
 
-        }
+        },
     }, {
         sequelize,
         modelName: 'fridge'

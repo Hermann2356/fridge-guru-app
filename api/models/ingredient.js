@@ -7,16 +7,10 @@ module.exports = (sequelize, DataTypes) => {
     Ingredient.init({
         name: {
             type: DataTypes.STRING,
+            unique: true,
             validate: {
                 notEmpty: true,
                 len : [0, 100],
-
-            }
-        },
-        description: {
-            type: DataTypes.TEXT,
-            validate: {
-                notEmpty: true,
 
             }
         },
@@ -27,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
         consistency: {
             type: DataTypes.STRING,
             validate: {
-                isIn: [['Solid', 'Liquid']],
+                isIn: [['SOLID', 'LIQUID', 'RAW']],
 
             }
         },
