@@ -1,5 +1,3 @@
-import Category from "../../client/src/components/category";
-import {where} from "sequelize";
 
 const express = require('express');
 const router = express.Router();
