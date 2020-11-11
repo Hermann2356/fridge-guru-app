@@ -30,13 +30,5 @@
     ]
   },
   "proxy": "http://localhost:8080",
-  "devDependencies": {
-    "@babel/plugin-syntax-jsx": "^7.12.1",
-    "plugins": [
-      "@babel/plugin-syntax-jsx"
-    ],
-    "presets": [
-      "@babel/preset-react"
-    ]
-  }
+  "devDependencies": {}
 }
