@@ -9,7 +9,7 @@
     "test": "jest",
     "build": "cd client && npm install && npm run build"
   },
-  "author": "Edgardo Molina",
+  "author": "Hermann Sterling",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
