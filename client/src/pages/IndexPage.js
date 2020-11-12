@@ -10,27 +10,35 @@ class IndexPage extends React.Component {
 
   componentDidMount() {
         fetch("/api/ingredients")
-            .then(res => res.json())
-            .then(ingredients => {
-                this.setState({
-                    loading: false,
-                    ingredients: ingredients.map((i, ii) => <ingredient {...i} key={ii} />),
-                });
-            })
+            //.then(res => res.json())
+            .then(res => console.log(res.text()))
+            // .then(ingredients => {
+            //     console.log("here");
+            //     this.setState({
+            //         loading: false,
+            //         ingredients: ingredients.map(ingredient => { return ingredient.name}),
+            //     });
+            //     console.log(this.state.ingredients);
+            // })
             .catch(err => console.log("API ERROR: ", err));
       }
 
     render() {
-        if(state.loading) {
+        if(this.state.loading) {
             return <Loading/>;
         }
 
         return (
-            <div className="container-fluid text-center">
-                <div className="row justify-content-center">
-                    { this.state.ingredients }
-                </div>
+            // <div className="container-fluid text-center">
+            //     <div className="row justify-content-center">
+            //         { this.state.ingredients }
+            //     </div>
+            // </div>
+            <div>
+                <p>Index page </p>
             </div>
         )
   }
 }
+
+export default IndexPage;

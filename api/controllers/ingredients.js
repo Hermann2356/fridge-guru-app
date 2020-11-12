@@ -2,7 +2,6 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../models');
-const passport = require('../middlewares/authentication');
 const { Ingredient } = db;
 
 // This is a simple example for providing basic CRUD routes for
@@ -18,14 +17,14 @@ const { Ingredient } = db;
 // TODO: Can you spot where we have some duplication below?
 
 
-router.get('/', (req,res) => {
+router.get('/ingredients', (req,res) => {
     Ingredient.findAll({})
         .then(ingredients => res.json(ingredients));
 });
 
 
-router.post('/',
-    passport.isAuthenticated(),
+router.post('/ingredients',
+
     (req, res) => {
         let { name } = req.body.name;
         let { consistency } = req.body.consistency;
@@ -34,7 +33,7 @@ router.post('/',
         let { freezerSL } = req.body.freezerSL;
         let { categoryId } = req.body.categoryId;
 
-        Ingredient.create({ name, consistency, fridgeSL, cupboardSL, freezerSL, categoryId })
+        Ingredients.create({ name, consistency, fridgeSL, cupboardSL, freezerSL, categoryId })
             .then(ingredient => {
                 res.status(201).json(ingredient);
             })
@@ -83,7 +82,6 @@ router.get('/:name', (req, res) => {
 
 
 router.delete('/:name',
-    passport.isAuthenticated(),
     (req, res) => {
         const { ingredientName } = req.params;
         Ingredient.findAll({where : { name: ingredientName }})
