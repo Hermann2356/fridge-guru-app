@@ -29,20 +29,20 @@ const INGREDIENT = [
 ];
 
 const FRIDGE = [
-    {id: 1, ingredientId: 1, userId: 1},
-    {id: 2, ingredientId: 3, userId: 1},
-    {id: 3, ingredientId: 4, userId: 1},
-    {id: 4, ingredientId: 5, userId: 1},
-    {id: 5, ingredientId: 6, userId: 1},
-    {id: 6, ingredientId: 7, userId: 1},
-    {id: 7, ingredientId: 9, userId: 1},
-    {id: 8, ingredientId: 12, userId: 1},
-    {id: 9, ingredientId: 15, userId: 1},
-    {id: 10, ingredientId: 2, userId: 1},
+    {ingredientId: 1, userId: 1},
+    {ingredientId: 3, userId: 1},
+    {ingredientId: 4, userId: 1},
+    {ingredientId: 5, userId: 1},
+    {ingredientId: 6, userId: 1},
+    {ingredientId: 7, userId: 1},
+    {ingredientId: 9, userId: 1},
+    {ingredientId: 12, userId: 1},
+    {ingredientId: 14, userId: 1},
+    {ingredientId: 2, userId: 1},
 ]
 
 const USER = [
-    {firstName: "Hermann", lastName: "Sterling", email: "hermannsterling@gmail.com"}
+    {id:1, firstName: "Hermann", lastName: "Sterling", email: "hermannsterling@gmail.com"}
 ]
 
 const seed = () => {
@@ -54,34 +54,21 @@ const seed = () => {
             let ingredientPromises = INGREDIENT.map(i => Ingredient.create(i));
             let fridgePromises = FRIDGE.map(f => Fridge.create(f));
 
-            return Promise.all([...ingredientPromises, ...categoryPromises]);
+            return Promise.all([...ingredientPromises, ...categoryPromises, ...userPromises]);
 
-            // return Promise.all([...userPromises, ...categoryPromises, ...ingredientPromises, ...fridgePromises]);
+        })
+        .then(() =>{
+            // Create the associations
+            let associationPromises = FRIDGE.map(f =>{
+                let userPromise = User.findByPk(f.userId);
+                let ingredientPromise = Ingredient.findByPk(f.ingredientId);
+                return Promise.all([userPromise, ingredientPromise])
+                    .then(([users, ingredients]) =>{
+                        return users.addIngredient(ingredients);
+                    })
+            });
         });
-        // .then(() =>{
-        //     // Create the associations
-        //     let associationPromises = FRIDGE.map(f =>{
-        //         let userPromise = User.findByPk(f.userId);
-        //         let ingredientPromise = Ingredient.findByPk(f.ingredientId);
-        //         return Promise.all([userPromise, ingredientPromise])
-        //             .then(([users, ingredients]) =>{
-        //                 return users.addIngredient(ingredients);
-        //             })
-        //     });
-        // });
 
-// .then(() => {
-//         // Create the associations
-//         let associationPromises = MOVIES_ACTORS.map(ma => {
-//             let moviePromise = Movie.findByPk(ma.movieId);
-//             let actorPromise = Actor.findByPk(ma.actorId);
-//             return Promise.all([moviePromise, actorPromise])
-//                 .then(([movie, actor]) => {
-//                     return movie.addActor(actor);
-//                 })
-//         });
-//         return Promise.all(associationPromises);
-//     });
 }
 
 module.exports = seed;
