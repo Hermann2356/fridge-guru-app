@@ -1,8 +1,7 @@
-
 const express = require('express');
 const router = express.Router();
 const db = require('../models');
-const { Ingredient } = db;
+const {Ingredient} = db;
 
 // This is a simple example for providing basic CRUD routes for
 // a resource/model. It provides the following:
@@ -17,23 +16,23 @@ const { Ingredient } = db;
 // TODO: Can you spot where we have some duplication below?
 
 
-router.get('/ingredients', (req,res) => {
+router.get('/', (req, res) => {
     Ingredient.findAll({})
         .then(ingredients => res.json(ingredients));
 });
 
 
-router.post('/ingredients',
+router.post('/',
 
     (req, res) => {
-        let { name } = req.body.name;
-        let { consistency } = req.body.consistency;
-        let { fridgeSL } = req.body.fridgeSL;
-        let { cupboardSL } = req.body.fridgeSL;
-        let { freezerSL } = req.body.freezerSL;
-        let { categoryId } = req.body.categoryId;
+        let {name} = req.body.name;
+        let {consistency} = req.body.consistency;
+        let {fridgeSL} = req.body.fridgeSL;
+        let {cupboardSL} = req.body.cupboardSL;
+        let {freezerSL} = req.body.freezerSL;
+        let {categoryId} = req.body.categoryId;
 
-        Ingredients.create({ name, consistency, fridgeSL, cupboardSL, freezerSL, categoryId })
+        Ingredient.create({name, consistency, fridgeSL, cupboardSL, freezerSL, categoryId})
             .then(ingredient => {
                 res.status(201).json(ingredient);
             })
@@ -45,11 +44,12 @@ router.post('/ingredients',
 
 
 router.get('/:name', (req, res) => {
-    const { ingredientName } = req.params;
+    const {ingredientName} = req.params;
     Ingredient.findAll({
-        where: { name : ingredientName}})
+        where: {name: ingredientName}
+    })
         .then(ingredient => {
-            if(!ingredient) {
+            if (!ingredient) {
                 return res.sendStatus(404);
             }
 
@@ -58,35 +58,38 @@ router.get('/:name', (req, res) => {
 });
 
 
-// router.put('/:id',
-//     passport.isAuthenticated(),
-//     (req, res) => {
-//         const { id } = req.params;
-//         Post.findByPk(id)
-//             .then(post => {
-//                 if(!post) {
-//                     return res.sendStatus(404);
-//                 }
-//
-//                 post.content = req.body.content;
-//                 post.save()
-//                     .then(post => {
-//                         res.json(post);
-//                     })
-//                     .catch(err => {
-//                         res.status(400).json(err);
-//                     });
-//             });
-//     }
-// );
+router.put('/:id', (req, res) => {
+        const { ingredientName } = req.params;
+        Ingredient.findAll({where: { name: ingredientName }})
+            .then(Ingredient => {
+                if (!Ingredient) {
+                    return res.sendStatus(404);
+                }
+
+                Ingredient.name = req.body.name;
+                Ingredient.consistency = req.body.consistency;
+                Ingredient.fridgeSL = req.body.fridgeSL;
+                Ingredient.cupboardSL = req.body.cupboardSL;
+                Ingredient.freezerSL = req.body.freezerSL;
+                Ingredient.categoryId = req.body.categoryId;
+                Ingredient.save()
+                    .then(ingredients => {
+                        res.json(ingredients);
+                    })
+                    .catch(err => {
+                        res.status(400).json(err);
+                    });
+            });
+    }
+);
 
 
 router.delete('/:name',
     (req, res) => {
-        const { ingredientName } = req.params;
-        Ingredient.findAll({where : { name: ingredientName }})
+        const {ingredientName} = req.params;
+        Ingredient.findAll({where: {name: ingredientName}})
             .then(ingredient => {
-                if(!ingredient) {
+                if (!ingredient) {
                     return res.sendStatus(404);
                 }
 

@@ -1,4 +1,3 @@
-
 const { Ingredient, Category, User, Fridge } = require('../models');
 const seed = require('../../seed');
 

@@ -10,16 +10,14 @@ class IndexPage extends React.Component {
 
   componentDidMount() {
         fetch("/api/ingredients")
-            //.then(res => res.json())
-            .then(res => console.log(res.text()))
-            // .then(ingredients => {
-            //     console.log("here");
-            //     this.setState({
-            //         loading: false,
-            //         ingredients: ingredients.map(ingredient => { return ingredient.name}),
-            //     });
-            //     console.log(this.state.ingredients);
-            // })
+            .then(res => res.json())
+            .then(ingredients => {
+                this.setState({
+                    loading: false,
+                    ingredients: ingredients.map(ingredient => { return ingredient.name}),
+                });
+                console.log(this.state.ingredients);
+            })
             .catch(err => console.log("API ERROR: ", err));
       }
 
@@ -28,6 +26,7 @@ class IndexPage extends React.Component {
             return <Loading/>;
         }
 
+
         return (
             // <div className="container-fluid text-center">
             //     <div className="row justify-content-center">
@@ -35,7 +34,9 @@ class IndexPage extends React.Component {
             //     </div>
             // </div>
             <div>
-                <p>Index page </p>
+                <ul>
+                    {this.state.ingredients.join(" ")}
+                </ul>
             </div>
         )
   }
