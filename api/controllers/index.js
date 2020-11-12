@@ -6,7 +6,7 @@ const router = express.Router();
 const authController = require('./auth');
 const postsController = require('./posts.js');
 const appConfigController = require('./appConfig.js');
-const ingredientsController = require('./ingredient');
+const ingredientsController = require('./ingredients');
 
 // Mount each controller under a specific route. These
 // will be prefixes to all routes defined inside the controller

@@ -1,6 +1,6 @@
-
-const { Ingredient, Category, User, Fridge } = require('../models');
 const seed = require('../../seed');
+const db = require('./models');
+const { Ingredient, Category, User, Fridge } = db;
 
 
 const {
@@ -14,7 +14,7 @@ const {
 
 describe('1) Model Usage', () => {
     beforeAll(() => {
-        return seed();
+        return seed(db);
     })
 
 
