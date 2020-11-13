@@ -5,7 +5,7 @@ const { Category} = db;
 
 // This is a simple example for providing basic CRUD routes for
 // a resource/model. It provides the following:
-//    GET    /posts
+//    GET    /postsk
 //    POST   /posts
 //    GET    /posts/:id
 //    PUT    /posts/:id
