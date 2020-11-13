@@ -14,7 +14,7 @@ class IndexPage extends React.Component {
                 this.setState({
                     loading: false,
                     ingredients: ingredients.map(ingredient => {
-                        return ingredient.consistency;
+                        return ingredient.name;
                     }),
                 });
                 console.log(this.state.ingredients);
