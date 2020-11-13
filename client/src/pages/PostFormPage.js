@@ -36,8 +36,9 @@ class PostFormPage extends React.Component {
         });
       })
       .catch(err => {
+        // Hermann's Change
         this.setState({
-          error: ,
+          error: false,
         });
       });
   }
