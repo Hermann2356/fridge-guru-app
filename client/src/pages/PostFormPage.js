@@ -37,7 +37,7 @@ class PostFormPage extends React.Component {
       })
       .catch(err => {
         this.setState({
-          error: true,
+          error: ,
         });
       });
   }
