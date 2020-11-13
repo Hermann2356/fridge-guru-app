@@ -8,6 +8,7 @@ module.exports = (sequelize, DataTypes) => {
     Category.init({
         name: {
             type: DataTypes.STRING,
+            unique: true,
             validate: {
                 notEmpty: true,
                 len : [0, 100],

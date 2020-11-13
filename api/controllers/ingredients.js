@@ -5,11 +5,11 @@ const {Ingredient} = db;
 
 // This is a simple example for providing basic CRUD routes for
 // a resource/model. It provides the following:
-//    GET    /posts
-//    POST   /posts
-//    GET    /posts/:id
-//    PUT    /posts/:id
-//    DELETE /posts/:id
+//    GET    /ingredients
+//    POST   /ingredients
+//    GET    /ingredients/:name
+//    PUT    /ingredients/:name
+//    DELETE /ingredients/:name
 
 // There are other styles for creating these route handlers, we typically
 // explore other patterns to reduce code duplication.
@@ -44,9 +44,9 @@ router.post('/',
 
 
 router.get('/:name', (req, res) => {
-    const {ingredientName} = req.params;
+    const {name} = req.params;
     Ingredient.findAll({
-        where: {name: ingredientName}
+        where: {name: name}
     })
         .then(ingredient => {
             if (!ingredient) {
@@ -58,9 +58,9 @@ router.get('/:name', (req, res) => {
 });
 
 
-router.put('/:id', (req, res) => {
-        const { ingredientName } = req.params;
-        Ingredient.findAll({where: { name: ingredientName }})
+router.put('/:name', (req, res) => {
+        const { name } = req.params;
+        Ingredient.findAll({where: { name: name }})
             .then(Ingredient => {
                 if (!Ingredient) {
                     return res.sendStatus(404);
@@ -86,8 +86,8 @@ router.put('/:id', (req, res) => {
 
 router.delete('/:name',
     (req, res) => {
-        const {ingredientName} = req.params;
-        Ingredient.findAll({where: {name: ingredientName}})
+        const {name} = req.params;
+        Ingredient.findAll({where: {name: name}})
             .then(ingredient => {
                 if (!ingredient) {
                     return res.sendStatus(404);
