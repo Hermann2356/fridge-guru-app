@@ -15,13 +15,14 @@ const {Ingredient} = db;
 // explore other patterns to reduce code duplication.
 // TODO: Can you spot where we have some duplication below?
 
-
+//  (GET) /ingredients - use for fetch('/ingredients')
 router.get('/', (req, res) => {
     Ingredient.findAll({})
         .then(ingredients => res.json(ingredients));
 });
 
-
+//  (GET) /ingredients - use for
+//  fetch('/ingredients'{ method: 'POST" method: 'POST', credentials: 'include',headers: {'Content-Type': 'application/json'})
 router.post('/',
 
     (req, res) => {
@@ -42,7 +43,7 @@ router.post('/',
     }
 );
 
-
+//  (GET) /ingredients - use for fetch('/ingredients/apple')
 router.get('/:name', (req, res) => {
     const {name} = req.params;
     Ingredient.findAll({
