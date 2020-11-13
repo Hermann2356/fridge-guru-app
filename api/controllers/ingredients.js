@@ -3,37 +3,24 @@ const router = express.Router();
 const db = require('../models');
 const {Ingredient} = db;
 
-// This is a simple example for providing basic CRUD routes for
-// a resource/model. It provides the following:
-//    GET    /ingredients
-//    POST   /ingredients
-//    GET    /ingredients/:name
-//    PUT    /ingredients/:name
-//    DELETE /ingredients/:name
 
-// There are other styles for creating these route handlers, we typically
-// explore other patterns to reduce code duplication.
-// TODO: Can you spot where we have some duplication below?
-
-//  (GET) /ingredients - use for fetch('/ingredients')
 router.get('/', (req, res) => {
     Ingredient.findAll({})
         .then(ingredients => res.json(ingredients));
 });
 
-//  (GET) /ingredients - use for
-//  fetch('/ingredients'{ method: 'POST" method: 'POST', credentials: 'include',headers: {'Content-Type': 'application/json'})
+
 router.post('/',
 
     (req, res) => {
-        let {name} = req.body.name;
-        let {consistency} = req.body.consistency;
-        let {fridgeSL} = req.body.fridgeSL;
-        let {cupboardSL} = req.body.cupboardSL;
-        let {freezerSL} = req.body.freezerSL;
-        let {categoryId} = req.body.categoryId;
+        let { name } = req.body.name;
+        let { consistency } = req.body.consistency;
+        let { fridgeSL } = req.body.fridgeSL;
+        let { cupboardSL } = req.body.cupboardSL;
+        let { freezerSL } = req.body.freezerSL;
+        let { categoryId } = req.body.categoryId;
 
-        Ingredient.create({name, consistency, fridgeSL, cupboardSL, freezerSL, categoryId})
+        Ingredient.create({ name, consistency, fridgeSL, cupboardSL, freezerSL, categoryId })
             .then(ingredient => {
                 res.status(201).json(ingredient);
             })
@@ -44,11 +31,9 @@ router.post('/',
 );
 
 //  (GET) /ingredients - use for fetch('/ingredients/apple')
-router.get('/:name', (req, res) => {
-    const {name} = req.params;
-    Ingredient.findAll({
-        where: {name: name}
-    })
+router.get('/:id', (req, res) => {
+    const { id } = req.params;
+    Ingredient.findByPk(id)
         .then(ingredient => {
             if (!ingredient) {
                 return res.sendStatus(404);
@@ -59,9 +44,9 @@ router.get('/:name', (req, res) => {
 });
 
 
-router.put('/:name', (req, res) => {
-        const { name } = req.params;
-        Ingredient.findAll({where: { name: name }})
+router.put('/:id', (req, res) => {
+        const { id } = req.params;
+        Ingredient.findByPk(id)
             .then(Ingredient => {
                 if (!Ingredient) {
                     return res.sendStatus(404);
@@ -74,8 +59,8 @@ router.put('/:name', (req, res) => {
                 Ingredient.freezerSL = req.body.freezerSL;
                 Ingredient.categoryId = req.body.categoryId;
                 Ingredient.save()
-                    .then(ingredients => {
-                        res.json(ingredients);
+                    .then(ingredient => {
+                        res.json(ingredient);
                     })
                     .catch(err => {
                         res.status(400).json(err);
@@ -85,12 +70,11 @@ router.put('/:name', (req, res) => {
 );
 
 
-router.delete('/:name',
-    (req, res) => {
-        const {name} = req.params;
-        Ingredient.findAll({where: {name: name}})
+router.delete('/:id', (req, res) => {
+        const { id } = req.params;
+        Ingredient.findByPk(id)
             .then(ingredient => {
-                if (!ingredient) {
+                if(!ingredient) {
                     return res.sendStatus(404);
                 }
 

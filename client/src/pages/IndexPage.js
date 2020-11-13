@@ -8,7 +8,7 @@ class IndexPage extends React.Component {
     }
 
     componentDidMount() {
-        fetch("/api/ingredients/")
+        fetch("/api/fridge/apple")
             .then(res => res.json())
             .then(ingredients => {
                 this.setState({
@@ -36,7 +36,7 @@ class IndexPage extends React.Component {
             // </div>
             <div>
                 <ul>
-                    {this.state.ingredients}
+                    {this.state.ingredients.join(" ")}
                 </ul>
             </div>
         )

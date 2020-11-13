@@ -3,18 +3,6 @@ const router = express.Router();
 const db = require('../models');
 const { Category} = db;
 
-// This is a simple example for providing basic CRUD routes for
-// a resource/model. It provides the following:
-//    GET    /postsk
-//    POST   /posts
-//    GET    /posts/:id
-//    PUT    /posts/:id
-//    DELETE /posts/:id
-
-// There are other styles for creating these route handlers, we typically
-// explore other patterns to reduce code duplication.
-// TODO: Can you spot where we have some duplication below?
-
 
 router.get('/', (req, res) => {
     Category.findAll({})
@@ -30,7 +18,7 @@ router.post('/',
 
         Category.create({name, pointValue})
             .then(category => {
-                res.status(201).json(category);
+                res.status(201).json(category)
             })
             .catch(err => {
                 res.status(400).json(err);
@@ -76,20 +64,20 @@ router.put('/:name', (req, res) => {
 );
 
 
-router.delete('/:name',
-    (req, res) => {
-        const {ingredientName} = req.params;
-        Ingredient.findAll({where: {name: ingredientName}})
-            .then(ingredient => {
-                if (!ingredient) {
+router.delete('/:id', (req, res) => {
+        const { id } = req.params;
+        Category.findByPk(id)
+            .then(category => {
+                if(!category) {
                     return res.sendStatus(404);
                 }
 
-                ingredient.destroy();
+                category.destroy();
                 res.sendStatus(204);
             });
     }
 );
+
 
 
 module.exports = router;

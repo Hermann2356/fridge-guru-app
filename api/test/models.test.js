@@ -1,40 +1,39 @@
 const seed = require('../../seed');
 const db = require('./models');
-const { Ingredient, Category, User, Fridge } = db;
 
 
 const {
-    getAllIngredients,
-    getAllCategories,
-    getAllUsers,
+    getNumIngredients,
+    getNumCategories,
+    getNumUsers,
     getAllUserIngredients
 } = require('./models');
 
 
 
 describe('1) Model Usage', () => {
-    beforeAll(() => {
-        return seed(db);
-    })
 
-
-    test('get all ingredient', async () => {
-        expect(await getAllIngredients()).toEqual(14);
+    // test th
+    test('get the number of ingredients', async () => {
+        expect(await getNumIngredients()).toEqual(14);
 
     });
 
-    test('get all category', async () => {
-        expect(await getAllCategories()).toEqual(3);
+    test('get the number of categories', async () => {
+        expect(await getNumCategories()).toBe(3);
 
     });
 
-    test('get all user', async () => {
-        expect(await getAllUsers()).toEqual(1);
+    test('get the number of users', async () => {
+        expect(await getNumUsers()).toBe(1);
     });
 
-    test('get all user (Hermann Sterling) ingredients', async () => {
-        expect(await  getAllUserIngredients()).toEqual(["apple","orange","grape","peaches","asparagus","beans","cabbage","turkey","goose","banana"]);
-    })
+    test('get the fridge items of users hermann sterling', async () => {
+        expect(await getAllUserIngredients()).toBe("2");
+    });
+
+
+
 });
 
 
