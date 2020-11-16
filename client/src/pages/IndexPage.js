@@ -8,7 +8,7 @@ class IndexPage extends React.Component {
     }
 
     componentDidMount() {
-        fetch("/api/fridge/apple")
+        fetch("/api/ingredient")
             .then(res => res.json())
             .then(ingredients => {
                 this.setState({

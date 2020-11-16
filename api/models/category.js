@@ -14,12 +14,13 @@ module.exports = (sequelize, DataTypes) => {
                 len : [0, 100],
 
             },
-            pointValue: {
-                type: DataTypes.INTEGER,
-                validate: {
-                    isInt: true,
+        },
+        pointValue: {
+            type: DataTypes.INTEGER,
+            defaultValue: 0,
+            validate: {
+                isInt: true,
 
-                }
             }
         },
     }, {

@@ -5,7 +5,8 @@ const seed = (db) => {
     const CATEGORY = [
         {id: 1, name: "fruit"},
         {id: 2, name: "vegetable"},
-        {id: 3, name: "poultry"}
+        {id: 3, name: "poultry"},
+        {id: 4, name: "protein"}
     ];
 
     const INGREDIENT = [

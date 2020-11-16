@@ -11,6 +11,10 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.DATE,
 
         },
+        quantity: {
+            type: DataTypes.INTEGER,
+
+        },
     }, {
         sequelize,
         modelName: 'fridge'
