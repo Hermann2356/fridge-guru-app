@@ -31,6 +31,7 @@ module.exports = (sequelize, DataTypes) => {
     Category.associate = (models) =>{
         // association can be defined here
         models.Category.hasMany(models.Ingredient);
+        models.Category.belongsToMany(models.Recipe, {through: 'recipe_category'});
     };
 
     return Category;

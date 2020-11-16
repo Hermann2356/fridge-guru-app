@@ -50,7 +50,6 @@ module.exports = (sequelize, DataTypes) => {
     Ingredient.associate = (models) => {
         // association can be defined here
         models.Ingredient.belongsTo(models.Category);
-
         models.Ingredient.belongsToMany(models.User, { through: 'fridge'});
 
 
