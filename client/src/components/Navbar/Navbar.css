@@ -1,0 +1,6 @@
+.nav__item {
+  letter-spacing: 2px;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  margin-left: 20px;
+}

@@ -1,0 +1,13 @@
+.food__container {
+  width: 40vw;
+  display: flex;
+  justify-content: flex-start;
+  margin: 1.5rem auto;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+}
+
+.food__container::-webkit-scrollbar {
+  display: none;
+}

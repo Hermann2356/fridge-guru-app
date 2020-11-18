@@ -1,0 +1,22 @@
+.card__box {
+  width: 80%;
+  border-radius: 10px !important;
+}
+
+.post_box_image {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+
+.post__input {
+  border-radius: 30px !important;
+}
+
+.post__icon {
+  font-size: 20px;
+  cursor: pointer;
+  color: #25282b;
+}
