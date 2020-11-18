@@ -1,7 +1,7 @@
 const {Ingredient, Category, User, Fridge} = require('../models');
 const API_KEY = process.env.API_KEY;
 const API_HOST = process.env.API_HOST;
-const fetch = require("node-fetch");
+
 
 function insertNewIngredient() {
     return Ingredient.create({

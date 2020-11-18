@@ -1,27 +1,32 @@
 import React from 'react';
 import Loading from '../components/Loading';
 
+const {getRecipeByIngredients} = require('../spoonacular/endpoints');
+
 class IndexPage extends React.Component {
     state = {
+        recipes: [],
         ingredients: [],
         loading: true,
     }
 
     componentDidMount() {
-        let ingredients = 'ingredients=' + ['broccoli', 'chicken', 'asparagus'].join('%C')
-        fetch("/api/recipe/" + ingredients)
-            .then(res=> console.log(res))
-            .then(res => res.json())
-            .then(ingredients => {
+        let ingredients = ['broccoli', 'chicken', 'asparagus']
+
+        getRecipeByIngredients(ingredients)
+            .then(res => {
+                return res.json();
+            })
+            .then(recipes => {
+                console.log(recipes);
                 this.setState({
                     loading: false,
-                    ingredients: ingredients.map(ingredient => {
-                        return ingredient.name;
-                    }),
-                });
-                console.log(this.state.ingredients);
+                    recipes: recipes.map(recipe => {
+                        return recipe.title;
+                    })
+                })
             })
-            .catch(err => console.log("API ERROR: ", err));
+
     }
 
     render() {
@@ -38,7 +43,7 @@ class IndexPage extends React.Component {
             // </div>
             <div>
                 <ul>
-                    {this.state.ingredients.join(" ")}
+                    {this.state.recipes.join(" | ")}
                 </ul>
             </div>
         )

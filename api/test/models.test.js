@@ -1,7 +1,7 @@
 const seed = require('../../seed');
 const {Ingredient, Category, User, Fridge} = require('../models');
 const db = require('../models');
-
+const { search } = require('../../client/src/spoonacular/endpoints');
 const {
     getIngredients,
     getIngredientByPK,
@@ -18,7 +18,6 @@ const {
     insertNewFridgeIngredient,
     updateFridgeIngredient,
     deleteFridgeIngredient,
-    getRecipeByIngredients
 } = require('./models');
 
 
@@ -119,7 +118,10 @@ describe('1) Model Usage', () => {
 
     test('get list of recipes by ingredient', async () => {
 
-        recipes = await getRecipeByIngredients();
+        recipes = await search.getRecipeByIngredients(['broccoli', 'chicken'])
+            .then(res => {
+                return res.json();
+            });
         expect(recipes).toBe(10);
     });
 });
