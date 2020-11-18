@@ -17,7 +17,8 @@ const {
     deleteIngredient,
     insertNewFridgeIngredient,
     updateFridgeIngredient,
-    deleteFridgeIngredient
+    deleteFridgeIngredient,
+    getRecipeByIngredients
 } = require('./models');
 
 
@@ -114,6 +115,12 @@ describe('1) Model Usage', () => {
         await deleteFridgeIngredient();
         fridgeIngredients = await Fridge.findAll({where: { userId: 1 }});
         expect(fridgeIngredients.length).toBe(10);
+    });
+
+    test('get list of recipes by ingredient', async () => {
+
+        recipes = await getRecipeByIngredients();
+        expect(recipes).toBe(10);
     });
 });
 

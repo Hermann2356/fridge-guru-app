@@ -1,5 +1,7 @@
 const {Ingredient, Category, User, Fridge} = require('../models');
-
+const API_KEY = process.env.API_KEY;
+const API_HOST = process.env.API_HOST;
+const fetch = require("node-fetch");
 
 function insertNewIngredient() {
     return Ingredient.create({
@@ -99,6 +101,25 @@ function deleteFridgeIngredient() {
     return Fridge.destroy({ where: { ingredientId:8 } });
 }
 
+function getRecipeByIngredients() {
+    let ingredients = 'ingredients=' + ['broccoli', 'chicken', 'asparagus'].join('%C')
+    return fetch("https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByIngredients?" +
+        //"ingredients=apples%2Cflour%2Csugar" +
+        ingredients +
+        "&number=5&ranking=1&ignorePantry=true", {
+        "method": "GET",
+        "headers": {
+            "x-rapidapi-key": "0056010829msh4d04f8cc38de15dp1d2058jsn096cd683f0a6",
+            "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com"
+            // "x-rapidapi-key": API_KEY,
+            // "x-rapidapi-host": API_HOST
+        }
+    })
+        .then(response => {
+            return response.json();
+        });
+}
+
 
 module.exports = {
     getIngredients,
@@ -115,5 +136,6 @@ module.exports = {
     getOneFridgeIngredient,
     insertNewFridgeIngredient,
     updateFridgeIngredient,
-    deleteFridgeIngredient
+    deleteFridgeIngredient,
+    getRecipeByIngredients
 };

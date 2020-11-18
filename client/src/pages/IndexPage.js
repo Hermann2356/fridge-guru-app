@@ -8,7 +8,9 @@ class IndexPage extends React.Component {
     }
 
     componentDidMount() {
-        fetch("/api/ingredient")
+        let ingredients = 'ingredients=' + ['broccoli', 'chicken', 'asparagus'].join('%C')
+        fetch("/api/recipe/" + ingredients)
+            .then(res=> console.log(res))
             .then(res => res.json())
             .then(ingredients => {
                 this.setState({
