@@ -2,13 +2,7 @@ const fetch = require("node-fetch");
 
 
 const search = {
-    key: "0056010829msh4d04f8cc38de15dp1d2058jsn096cd683f0a6",
-    host: process.env.API_HOST,
-    BASE_URL: "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
-    HEADERS: {
-        "x-rapidapi-key": "0056010829msh4d04f8cc38de15dp1d2058jsn096cd683f0a6",
-        "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com"
-    },
+
     getRecipeByIngredients: (ingredients, optional) => {
         // optional = optional || {};
         let ingredientList = ingredients.join('%2C');
