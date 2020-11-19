@@ -1,0 +1,20 @@
+.right__bar_container {
+  height: 100vh;
+  z-index: -1;
+  clear: both;
+}
+.notification__button {
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+.search__input__container {
+  margin-top: 5%;
+}
+.search__input {
+  width: 100%;
+  margin: 0 auto;
+  border-radius: 30px;
+}
+.ingredients__container {
+  margin-top: 5%;
+}
