@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import App from '../App';
 import {it} from "@jest/globals";
 
 it('renders without crashing', () => {

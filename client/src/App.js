@@ -9,13 +9,12 @@ import {
 import IndexPage from './pages/IndexPage';
 import PostsListPage from './pages/PostsListPage';
 import PostFormPage from './pages/PostFormPage';
-import ShowPostPage from './pages/ShowPostPage';
 import AboutUsPage from './pages/AboutUsPage';
 import LoginPage from './pages/LoginPage';
 import PrivateRoute from './components/PrivateRoute';
 import AuthButton from './components/AuthButton';
-
 import './App.css';
+import CookingPage from "./pages/CookingPage";
 
 
 function Navigation(props) {
@@ -48,10 +47,10 @@ class App extends React.Component {
                 <div className="container-fluid text-center">
                     <div className="row justify-content-center">
                         <Switch>
+                            <Route path="/cooking" component={CookingPage}/>
                             <Route path="/ingredients" component={IndexPage}/>
                             <Route path="/login" component={LoginPage}/>
                             <PrivateRoute path="/posts/new" component={PostFormPage}/>
-                            <Route path="/posts/:id" component={ShowPostPage}/>
                             <Route path="/about-us" component={AboutUsPage}/>
                             <Route path="/" component={PostsListPage}/>
                         </Switch>
