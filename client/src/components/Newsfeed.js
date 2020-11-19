@@ -2,12 +2,12 @@
 import React from "react";
 
 // Import Styles
-import "./Newsfeed.css";
+import "../components_stylesheets/Newsfeed.css";
 
 // Import Components
-import CreatePostBox from "../CreatePostBox/CreatePostBox";
-import FoodCategory from "../FoodCategory/FoodCategory";
-import Post from "../Post/Post";
+import CreatePostBox from "./CreatePostBox";
+import FoodCategory from "./FoodCategory";
+import Post from "./Post";
 
 // Render Method
 const Newsfeed = () => {

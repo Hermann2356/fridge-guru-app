@@ -1,6 +1,6 @@
 import React from "react";
 import { Collapse } from "reactstrap";
-import "./Post.css";
+import "../components_stylesheets/Post.css";
 
 function Post({ image }) {
   const [isOpen, setIsOpen] = React.useState(false);

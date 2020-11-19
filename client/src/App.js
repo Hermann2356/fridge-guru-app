@@ -5,7 +5,7 @@ import React from "react";
 import "./App.css";
 
 // Import Pages
-import Home from "./pages/Home/Home";
+import Home from "./pages/Home";
 
 // Import Component
 
