@@ -1,3 +1,4 @@
+
 import React from "react";
 import "../components_stylesheets/Home.css";
 import NavBar from "../components/Navbar";
@@ -33,3 +34,4 @@ class Home extends React.Component {
 };
 
 export default Home;
+
