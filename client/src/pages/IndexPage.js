@@ -1,5 +1,5 @@
 import React from 'react';
-import Loading from '../components/Loading';
+
 
 const {getRecipeByIngredients} = require('../spoonacular/endpoints');
 
@@ -31,7 +31,7 @@ class IndexPage extends React.Component {
 
     render() {
         if (this.state.loading) {
-            return <Loading/>;
+
         }
 
 
