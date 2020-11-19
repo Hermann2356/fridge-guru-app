@@ -18,6 +18,9 @@ const Newsfeed = () => {
       <FoodCategory />
       <Post image="https://specials-images.forbesimg.com/imageserve/5f748b1a267da47f7b3c2dfa/960x0.jpg?cropX1=0&cropX2=1252&cropY1=155&cropY2=1094" />
       <Post image="https://spoonacular.com/application/frontend/images/food-api/dough.jpg" />
+      <Post image="https://spoonacular.com/application/frontend/images/food-api/dough.jpg" />
+      <Post image="https://spoonacular.com/application/frontend/images/food-api/dough.jpg" />
+      <Post image="https://spoonacular.com/application/frontend/images/food-api/dough.jpg" />
     </div>
   );
 };

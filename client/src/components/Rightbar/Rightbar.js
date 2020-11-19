@@ -7,6 +7,7 @@ import { Input } from "reactstrap";
 import "./Rightbar.css";
 
 // Import Components
+import FilterItem from "../FilterItem/FilterItem";
 
 // Render Method
 const Rightbar = () => {
@@ -20,7 +21,7 @@ const Rightbar = () => {
         <Input className="search__input" placeholder="Search for recipes" />
       </div>
       <div className="ingridients__container">
-        <h5>Top Ingredients</h5>
+        {/* <h5>Top Ingridients</h5>
         <div className="d-flex justify-content-around align-items-center">
           <div className="bottom__ingridient d-flex align-items-center justify-content-center meat__ingridient">
             <p>Meat</p>
@@ -36,7 +37,10 @@ const Rightbar = () => {
           <div className="bottom__ingridient d-flex align-items-center justify-content-center grains__ingridient">
             <p>Grains</p>
           </div>
-        </div>
+        </div> */}
+        <FilterItem />
+        <FilterItem />
+        <FilterItem />
       </div>
     </div>
   );

@@ -1,30 +1,49 @@
+// Import Libraries
 import React from "react";
-import CategoryBox from "../CategoryBox/CategoryBox";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
+// Import Styles
 import "./FoodCategory.css";
 
-function FoodCategory() {
+// Import Components
+import CategoryBox from "../CategoryBox/CategoryBox";
+
+// Render Method
+const FoodCategory = () => {
   const ref = React.useRef(null);
 
-  const scroll = (offset) => {
+  // Function To Handle Scroll Right
+  const scrollRight = (offset) => {
     ref.current.scrollLeft += offset;
   };
 
+  // Function To Handle Scroll Left
+  const scrollLeft = (offset) => {
+    ref.current.scrollLeft -= offset;
+  };
+
   return (
-    <div className="food__container" ref={ref}>
-      <button onClick={() => scroll(120)}>scroll</button>
-      <CategoryBox />
-      <CategoryBox />
-      <CategoryBox />
-      <CategoryBox />
-      <CategoryBox />
-      <CategoryBox />
-      <CategoryBox />
-      <CategoryBox />
-      <CategoryBox />
-      <CategoryBox />
+    <div className="d-flex align-items-center food__wrapper">
+      <button className="category__scroll" onClick={() => scrollLeft(120)}>
+        <FaChevronLeft />
+      </button>
+      <div className="food__container " ref={ref}>
+        <CategoryBox />
+        <CategoryBox />
+        <CategoryBox />
+        <CategoryBox />
+        <CategoryBox />
+        <CategoryBox />
+        <CategoryBox />
+        <CategoryBox />
+        <CategoryBox />
+        <CategoryBox />
+      </div>
+      <button className="category__scroll" onClick={() => scrollRight(120)}>
+        <FaChevronRight />
+      </button>
     </div>
   );
-}
+};
 
 export default FoodCategory;

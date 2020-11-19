@@ -1,0 +1,40 @@
+.filter__wrapper {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.filter__toggle {
+  background-color: #82ae46;
+  padding: 5px 10px;
+  border-radius: 10px 10px 0px 0px;
+  cursor: pointer;
+  color: #fff;
+}
+
+.filter__image {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  padding: 5px;
+  background-color: #fff;
+}
+
+.filter__item__title {
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+  margin-left: 5px;
+  text-transform: capitalize;
+}
+
+.filter__dropdown {
+  background-color: #efefef;
+  border-radius: 0px 0px 10px 10px;
+  padding-left: 30px;
+}
+.filter__dropdown label {
+  text-transform: capitalize;
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: #333;
+}

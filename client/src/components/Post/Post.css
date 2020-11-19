@@ -1,5 +1,5 @@
 .post__box {
-  width: 40vw;
+  width: 80%;
   border-radius: 10px !important;
   overflow: hidden;
 }
@@ -10,7 +10,7 @@
 }
 
 .post__image {
-  height: 35vh;
+  height: 50vh;
   object-fit: contain;
   background-color: #000000;
 }
@@ -44,4 +44,9 @@
   cursor: pointer;
   border-bottom: 1px solid tomato;
   text-transform: capitalize;
+}
+@media only screen and (max-width: 992px) {
+  .post__box {
+    width: 95%;
+  }
 }

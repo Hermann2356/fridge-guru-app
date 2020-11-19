@@ -20,3 +20,8 @@
   cursor: pointer;
   color: #25282b;
 }
+@media only screen and (max-width: 992px) {
+  .card__box {
+    width: 95%;
+  }
+}
