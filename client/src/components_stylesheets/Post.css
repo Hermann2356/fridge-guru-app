@@ -1,0 +1,52 @@
+.post__box {
+  width: 80%;
+  border-radius: 10px !important;
+  overflow: hidden;
+}
+
+.post__header {
+  background-color: #fff !important;
+  border-bottom: none;
+}
+
+.post__image {
+  height: 50vh;
+  object-fit: contain;
+  background-color: #000000;
+}
+
+.post__profile_image {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+
+.post__username {
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+.post__label {
+  font-style: italic;
+  color: #ccc;
+  font-weight: 400;
+  padding-right: 0.2rem;
+  padding-left: 0.2rem;
+}
+
+.post_show_more {
+  font-size: 0.7rem;
+  color: tomato;
+  cursor: pointer;
+  border-bottom: 1px solid tomato;
+  text-transform: capitalize;
+}
+@media only screen and (max-width: 992px) {
+  .post__box {
+    width: 95%;
+  }
+}
