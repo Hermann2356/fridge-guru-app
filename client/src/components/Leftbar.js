@@ -1,7 +1,10 @@
 // Import Libraries
 import React from "react";
-import "../components_stylesheets/Leftbar.css";
 
+// Import Styles
+import '../components_stylesheets/Leftbar.css';
+
+// Render Method
 class Leftbar extends React.Component {
 
     componentDidMount() {

@@ -1,6 +1,6 @@
 import React from "react";
 import {FaCheese} from "react-icons/fa";
-import "../components_stylesheets/CategoryBox.css";
+import '../components_stylesheets/CategoryBox.css';
 
 function CategoryBox({categoryName, id}) {
     categoryName = "category name";

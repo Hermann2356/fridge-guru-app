@@ -8,7 +8,7 @@ import {
     NavItem,
     NavLink,
 } from "reactstrap";
-import "../components_stylesheets/Navbar.css";
+import '../components_stylesheets/Navbar.css';
 
 // Render Method
 class NavbarComponent extends React.Component {

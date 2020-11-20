@@ -2,7 +2,7 @@
 import React from "react";
 
 // Import Styles
-import "../components_stylesheets/Newsfeed.css";
+import '../components_stylesheets/Newsfeed.css';
 
 // Import Components
 import CreatePostBox from "./CreatePostBox";

@@ -1,6 +1,6 @@
 import React from "react";
 import { Collapse } from "reactstrap";
-import "../../../../../../Downloads/fridge-guru-app-master 3/client/src/components_stylesheets/Post.css";
+import '../components_stylesheets/Post.css';
 
 function Post({ image }) {
   const [isOpen, setIsOpen] = React.useState(false);

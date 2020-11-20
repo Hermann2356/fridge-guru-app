@@ -1,6 +1,6 @@
 import React from "react";
 import {FaChevronLeft, FaChevronRight} from "react-icons/fa";
-import "../components_stylesheets/FoodCategory.css";
+import '../components_stylesheets/FoodCategory.css';
 import CategoryBox from "./CategoryBox";
 
 
