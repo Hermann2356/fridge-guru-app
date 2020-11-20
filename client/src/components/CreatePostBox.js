@@ -1,5 +1,5 @@
 import React from "react";
-import "../../../../../../Downloads/fridge-guru-app-master 3/client/src/components_stylesheets/CreatePostBox.css";
+import '../components_stylesheets/CreatePostBox.css';
 
 function CreatePostBox() {
   return (

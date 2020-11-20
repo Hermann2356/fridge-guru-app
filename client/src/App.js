@@ -15,6 +15,7 @@ import PrivateRoute from './components/PrivateRoute';
 import AuthButton from './components/AuthButton';
 import './App.css';
 import CookingPage from "./pages/CookingPage";
+import Home from "./pages/Home";
 
 
 function Navigation(props) {
@@ -43,18 +44,15 @@ class App extends React.Component {
     render() {
         return (
             <Router>
-                <Navigation/>
-                <div className="container-fluid text-center">
-                    <div className="row justify-content-center">
-                        <Switch>
-                            <Route path="/cooking" component={CookingPage}/>
-                            <Route path="/ingredients" component={IndexPage}/>
-                            <Route path="/login" component={LoginPage}/>
-                            <PrivateRoute path="/posts/new" component={PostFormPage}/>
-                            <Route path="/about-us" component={AboutUsPage}/>
-                            <Route path="/" component={PostsListPage}/>
-                        </Switch>
-                    </div>
+                <div>
+                    <Switch>
+                        <Route path="/cooking" component={CookingPage}/>
+                        <Route path="/ingredients" component={IndexPage}/>
+                        <Route path="/login" component={LoginPage}/>
+                        <PrivateRoute path="/posts/new" component={PostFormPage}/>
+                        <Route path="/about-us" component={AboutUsPage}/>
+                        <Route path="/" component={ Home }/>
+                    </Switch>
                 </div>
             </Router>
         );

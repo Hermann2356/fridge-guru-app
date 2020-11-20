@@ -2,7 +2,7 @@
 import React from "react";
 
 // Import Styles
-import "../../../../../../Downloads/fridge-guru-app-master 3/client/src/components_stylesheets/Newsfeed.css";
+import '../components_stylesheets/Newsfeed.css';
 
 // Import Components
 import CreatePostBox from "./CreatePostBox";

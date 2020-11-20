@@ -1,6 +1,6 @@
 import React from "react";
 import {FaCheese} from "react-icons/fa";
-import "../../../../../../Downloads/fridge-guru-app-master 3/client/src/components_stylesheets/CategoryBox.css";
+import '../components_stylesheets/CategoryBox.css';
 
 function CategoryBox({categoryName, id}) {
     categoryName = "category name";

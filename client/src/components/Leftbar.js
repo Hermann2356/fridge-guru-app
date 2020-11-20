@@ -2,7 +2,7 @@
 import React from "react";
 
 // Import Styles
-import "../../../../../../Downloads/fridge-guru-app-master 3/client/src/components_stylesheets/Leftbar.css";
+import '../components_stylesheets/Leftbar.css';
 
 // Render Method
 class Leftbar extends React.Component {

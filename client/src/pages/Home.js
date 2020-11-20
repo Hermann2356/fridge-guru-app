@@ -1,5 +1,5 @@
 import React from "react";
-import "../../../../../../Downloads/fridge-guru-app-master 3/client/src/components_stylesheets/Home.css";
+import "../components_stylesheets/Home.css";
 import NavBar from "../components/Navbar";
 import Leftbar from "../components/Leftbar";
 import Newsfeed from "../components/Newsfeed";
