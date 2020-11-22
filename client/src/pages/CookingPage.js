@@ -12,11 +12,13 @@ import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import {search} from "../spoonacular/endpoints";
 import "../components_stylesheets/CookingPage.css";
+import Timer from "../components/Timer";
 
 
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
+        marginLeft: 30,
         marginBottom: 50,
     },
 }));
@@ -90,9 +92,15 @@ function SideBar(props) {
 
     return (
         <div className="side-bar-div">
-            <ul>
-                {ingredientMeasurements}
-            </ul>
+            <div>
+                <Timer />
+            </div>
+            <div>
+                <h3>Ingredients</h3>
+                <ul>
+                    {ingredientMeasurements}
+                </ul>
+            </div>
         </div>
     );
 }
@@ -100,6 +108,7 @@ function SideBar(props) {
 
 class CookingPage extends React.Component {
     state = {
+        title: "",
         recipe: null,
         steps: [],
         ingredientMeasurement: [],
@@ -118,6 +127,7 @@ class CookingPage extends React.Component {
                     return
                 })
                 this.setState({
+                    title:info.title,
                     recipe: info,
                     steps: info.analyzedInstructions.map(i => {
                         return i.steps.map((s, ii) => {
@@ -145,6 +155,7 @@ class CookingPage extends React.Component {
             <div>
                 <Grid container spacing={3}>
                     <Grid item xs={12} sm={12} lg={8}>
+                        <h5>{this.state.title}</h5>
                         {this.state.steps}
                     </Grid>
                     <Grid item>

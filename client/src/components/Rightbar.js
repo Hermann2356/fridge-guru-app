@@ -2,7 +2,7 @@
 import React from "react";
 import { BsBell } from "react-icons/bs";
 import { Input } from "reactstrap";
-import '../components_stylesheets/RightBar.css';
+import '../components_stylesheets/Rightbar.css';
 import FilterItem from "./FilterItem";
 
 class Rightbar extends React.Component {
