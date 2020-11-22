@@ -26,7 +26,7 @@ class NavbarComponent extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="nav-div">
                 <header className="fixed-top">
                     <Navbar
                         className="bg-white border-bottom navbar__container"

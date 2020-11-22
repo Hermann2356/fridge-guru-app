@@ -8,6 +8,8 @@ import {
 } from 'react-router-dom';
 import './App.css';
 import Home from "./pages/Home";
+import CookingPage from "./pages/CookingPage";
+import Navbar from "./components/Navbar";
 
 
 function Navigation(props) {
@@ -35,9 +37,11 @@ class App extends React.Component {
     render() {
         return (
             <Router>
+                <Navbar />
                 <div>
                     <Switch>
-                        <Route path="/" component={ Home }/>
+                        <Route path="/recipe/cooking" component={CookingPage} />
+                        <Route path="/" component={Home} />
                     </Switch>
                 </div>
             </Router>

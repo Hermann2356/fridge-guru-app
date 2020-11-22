@@ -21,6 +21,15 @@ module.exports = (sequelize, DataTypes) => {
                 isEmail: true,
             },
         },
+        username: {
+            type: DataTypes.STRING,
+            unique: true,
+            allowNull: false,
+            validate: {
+                is:["^(?=[a-zA-Z0-9._]{8,20}$)(?!.*[_.]{2})[^_.].*[^_.]$"],
+                len: [8,20],
+            }
+        },
         passwordHash: {type: DataTypes.STRING},
         password: {
             type: DataTypes.VIRTUAL,
@@ -32,7 +41,7 @@ module.exports = (sequelize, DataTypes) => {
                 },
             },
         },
-        points: {
+        lvl: {
             type: DataTypes.INTEGER,
             defaultValue: 0,
             validate: {},

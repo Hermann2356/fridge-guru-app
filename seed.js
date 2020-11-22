@@ -44,7 +44,7 @@ const seed = (db) => {
     ]
 
     const USER = [
-        {id:1, firstName: "Hermann", lastName: "Sterling", email: "hermannsterling@gmail.com", password: "Hermann"}
+        {id:1, firstName: "Hermann", username: "Hermann2356", lastName: "Sterling", email: "hermannsterling@gmail.com", password: "Hermann"}
     ]
 
     return db.sequelize.sync({force: true})
