@@ -139,11 +139,11 @@ class CookingPage extends React.Component {
         return (
             <Container fluid="lg" id="main">
                 <Row>
-                    <Col xs={12} sm={12} md={8} lg={8}>
+                    <Col xs={12} sm={12} md={8} lg={8} xl={8}>
                         <h3 id="title">{this.state.title}</h3>
                         {this.state.steps}
                     </Col>
-                    <Col sm={4} md={4} lg={4}>
+                    <Col sm={4} md={4} lg={4} xl={4}>
                         <SideBar measurements={this.state.ingredientMeasurement}/>
                     </Col>
                 </Row>
