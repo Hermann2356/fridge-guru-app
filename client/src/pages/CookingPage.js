@@ -13,26 +13,19 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import {search} from "../spoonacular/endpoints";
 import "../components_stylesheets/CookingPage.css";
 import Timer from "../components/Timer";
+import {Col, Container, Row} from "reactstrap";
 
-
-const useStyles = makeStyles((theme) => ({
-    root: {
-        flexGrow: 1,
-        marginLeft: 30,
-        marginBottom: 50,
-    },
-}));
 
 function Ingredient(props) {
     return (
-        <Typography paragraph>
-          {props.name}
+        <Typography paragraph className="ingredient-typo">
+            {props.name}
         </Typography>
     )
 }
 
 function Step(props) {
-    const classes = useStyles();
+
     const [expanded, setExpanded] = React.useState(false);
 
     const handleExpandClick = () => {
@@ -41,61 +34,53 @@ function Step(props) {
 
     const ingredients = props.instruction.ingredients.map((i, ii) => {
         return <Ingredient name={i.name} image={i.image} key={ii}/>;
-    })
+    });
 
     return (
-        <div className={classes.root}>
-            <Grid container spacing={3}>
-                <Grid item xs={12} sm={12} lg={12}>
-                    <Card>
-                        <CardHeader
-                            title={props.instruction.name}
-                        />
-                        <CardContent>
-                            <Typography variant="body2" color="textSecondary" component="p">
-                                {props.instruction.step}
-                            </Typography>
-                        </CardContent>
+        <div className="step-div">
+            <Card>
+                <CardHeader
+                    title={props.instruction.name}
+                />
+                <CardContent>
+                    <Typography variant="body2" color="textSecondary" component="p">
+                        {props.instruction.step}
+                    </Typography>
+                </CardContent>
 
-
-                        <CardActions disableSpacing>
-                            <IconButton
-                                className={clsx(classes.expand, {
-                                    [classes.expandOpen]: expanded,
-                                })}
-                                onClick={handleExpandClick}
-                                aria-expanded={expanded}
-                                aria-label="Ingredients Needed"
-                            >
-                                <ExpandMoreIcon/>
-
-                            </IconButton>
-                        </CardActions>
-                        <Collapse in={expanded} timeout="auto" unmountOnExit>
-                            <CardContent>
-                                <Typography paragraph>Ingredients Needed:</Typography>
-                                {ingredients}
-                            </CardContent>
-                        </Collapse>
-                    </Card>
-                </Grid>
-            </Grid>
+                <CardActions disableSpacing>
+                    <IconButton
+                        id="expand-icon"
+                        onClick={handleExpandClick}
+                        aria-expanded={expanded}
+                        aria-label="Ingredients Needed"
+                    >
+                        <ExpandMoreIcon/>
+                    </IconButton>
+                </CardActions>
+                <Collapse in={expanded} timeout="auto" unmountOnExit>
+                    <CardContent id="ingredients-content">
+                        <Typography paragraph>Ingredients Needed:</Typography>
+                        {ingredients}
+                    </CardContent>
+                </Collapse>
+            </Card>
         </div>
 
     );
 }
 
 function SideBar(props) {
-    const ingredientMeasurements = props.measurements.map(measurement => {
-        return <li>{measurement}</li>
+    const ingredientMeasurements = props.measurements.map((measurement, ii) => {
+        return <li key={ii}>{measurement}</li>
     });
 
     return (
-        <div className="side-bar-div">
+        <div id="side-bar-div">
             <div>
-                <Timer />
+                <Timer/>
             </div>
-            <div>
+            <div id="ingredients-side-bar">
                 <h3>Ingredients</h3>
                 <ul>
                     {ingredientMeasurements}
@@ -127,7 +112,7 @@ class CookingPage extends React.Component {
                     return
                 })
                 this.setState({
-                    title:info.title,
+                    title: info.title,
                     recipe: info,
                     steps: info.analyzedInstructions.map(i => {
                         return i.steps.map((s, ii) => {
@@ -152,17 +137,17 @@ class CookingPage extends React.Component {
 
     render() {
         return (
-            <div>
-                <Grid container spacing={3}>
-                    <Grid item xs={12} sm={12} lg={8}>
-                        <h5>{this.state.title}</h5>
+            <Container fluid="lg" id="main">
+                <Row>
+                    <Col xs={12} sm={12} md={8} lg={8}>
+                        <h3 id="title">{this.state.title}</h3>
                         {this.state.steps}
-                    </Grid>
-                    <Grid item>
-                        <SideBar measurements={this.state.ingredientMeasurement} />
-                    </Grid>
-                </Grid>
-            </div>
+                    </Col>
+                    <Col sm={4} md={4} lg={4}>
+                        <SideBar measurements={this.state.ingredientMeasurement}/>
+                    </Col>
+                </Row>
+            </Container>
         );
     }
 
