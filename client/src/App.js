@@ -9,6 +9,7 @@ import {
 import './App.css';
 import Home from "./pages/Home";
 import CookingPage from "./pages/CookingPage";
+import AuthenticationPage from "./pages/AuthenticationPage"
 import Navbar from "./components/Navbar";
 
 
@@ -18,10 +19,9 @@ class App extends React.Component {
     render() {
         return (
             <Router>
-
                 <div id="app-div">
-                    <Navbar />
                     <Switch>
+                        <Route path="/auth" component={AuthenticationPage}/>
                         <Route path="/recipe/cooking" component={CookingPage} />
                         <Route path="/" component={Home} />
                     </Switch>

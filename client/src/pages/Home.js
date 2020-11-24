@@ -5,6 +5,7 @@ import NavBar from "../components/Navbar";
 import Leftbar from "../components/Leftbar";
 import Newsfeed from "../components/Newsfeed";
 import Rightbar from "../components/Rightbar";
+import Navbar from "../components/Navbar";
 
 class Home extends React.Component {
     componentDidMount() {

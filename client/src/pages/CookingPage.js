@@ -14,6 +14,7 @@ import {search} from "../spoonacular/endpoints";
 import "../components_stylesheets/CookingPage.css";
 import Timer from "../components/Timer";
 import {Col, Container, Row} from "reactstrap";
+import Navbar from "../components/Navbar";
 
 
 function Ingredient(props) {
@@ -137,18 +138,22 @@ class CookingPage extends React.Component {
 
     render() {
         return (
-            <Container fluid="lg" id="main">
-                <Row>
-                    <Col xs={12} sm={12} md={8} lg={8} xl={8}>
-                        <h3 id="title">{this.state.title}</h3>
-                        {this.state.steps}
-                    </Col>
-                    <Col sm={4} md={4} lg={4} xl={4}>
-                        <SideBar measurements={this.state.ingredientMeasurement}/>
-                    </Col>
-                </Row>
-            </Container>
-        );
+            <di>
+                <Navbar/>
+                <Container fluid="lg" id="main">
+                    <Row>
+                        <Col xs={12} sm={12} md={8} lg={8} xl={8}>
+                            <h3 id="title">{this.state.title}</h3>
+                            {this.state.steps}
+                        </Col>
+                        <Col sm={4} md={4} lg={4} xl={4}>
+                            <SideBar measurements={this.state.ingredientMeasurement}/>
+                        </Col>
+                    </Row>
+                </Container>
+            </di>
+        )
+            ;
     }
 
 }

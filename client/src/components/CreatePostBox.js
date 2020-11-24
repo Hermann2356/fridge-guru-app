@@ -15,7 +15,7 @@ function CreatePostBox() {
           </div>
           <div className="col-10 pl-0 d-flex align-items-center">
             <input
-              class="form-control post__input"
+              className="form-control post__input"
               type="search"
               placeholder="Share your feast"
               aria-label="Search"
