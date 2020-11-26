@@ -3,7 +3,7 @@ import "../components_stylesheets/Authentication.scss"
 import Login from "../components/Login";
 import SignUp from "../components/SignUp";
 import auth from "../services/auth"
-import { Redirect } from 'react-router-dom';
+import {Redirect} from 'react-router-dom';
 
 function RightSide(props) {
     return (
@@ -21,10 +21,15 @@ function RightSide(props) {
 
 
 class AuthenticationPage extends React.Component {
+
     state = {
         isLoginActive: true,
         redirectToReferrer: false,
         failed: false,
+        userError: false,
+        emailError: false,
+        failedMessage: "",
+        username: "",
         email: "",
         password: "",
     }
@@ -33,72 +38,140 @@ class AuthenticationPage extends React.Component {
         this.rightSide.classList.add("right");
     }
 
-    fieldChanged = (name) => {
-        return (event) => {
-            let { value } = event.target;
-            this.setState({ [name]: value });
-        }
-    }
 
-
-    login = (e) => {
+    login= (e) => {
         e.preventDefault();
-        let { email, password } = this.state;
+        let {email, password} = this.state;
         auth.authenticate(email, password)
             .then((user) => {
-                this.setState({ redirectToReferrer: true });
+                this.setState({redirectToReferrer: true});
             })
             .catch((err) => {
-                this.setState({ failed: true });
+                this.setState({failed: true, failedMessage: "Login Failed"});
             });
     }
 
-    changeState() {
-        const { isLoginActive } = this.state;
+
+    isRegistered = (username, email) => {
+        auth.isUsernameRegistered(username)
+            .then(user =>{
+                if(user){
+                    this.setState({
+                        userError: true,
+                    })
+                }
+            });
+
+        auth.isEmailRegistered(email)
+            .then(user =>{
+                if(user){
+                    this.setState({
+                        emailError: true,
+                    })
+                }
+            });
+
+
+    }
+
+    signup = (e) => {
+        e.preventDefault();
+        let {username, email, password} = this.state;
+        this.isRegistered(username, email);
+        if(!this.state.userError && !this.state.emailError){
+            auth.signup(username, email, password)
+                .then((user) => {
+                    this.setState({redirectToReferrer: true});
+                })
+                .catch((err) => {
+
+                });
+        }
+
+
+    }
+
+    clear= () => {
+        this.setState({
+            failed: false,
+            userError: false,
+            emailError: false,
+            username: "",
+            email: "",
+            password: "",
+            failedMessage: "",
+        });
+    }
+
+    changeState= () => {
+        const {isLoginActive} = this.state;
 
         if (isLoginActive) {
             this.rightSide.classList.remove("right");
             this.rightSide.classList.add("left");
+            this.clear();
         } else {
             this.rightSide.classList.remove("left");
             this.rightSide.classList.add("right");
+            this.clear();
         }
-        this.setState(prevState => ({ isLoginActive: !prevState.isLoginActive }));
+        this.setState(prevState => ({isLoginActive: !prevState.isLoginActive}));
     }
 
+    fieldChanged = (name) => {
+
+        return (event) => {
+            let {value} = event.target;
+            this.setState({[name]: value});
+        }
+    }
+
+
     render() {
-        const { isLoginActive } = this.state;
+        const {isLoginActive} = this.state;
         const current = isLoginActive ? "Register" : "Login";
         const currentActive = isLoginActive ? "login" : "register";
-        const { from } = this.props.location.state || { from: { pathname: '/' } };
-        const { redirectToReferrer, failed } = this.state;
+        const {from} = this.props.location.state || {from: {pathname: '/'}};
+        const {redirectToReferrer, failed} = this.state;
 
         if (redirectToReferrer) {
-            return <Redirect to={from} />;
+            return <Redirect to={from}/>;
         }
 
         let err = "";
         if (failed) {
-            err = <div className="alert alert-danger" role="alert">Login Failed</div>;
+            err = <div className="alert alert-danger" role="alert">{this.state.failedMessage}</div>;
         }
 
         return (
             <div className="App">
                 <div className="login">
                     <div className="container" ref={ref => (this.container = ref)}>
-                        { err }
                         {isLoginActive && (
                             <form onSubmit={this.login}>
                                 <Login containerRef={ref => (this.current = ref)}
-                                       emailState= {this.state.email}
-                                       passwordState= {this.state.password}
-                                       emailOnChange= {this.fieldChanged('email')}
-                                       passwordOnChange ={this.fieldChanged('password')} />
+                                       emailState={this.state.email}
+                                       passwordState={this.state.password}
+                                       emailOnChange={this.fieldChanged('email')}
+                                       passwordOnChange={this.fieldChanged('password')}
+                                />
                             </form>
                         )}
                         {!isLoginActive && (
-                            <SignUp containerRef={ref => (this.current = ref)} />
+                            <form onSubmit={this.signup}>
+                                <SignUp containerRef={ref => (this.current = ref)}
+                                        userState={this.state.username}
+                                        userError={this.state.userError}
+                                        emailError={this.state.emailError}
+                                        emailState={this.state.email}
+                                        passwordState={this.state.password}
+                                        userOnChange={this.fieldChanged('username')}
+                                        emailOnChange={this.fieldChanged('email')}
+                                        passwordOnChange={this.fieldChanged('password')}
+                                />
+                            </form>
                         )}
+                        {err}
                     </div>
                     <RightSide
                         current={current}

@@ -10,13 +10,13 @@ const auth = {
     authenticate(email, password) {
         return fetch('/api/auth/login', {
             method: 'POST',
-            body: JSON.stringify({ email, password }),
+            body: JSON.stringify({email, password}),
             headers: {
                 'Content-Type': 'application/json',
             }
         })
             .then((response) => {
-                if(!response.ok) {
+                if (!response.ok) {
                     throw new Error('Login Failed');
                 }
 
@@ -27,6 +27,32 @@ const auth = {
                 return body;
             });
     },
+    signup(username, email, password) {
+        return fetch('/api/auth/signup', {
+            method: 'POST',
+            body: JSON.stringify({
+                username,
+                email,
+                password,
+            }),
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        })
+            .then((response) => {
+                console.log(response);
+                if (!response.ok) {
+                    throw new Error('Signup Failed');
+                }
+
+                return response.json();
+            })
+            .then((body) => {
+                this.isAuthenticated = true;
+                return body;
+            });
+
+    },
     signout(cb) {
         return fetch('/api/auth/logout', {
             method: 'POST',
@@ -35,7 +61,7 @@ const auth = {
             }
         })
             .then((response) => {
-                if(!response.ok) {
+                if (!response.ok) {
                     throw new Error('Logout Failed');
                 }
 
@@ -45,7 +71,31 @@ const auth = {
                 this.isAuthenticated = false;
                 return body;
             });
-    }
+    },
+    isEmailRegistered(email) {
+        return fetch('/api/auth/email/' + email)
+            .then(res => {
+                return res.json();
+            })
+            .then(user => {
+                return (user.length === 1) ? true : false;
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    },
+    isUsernameRegistered(username) {
+        return fetch('/api/auth/username/' + username)
+            .then(res => {
+                return res.json();
+            })
+            .then(user => {
+                return (user.length === 1) ? true : false;
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    },
 }
 
 export default auth;

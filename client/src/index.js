@@ -3,7 +3,6 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import App from "./App";
-import * as serviceWorker from "../../client/src/services/serviceWorker";
 
 ReactDOM.render(
   <>
@@ -12,7 +11,6 @@ ReactDOM.render(
   document.getElementById("root")
 );
 
-serviceWorker.unregister();
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

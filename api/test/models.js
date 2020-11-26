@@ -1,4 +1,5 @@
-const {Ingredient, Category, Fridge} = require('../models');
+
+const {Ingredient, Category, Fridge, User} = require('../models');
 
 const CRUD = {
     insertNewIngredient: () => {
@@ -94,6 +95,14 @@ const CRUD = {
 
     deleteFridgeIngredient: () => {
         return Fridge.destroy({where: {ingredientId: 8}});
+    },
+
+    getUserByEmail: () => {
+        return User.findAll({where: {email: "hermannsterling@gmail.com"}});
+    },
+
+    getUserByUsername: () => {
+        return User.findAll({where: {username: "hermann2356"}});
     }
 }
 

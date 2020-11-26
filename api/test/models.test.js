@@ -116,7 +116,19 @@ describe('1) Model Usage', () => {
                 return res.json();
             });
         expect(instructions).toBe(10);
-    })
+    });
+
+    test('get number of user returned by email', async () => {
+        user = await CRUD.getUserByEmail();
+        expect(user.length).toBe(1);
+
+    });
+
+    test('get number of user returned by username', async () => {
+        user = await CRUD.getUserByUsername();
+        expect(user.length).toBe(1);
+
+    });
 });
 
 

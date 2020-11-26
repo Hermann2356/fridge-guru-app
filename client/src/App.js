@@ -19,7 +19,7 @@ class App extends React.Component {
     render() {
         return (
             <Router>
-                <div id="app-div">
+                <div>
                     <Switch>
                         <Route path="/auth" component={AuthenticationPage}/>
                         <Route path="/recipe/cooking" component={CookingPage} />

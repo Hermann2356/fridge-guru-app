@@ -78,7 +78,7 @@ function SideBar(props) {
 
     return (
         <div id="side-bar-div">
-            <div>
+            <div className="timer">
                 <Timer/>
             </div>
             <div id="ingredients-side-bar">
@@ -93,6 +93,7 @@ function SideBar(props) {
 
 
 class CookingPage extends React.Component {
+
     state = {
         title: "",
         recipe: null,
@@ -138,7 +139,7 @@ class CookingPage extends React.Component {
 
     render() {
         return (
-            <di>
+            <div className="App">
                 <Navbar/>
                 <Container fluid="lg" id="main">
                     <Row>
@@ -151,7 +152,7 @@ class CookingPage extends React.Component {
                         </Col>
                     </Row>
                 </Container>
-            </di>
+            </div>
         )
             ;
     }

@@ -8,6 +8,7 @@ router.post('/signup', (req, res) => {
   User.create({
     firstName: req.body.firstName,
     lastName: req.body.lastName,
+    username: req.body.username,
     email: req.body.email,
     password: req.body.password,
   })
@@ -17,6 +18,22 @@ router.post('/signup', (req, res) => {
     .catch((err) => {
       res.status(400).json({ msg: 'Failed Signup', err });
     });
+});
+
+router.get('/email/:email', (req, res) => {
+  const { email } = req.params;
+  User.findAll({where:{ email: email }})
+      .then(user => {
+        return res.json(user);
+      });
+});
+
+router.get('/username/:username', (req, res) => {
+  const { username } = req.params;
+  User.findAll({where:{ username: username }})
+      .then(user => {
+        return res.json(user);
+      });
 });
 
 router.post('/login',
