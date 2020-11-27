@@ -14,6 +14,9 @@ import Navbar from "./components/Navbar";
 
 
 
+// Import Pages
+import Home from "./pages/Home";
+import Profile from "./pages/Profile";
 
 class App extends React.Component {
     render() {
@@ -31,5 +34,21 @@ class App extends React.Component {
     }
 }
 
+// Render Method
+const App = () => {
+  return (
+    <Router>
+      <Navbar />
+      <Switch>
+        <Route exact path="/">
+          <Home />
+        </Route>
+        <Route path="/profile">
+          <Profile />
+        </Route>
+      </Switch>
+    </Router>
+  );
+};
 
 export default App;

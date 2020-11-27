@@ -1,7 +1,7 @@
 import React from "react";
-import '../components_stylesheets/CreatePostBox.css';
+import "../components_stylesheets/CreatePostBox.css";
 
-function CreatePostBox() {
+function CreatePostBox({ onClick }) {
   return (
     <div className="card card__box mx-auto">
       <div className="card-body">
@@ -19,6 +19,8 @@ function CreatePostBox() {
               type="search"
               placeholder="Share your feast"
               aria-label="Search"
+              onClick={() => onClick()}
+              readOnly
             />
           </div>
         </div>

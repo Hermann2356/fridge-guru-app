@@ -1,5 +1,5 @@
 .post__box {
-  width: 80%;
+  width: 98%;
   border-radius: 10px !important;
   overflow: hidden;
 }
@@ -45,6 +45,35 @@
   border-bottom: 1px solid tomato;
   text-transform: capitalize;
 }
+
+.card__actions {
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 10px;
+}
+
+.action {
+  border-right: 1px solid #ccc;
+  font-size: 1.3rem;
+}
+
+.action__icon {
+  padding: 5px 0px;
+  cursor: pointer;
+}
+
+.action__label {
+  padding: 5px 0 5px 5px;
+}
+
+.action:last-child {
+  border-right: none;
+}
+
+.icon {
+  width: 26px;
+  height: 26px;
+}
+
 @media only screen and (max-width: 992px) {
   .post__box {
     width: 95%;

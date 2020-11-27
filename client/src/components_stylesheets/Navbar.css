@@ -4,7 +4,11 @@
   text-transform: uppercase;
   margin-left: 20px;
 }
-
-.auth__item {
-
+.nav__link:hover {
+  text-decoration: none;
+  color: #999;
+}
+.nav__link {
+  text-decoration: none;
+  color: #000;
 }

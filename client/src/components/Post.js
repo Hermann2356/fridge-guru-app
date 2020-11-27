@@ -1,6 +1,13 @@
 import React from "react";
 import { Collapse } from "reactstrap";
-import '../components_stylesheets/Post.css';
+import "../components_stylesheets/Post.css";
+
+// icons
+import { MdShare, MdFavorite } from "react-icons/md";
+import { GiSpoon } from "react-icons/gi";
+
+// asset
+import Fork from "../assets/fork.png";
 
 function Post({ image }) {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -22,6 +29,32 @@ function Post({ image }) {
         </div>
       </div>
       <img alt="post_image" class="card-img-top post__image" src={image} />
+      <div className="card__actions">
+        <div className="row">
+          <div className="action col d-flex justify-content-center">
+            <span className="action__icon">
+              <img src={Fork} className="icon" />
+            </span>
+            <span className="action__label">0</span>
+          </div>
+          <div className="action col d-flex justify-content-center">
+            <span className="action__icon">
+              <GiSpoon />
+            </span>
+            <span className="action__label">0</span>
+          </div>
+          <div className="action col d-flex justify-content-center">
+            <span className="action__icon">
+              <MdShare />
+            </span>
+          </div>
+          <div className="action col d-flex justify-content-center">
+            <span className="action__icon">
+              <MdFavorite />
+            </span>
+          </div>
+        </div>
+      </div>
       <div className="card-body">
         <h5 className="card-title">Food Title</h5>
         <span

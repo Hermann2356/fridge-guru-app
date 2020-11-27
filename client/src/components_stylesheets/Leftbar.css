@@ -1,7 +1,8 @@
 .left__bar__container {
-  height: 100vh;
+  height: 100%;
   z-index: -1;
-  padding-left: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
   clear: both;
 }
 .left__bar__profile {
@@ -33,7 +34,7 @@
 .left__bar__top__options {
   display: flex;
   flex-direction: column;
-  margin-top: 40px;
+  margin-top: 20px;
 }
 .left__bar__top__options a {
   text-decoration: none;

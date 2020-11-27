@@ -1,0 +1,20 @@
+.MuiButtonBase-root {
+  background-color: red !important;
+}
+.MuiAppBar-colorPrimary {
+  color: #333;
+  background-color: #fff !important;
+}
+.MuiAppBar-colorPrimary a {
+  color: #333;
+  background-color: #fff !important;
+}
+.MuiAppBar-colorPrimary a:hover {
+  color: #333;
+  background-color: #fff !important;
+  text-decoration: none;
+}
+
+.PrivateTabIndicator-colorPrimary- {
+  background-color: white !important;
+}
