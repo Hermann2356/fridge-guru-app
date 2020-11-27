@@ -6,7 +6,7 @@ const path = require('path');
 const db = require('./models');
 const passport = require('./middlewares/authentication');
 const app = express();
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.PORT || 8080;
 const seed = require('../seed');
 
 

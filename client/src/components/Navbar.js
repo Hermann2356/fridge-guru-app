@@ -1,66 +1,66 @@
-import React, {useState} from "react";
+// Import Libraires
+import React, { useState } from "react";
 import {
-    Collapse,
-    Navbar,
-    NavbarToggler,
-    NavbarBrand,
-    Nav,
-    NavItem,
-    NavLink,
+  Collapse,
+  Navbar,
+  NavbarToggler,
+  NavbarBrand,
+  Nav,
+  NavItem,
+  NavLink,
 } from "reactstrap";
-import '../components_stylesheets/Navbar.css';
+import { Link } from "react-router-dom";
+
+// Import Styles
+import "../components_stylesheets/Navbar.css";
 
 // Render Method
-class NavbarComponent extends React.Component {
-    // State Values
-    state = {
-        isOpen: false,
-    }
+const NavbarComponent = () => {
+  // State Values
+  const [isOpen, setIsOpen] = useState(false);
 
-    // Navbar Toggle Method
-    toggle = () => {
-        this.setState({
-            isOpen: !this.isOpen
-        })
-    };
+  // Navbar Toggle Method
+  const toggle = () => setIsOpen(!isOpen);
 
-    render() {
-        return (
-            <div>
-                <header className="fixed-top">
-                    <Navbar
-                        className="bg-white border-bottom navbar__container"
-                        light
-                        expand="md"
-                    >
-                        <div className="container">
-                            <NavbarBrand href="/">FridgeGuru</NavbarBrand>
-                            <NavbarToggler onClick={this.toggle}/>
-                            <Collapse isOpen={this.state.isOpen} navbar>
-                                <Nav className="ml-auto" navbar>
-                                    <NavItem className="active nav__item">
-                                        <NavLink href="#">Home</NavLink>
-                                    </NavItem>
-                                    <NavItem className="nav__item">
-                                        <NavLink href="#">Recipes</NavLink>
-                                    </NavItem>
-                                    <NavItem className="nav__item">
-                                        <NavLink href="#">Settings</NavLink>
-                                    </NavItem>
-                                    <NavItem className="nav__item">
-                                        <NavLink href="#">Sign Out</NavLink>
-                                    </NavItem>
-                                </Nav>
-                            </Collapse>
-                        </div>
-                    </Navbar>
-                </header>
-                <div className="clearfix"></div>
-            </div>
-        );
-    }
-
-
+  return (
+    <div>
+      <header className="fixed-top">
+        <Navbar
+          className="bg-white border-bottom navbar__container"
+          light
+          expand="md"
+        >
+          <div className="container">
+            <Link to="/">
+              <NavbarBrand>FridgeGuru</NavbarBrand>
+            </Link>
+            <NavbarToggler onClick={toggle} />
+            <Collapse isOpen={isOpen} navbar>
+              <Nav className="ml-auto" navbar>
+                <NavItem className="active nav__item">
+                  <NavLink>
+                    <Link className="nav__link" to="/">
+                      Home
+                    </Link>
+                  </NavLink>
+                </NavItem>
+                <NavItem className="nav__item">
+                  <NavLink href="#">Recipes</NavLink>
+                </NavItem>
+                <NavItem className="nav__item">
+                  <NavLink href="#">Settings</NavLink>
+                </NavItem>
+                <NavItem className="nav__item">
+                  <NavLink href="#">Sign Out</NavLink>
+                </NavItem>
+              </Nav>
+            </Collapse>
+          </div>
+        </Navbar>
+      </header>
+      <div className="clearfix"></div>
+    </div>
+  );
 };
 
 export default NavbarComponent;
