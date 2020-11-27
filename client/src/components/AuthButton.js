@@ -1,13 +1,14 @@
 import React from 'react';
 import { withRouter, Link } from 'react-router-dom';
-
+import {NavLink} from "reactstrap";
+import '../components_stylesheets/Navbar.css';
 import auth from '../services/auth';
 
 const classes = "btn btn-primary";
 
 const AuthButton = withRouter(({ history }) => {
     if(!auth.isAuthenticated) {
-        return <Link className={classes} to="/login">Login</Link>;
+        return <NavLink className="auth__item" href="/login" >Login</NavLink>;
     }
 
     const logout = () => {
@@ -15,10 +16,7 @@ const AuthButton = withRouter(({ history }) => {
     }
 
     return (
-        <div>
-            Welcome!
-            <button className={classes} onClick={logout}>Logout</button>
-        </div>
+            <NavLink className="auth__item" href="/login" onSelect={logout}>Logout</NavLink>
     );
 });
 

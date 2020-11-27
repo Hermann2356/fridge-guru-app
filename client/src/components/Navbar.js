@@ -9,10 +9,10 @@ import {
     NavLink,
 } from "reactstrap";
 import '../components_stylesheets/Navbar.css';
+import AuthLink from "./AuthButton";
 
-// Render Method
 class NavbarComponent extends React.Component {
-    // State Values
+
     state = {
         isOpen: false,
     }
@@ -45,10 +45,10 @@ class NavbarComponent extends React.Component {
                                         <NavLink href="#">Recipes</NavLink>
                                     </NavItem>
                                     <NavItem className="nav__item">
-                                        <NavLink href="#">Settings</NavLink>
+                                        <NavLink href="#">Profile</NavLink>
                                     </NavItem>
-                                    <NavItem className="nav__item">
-                                        <NavLink href="#">Sign Out</NavLink>
+                                    <NavItem className="auth__item">
+                                        <AuthLink />
                                     </NavItem>
                                 </Nav>
                             </Collapse>

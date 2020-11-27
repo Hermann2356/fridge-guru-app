@@ -1,8 +1,7 @@
 import React from "react";
 import "../components_stylesheets/LoginSignUp.scss";
 
-function Login(props){
-
+function Login(props) {
 
     return (
         <div className="base-container" ref={props.containerRef}>
@@ -13,24 +12,20 @@ function Login(props){
                 </div>
 
                 <div className="form">
-                    {/*<div className="form-group">*/}
-                    {/*    <label htmlFor="username">Username</label>*/}
-                    {/*    <input type="text" name="username" placeholder="Username"/>*/}
-                    {/*</div>*/}
                     <div className="form-group">
                         <label htmlFor="email">Email</label>
                         <input type="email" name="email" placeholder="Email"
-                               value={props.emailState}  onChange={props.emailOnChange} />
+                               value={props.emailState} onChange={props.emailOnChange}/>
                     </div>
                     <div className="form-group">
                         <label htmlFor="password">Password</label>
                         <input type="password" name="password" placeholder="Password"
-                               value={props.passwordState}  onChange={props.passwordOnChange}/>
+                               value={props.passwordState} onChange={props.passwordOnChange}/>
                     </div>
                 </div>
             </div>
             <div className="footer">
-                <button type="submit" className="btn" >
+                <button type="submit" className="btn">
                     Login
                 </button>
             </div>
