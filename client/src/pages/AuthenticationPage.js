@@ -39,7 +39,7 @@ class AuthenticationPage extends React.Component {
     }
 
 
-    login= (e) => {
+    login = (e) => {
         e.preventDefault();
         let {email, password} = this.state;
         auth.authenticate(email, password)
@@ -54,8 +54,8 @@ class AuthenticationPage extends React.Component {
 
     isRegistered = (username, email) => {
         auth.isUsernameRegistered(username)
-            .then(user =>{
-                if(user){
+            .then(user => {
+                if (user) {
                     this.setState({
                         userError: true,
                     })
@@ -63,22 +63,20 @@ class AuthenticationPage extends React.Component {
             });
 
         auth.isEmailRegistered(email)
-            .then(user =>{
-                if(user){
+            .then(user => {
+                if (user) {
                     this.setState({
                         emailError: true,
                     })
                 }
             });
-
-
     }
 
     signup = (e) => {
         e.preventDefault();
         let {username, email, password} = this.state;
         this.isRegistered(username, email);
-        if(!this.state.userError && !this.state.emailError){
+        if (!this.state.userError && !this.state.emailError) {
             auth.signup(username, email, password)
                 .then((user) => {
                     this.setState({redirectToReferrer: true});
@@ -91,7 +89,7 @@ class AuthenticationPage extends React.Component {
 
     }
 
-    clear= () => {
+    clear = () => {
         this.setState({
             failed: false,
             userError: false,
@@ -103,7 +101,7 @@ class AuthenticationPage extends React.Component {
         });
     }
 
-    changeState= () => {
+    changeState = () => {
         const {isLoginActive} = this.state;
 
         if (isLoginActive) {
