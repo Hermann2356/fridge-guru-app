@@ -10,12 +10,6 @@ import './App.css';
 import Home from "./pages/Home";
 import CookingPage from "./pages/CookingPage";
 import AuthenticationPage from "./pages/AuthenticationPage"
-import Navbar from "./components/Navbar";
-
-
-
-// Import Pages
-import Home from "./pages/Home";
 import Profile from "./pages/Profile";
 
 class App extends React.Component {
@@ -26,6 +20,7 @@ class App extends React.Component {
                     <Switch>
                         <Route path="/login" component={AuthenticationPage}/>
                         <Route path="/recipe/cooking" component={CookingPage} />
+                        <Route path="/profile" component={Profile} />
                         <Route path="/" component={Home} />
                     </Switch>
                 </div>
@@ -33,22 +28,5 @@ class App extends React.Component {
         );
     }
 }
-
-// Render Method
-const App = () => {
-  return (
-    <Router>
-      <Navbar />
-      <Switch>
-        <Route exact path="/">
-          <Home />
-        </Route>
-        <Route path="/profile">
-          <Profile />
-        </Route>
-      </Switch>
-    </Router>
-  );
-};
 
 export default App;
