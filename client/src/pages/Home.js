@@ -14,7 +14,7 @@ class Home extends React.Component {
     render() {
         return (
             <div>
-                <NavBar/>
+                {/* <NavBar/> */}
                 <div className="row home__container">
                     <div className="col-md-2 d-none d-md-block left__bar">
                         <Leftbar/>

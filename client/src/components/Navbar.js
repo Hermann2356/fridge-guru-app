@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import {
     Collapse,
     Navbar,
@@ -8,6 +8,7 @@ import {
     NavItem,
     NavLink,
 } from "reactstrap";
+import {Link} from  'react-router-dom'
 import '../components_stylesheets/Navbar.css';
 
 // Render Method
@@ -26,14 +27,14 @@ class NavbarComponent extends React.Component {
 
     render() {
         return (
-            <div>
-                <header className="fixed-top">
+            <div className = "nav-container" >
+                <header className="  fixed-top">
                     <Navbar
                         className="bg-white border-bottom navbar__container"
                         light
                         expand="md"
                     >
-                        <div className="container">
+                        <div className="  container">
                             <NavbarBrand href="/">FridgeGuru</NavbarBrand>
                             <NavbarToggler onClick={this.toggle}/>
                             <Collapse isOpen={this.state.isOpen} navbar>
@@ -42,7 +43,8 @@ class NavbarComponent extends React.Component {
                                         <NavLink href="#">Home</NavLink>
                                     </NavItem>
                                     <NavItem className="nav__item">
-                                        <NavLink href="#">Recipes</NavLink>
+                                        {/* <NavLink to = "/recipies">Recipes</NavLink> */}
+                                        <Link to = "/recipies" >Recipies</Link>
                                     </NavItem>
                                     <NavItem className="nav__item">
                                         <NavLink href="#">Settings</NavLink>
