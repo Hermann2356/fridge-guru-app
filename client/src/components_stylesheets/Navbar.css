@@ -3,6 +3,11 @@
   font-size: 0.8rem;
   text-transform: uppercase;
   margin-left: 20px;
+  
+}
+
+.nav-container {
+  margin-bottom : 70px;
 }
 .nav__link:hover {
   text-decoration: none;
