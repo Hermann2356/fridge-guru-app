@@ -4,8 +4,7 @@
 }
 
 .filter__toggle {
-  background-color: #82ae46;
-  padding: 5px 10px;
+  padding: 15px 10px;
   border-radius: 10px 10px 0px 0px;
   cursor: pointer;
   color: #fff;
@@ -28,9 +27,12 @@
 }
 
 .filter__dropdown {
+  height: 30vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
   background-color: #efefef;
   border-radius: 0px 0px 10px 10px;
-  padding-left: 30px;
+  padding-left: 20px;
 }
 .filter__dropdown label {
   text-transform: capitalize;

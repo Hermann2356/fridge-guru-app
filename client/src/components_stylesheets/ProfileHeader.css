@@ -1,0 +1,52 @@
+.profile__header {
+  min-height: 45vh;
+  background-color: #eee;
+}
+.profile__image_container {
+  width: 180px;
+  height: 180px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.profile__image {
+  width: 180px;
+  height: 180px;
+  overflow: hidden;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center;
+}
+.profile__name {
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: tomato;
+}
+.profile__username {
+  color: #999;
+  margin-top: -10px;
+}
+.profile__location__icon {
+  font-size: 1.2rem;
+  color: tomato;
+  margin-right: 10px;
+}
+.profile__location__text {
+  font-size: 1rem;
+  color: #333;
+  font-weight: 200;
+}
+.profile__labels {
+  color: tomato;
+  font-weight: 700;
+}
+.edit__profile {
+  padding: 6px 12px;
+  cursor: pointer;
+  background-color: #ddd;
+  position: absolute;
+  right: 20px;
+  border-radius: 5px;
+  top: 20px;
+}

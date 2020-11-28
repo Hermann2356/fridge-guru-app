@@ -1,8 +1,8 @@
 .left__bar {
+  height: 100vh;
   position: fixed;
   overflow-x: hidden;
   overflow-y: scroll;
-  top: 0;
   left: 0;
   margin-top: 40px;
 }
@@ -13,25 +13,29 @@
 .right__bar {
   position: fixed;
   overflow-x: hidden;
-  right: 0;
   overflow-y: scroll;
+  right: 0;
   margin-top: 60px;
 }
+
 .left__bar::-webkit-scrollbar {
   display: none;
 }
+
 .right__bar::-webkit-scrollbar {
-  width: 12px; /* width of the entire scrollbar */
+  display: none;
+  width: 12px;
   cursor: pointer;
 }
 .right__bar::-webkit-scrollbar-track {
-  background: #333; /* color of the tracking area */
+  background: #333;
   cursor: pointer;
 }
+
 .right__bar::-webkit-scrollbar-thumb {
-  background-color: tomato; /* color of the scroll thumb */
-  border-radius: 20px; /* roundness of the scroll thumb */
-  border: 3px solid #333; /* creates padding around scroll thumb */
+  background-color: tomato;
+  border-radius: 20px;
+  border: 3px solid #333;
   cursor: pointer;
 }
 

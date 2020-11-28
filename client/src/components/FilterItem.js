@@ -1,73 +1,81 @@
 // Import Libraries
 import React from "react";
-import {Collapse, Card, CardBody} from "reactstrap";
-import {FaChevronDown} from "react-icons/fa";
-import '../components_stylesheets/FilterItem.css';
+import { Collapse, Card, CardBody } from "reactstrap";
+import { FaChevronDown } from "react-icons/fa";
+import "../components_stylesheets/FilterItem.css";
 import Chili from "../assets/chili.png";
 
+const FilterItem = (props) => {
+  const [isOpen, setIsOpen] = React.useState(false);
 
-class FilterItem extends React.Component {
+  const { category, image, ingredients, checkedItems, setCheckedItems } = props;
 
-      state = {
-          isOpen: false,
-          ingredients: [
-              "Chilli sauce",
-              "Cinnamon",
-              "Garlic powder",
-              "Paprika",
-              "Oregano",
-              "Red pepper",
-              "cumin",
-              "cayenne",
-              "thyme",
-          ]
-      };
+  const toggle = () => {
+    setIsOpen(!isOpen);
+  };
 
-      componentDidMount() {
+  const handleCheck = (e) => {
+    const { name } = e.target;
 
-      }
+    // check if item exist in array
+    const isExist = checkedItems.includes(name);
 
-    toggle = () => {
-       this.setState({
-           isOpen: !this.state.isOpen,
-       })
-    };
+    if (!isExist) {
+      // add item to array
+      setCheckedItems([...checkedItems, name]);
+    } else {
+      // remove item from array
+      const filterItem = checkedItems.filter((item) => item !== name);
+      setCheckedItems(filterItem);
+    }
+  };
 
-    render() {
-        return (
-            <div className="filter__wrapper">
-                <div className="filter__toggle d-flex align-items-center justify-content-between"
-                    onClick={this.toggle}>
-                    <div>
-                        <img src={Chili} alt="filter item image" className="filter__image"/>
-                        <span className="filter__item__title ">Spices</span>
-                    </div>
-                    <div>
-                        <FaChevronDown className=""/>
-                    </div>
-                </div>
-                <Collapse isOpen={ this.state.isOpen}>
-                    <div className="filter__dropdown py-2">
-                        {this.state.ingredients.map(item => {
-                            return (
-                                <div className="form-check">
-                                    <input
-                                        class="form-check-input"
-                                        type="checkbox"
-                                        value=""
-                                        id="checkbox"
-                                    />
-                                    <label class="form-check-label" for="checkbox">
-                                        {item}
-                                    </label>
-                                </div>
-                            );
-                        })}
-                    </div>
-                </Collapse>
-            </div>
-        );
-   }
+  return (
+    <div className="filter__wrapper">
+      <div
+        className="filter__toggle d-flex align-items-center justify-content-between"
+        style={{
+          background: `linear-gradient(
+          to right,
+          rgba(0, 0, 0, 0.35),
+          rgba(0, 0, 0, 0.35)
+        ),
+        url("${image}")`,
+          backgroundPosition: "center",
+          backgroundSize: "cover",
+        }}
+        onClick={toggle}
+      >
+        <div>
+          {/* <img src={Chili} alt="filter item image" className="filter__image" /> */}
+          <span className="filter__item__title ">{category}</span>
+        </div>
+        <div>
+          <FaChevronDown />
+        </div>
+      </div>
+      <Collapse isOpen={isOpen}>
+        <div className="filter__dropdown py-2">
+          {ingredients.map((item) => {
+            return (
+              <div className="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  id="checkbox"
+                  onChange={handleCheck}
+                  name={item}
+                />
+                <label class="form-check-label" for="checkbox">
+                  {item}
+                </label>
+              </div>
+            );
+          })}
+        </div>
+      </Collapse>
+    </div>
+  );
 };
 
 export default FilterItem;
