@@ -46,6 +46,7 @@ class AuthenticationPage extends React.Component {
         auth.authenticate(email, password)
             .then((user) => {
                 console.log(user.id);
+                console.log(auth.userInfo);
                 this.setState({
                     userId: user.id,
                     redirectToReferrer: true

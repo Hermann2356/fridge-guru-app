@@ -30,6 +30,7 @@ module.exports = (sequelize, DataTypes) => {
         shelfLife: {
             type: DataTypes.STRING,
             allowNull: true,
+
         },
     },{
         sequelize,

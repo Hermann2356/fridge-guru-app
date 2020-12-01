@@ -1,6 +1,6 @@
 
 const seed = (db) => {
-    const { Ingredient, Category, User, Profile, Fridge } = db;
+    const { Ingredient, Category, User, Profile } = db;
 
     const CATEGORY = [
         {id: 1, name: "fruit"},
@@ -10,22 +10,20 @@ const seed = (db) => {
     ];
 
     const INGREDIENT = [
-        {id: 1, name: "apple", image: null, consistency: "SOLID", fridgeSL: "30 days", cupboardSL: "4 days", freezerSL: "none", categoryId: 1},
-        {id: 2, name: "banana", image: null, consistency: "SOLID", fridgeSL: "none", cupboardSL: "4 days", freezerSL: "none", categoryId: 1},
-        {id: 3, name: "orange", image: null, consistency: "SOLID", fridgeSL: "14 days", cupboardSL: "7 days", freezerSL: "none", categoryId: 1},
-        {id: 4, name: "grape", image: null, consistency: "SOLID", fridgeSL: "5 days", cupboardSL: "5 days", freezerSL: "none", categoryId: 1},
-        {id: 5, name: "peaches", image: null, consistency: "SOLID", fridgeSL: "3 days", cupboardSL: "1 days", freezerSL: "none", categoryId: 1},
-
-        {id: 6, name: "asparagus", image: null, consistency: "SOLID", fridgeSL: "5 days", cupboardSL: "none", freezerSL: "none", categoryId: 2},
-        {id: 7, name: "beans", image: null, consistency: "SOLID", fridgeSL: "6 days", cupboardSL: "none", freezerSL: "none", categoryId: 2},
-        {id: 8, name: "broccoli", image: null, consistency: "SOLID", fridgeSL: "7 days", cupboardSL: "none", freezerSL: "none", categoryId: 2},
-        {id: 9, name: "cabbage", image: null, consistency: "SOLID", fridgeSL: "60 days", cupboardSL: "none", freezerSL: "none", categoryId: 2},
-        {id: 10, name: "cauliflower", image: null, consistency: "SOLID", fridgeSL: "14 days", cupboardSL: "none", freezerSL: "none", categoryId: 2},
-
-        {id: 11, name: "chicken", image: null, consistency: "RAW", fridgeSL: "6 days", cupboardSL: "none", freezerSL: "none", categoryId: 3},
-        {id: 12, name: "turkey", image: null, consistency: "RAW", fridgeSL: "6 days", cupboardSL: "none", freezerSL: "none", categoryId: 3},
-        {id: 13, name: "duck", image: null, consistency: "RAW", fridgeSL: "7 days", cupboardSL: "none", freezerSL: "none", categoryId: 3},
-        {id: 14, name: "goose", image: null, consistency: "RAW", fridgeSL: "60 days", cupboardSL: "none", freezerSL: "none", categoryId: 3},
+        {id: 1, name: "apple", image: null, consistency: "SOLID",  shelfLife: null, categoryId: 1},
+        {id: 2, name: "banana", image: null, consistency: "SOLID", shelfLife: null, categoryId: 1},
+        {id: 3, name: "orange", image: null, consistency: "SOLID", shelfLife: null, categoryId: 1},
+        {id: 4, name: "grape", image: null, consistency: "SOLID", shelfLife: null, categoryId: 1},
+        {id: 5, name: "peaches", image: null, consistency: "SOLID", shelfLife: null, categoryId: 1},
+        {id: 6, name: "asparagus", image: null, consistency: "SOLID", shelfLife: null, categoryId: 2},
+        {id: 7, name: "beans", image: null, consistency: "SOLID", shelfLife: null, categoryId: 2},
+        {id: 8, name: "broccoli", image: null, consistency: "SOLID", shelfLife: null, categoryId: 2},
+        {id: 9, name: "cabbage", image: null, consistency: "SOLID", shelfLife: null, categoryId: 2},
+        {id: 10, name: "cauliflower", image: null, consistency: "SOLID", shelfLife: null, categoryId: 2},
+        {id: 11, name: "chicken", image: null, consistency: "RAW", shelfLife: null, categoryId: 3},
+        {id: 12, name: "turkey", image: null, consistency: "RAW", shelfLife: null, categoryId: 3},
+        {id: 13, name: "duck", image: null, consistency: "RAW", shelfLife: null, categoryId: 3},
+        {id: 14, name: "goose", image: null, consistency: "RAW", shelfLife: null, categoryId: 3},
     ];
 
     const FRIDGE = [
@@ -46,7 +44,7 @@ const seed = (db) => {
     ]
 
     const USER = [
-        { username: "hermann2356", firstName: "Hermann", lastName: "Sterling", email: "hermannsterling@gmail.com", password: "Hermann"}
+        {id: 1, username: "hermann2356", firstName: "Hermann", lastName: "Sterling", email: "hermannsterling@gmail.com", password: "Hermann"}
     ]
 
     return db.sequelize.sync({force: true})
@@ -56,23 +54,22 @@ const seed = (db) => {
             let categoryPromises = CATEGORY.map(c => Category.create(c));
             let ingredientPromises = INGREDIENT.map(i => Ingredient.create(i));
             let profilePromises = PROFILE.map(p => Profile.create(p));
-            let fridgePromises = FRIDGE.map(p => Fridge.create(p));
 
-            return Promise.all([...ingredientPromises, ...categoryPromises, ...userPromises, ...fridgePromises, ...profilePromises]);
-
+            return Promise.all([...ingredientPromises, ...categoryPromises, ...userPromises])
+                .then(() =>{
+                    // Create the associations
+                    let associationPromises = FRIDGE.map(f =>{
+                        let userPromise = User.findByPk(f.userId);
+                        let ingredientPromise = Ingredient.findByPk(f.ingredientId);
+                        return Promise.all([userPromise, ingredientPromise])
+                            .then(([users, ingredients]) =>{
+                                return users.addIngredient(ingredients);
+                            })
+                    });
+                    return Promise.all([associationPromises, ...profilePromises]);
+                });
         })
-        .then(() =>{
-            // Create the associations
-            let associationPromises = FRIDGE.map(f =>{
-                let userPromise = User.findByPk(f.userId);
-                let ingredientPromise = Ingredient.findByPk(f.ingredientId);
-                return Promise.all([userPromise, ingredientPromise])
-                    .then(([users, ingredients]) =>{
-                        return users.addIngredient(ingredients);
-                    })
-            });
-            return Promise.all(associationPromises);
-        });
+
 
 }
 
