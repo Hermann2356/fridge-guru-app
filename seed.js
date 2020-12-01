@@ -1,6 +1,6 @@
 
 const seed = (db) => {
-    const { Ingredient, Category, User } = db;
+    const { Ingredient, Category, User, Profile, Fridge } = db;
 
     const CATEGORY = [
         {id: 1, name: "fruit"},
@@ -26,8 +26,6 @@ const seed = (db) => {
         {id: 12, name: "turkey", image: null, consistency: "RAW", fridgeSL: "6 days", cupboardSL: "none", freezerSL: "none", categoryId: 3},
         {id: 13, name: "duck", image: null, consistency: "RAW", fridgeSL: "7 days", cupboardSL: "none", freezerSL: "none", categoryId: 3},
         {id: 14, name: "goose", image: null, consistency: "RAW", fridgeSL: "60 days", cupboardSL: "none", freezerSL: "none", categoryId: 3},
-
-
     ];
 
     const FRIDGE = [
@@ -43,8 +41,12 @@ const seed = (db) => {
         {ingredientId: 2, userId: 1},
     ]
 
+    const PROFILE = [
+        {id: 1, bio: "Love to cook", userId: 1}
+    ]
+
     const USER = [
-        {id:1, firstName: "Hermann", username: "hermann2356", lastName: "Sterling", email: "hermannsterling@gmail.com", password: "Hermann"}
+        { username: "hermann2356", firstName: "Hermann", lastName: "Sterling", email: "hermannsterling@gmail.com", password: "Hermann"}
     ]
 
     return db.sequelize.sync({force: true})
@@ -53,8 +55,10 @@ const seed = (db) => {
             let userPromises = USER.map(u => User.create(u));
             let categoryPromises = CATEGORY.map(c => Category.create(c));
             let ingredientPromises = INGREDIENT.map(i => Ingredient.create(i));
+            let profilePromises = PROFILE.map(p => Profile.create(p));
+            let fridgePromises = FRIDGE.map(p => Fridge.create(p));
 
-            return Promise.all([...ingredientPromises, ...categoryPromises, ...userPromises]);
+            return Promise.all([...ingredientPromises, ...categoryPromises, ...userPromises, ...fridgePromises, ...profilePromises]);
 
         })
         .then(() =>{

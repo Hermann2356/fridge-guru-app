@@ -14,34 +14,23 @@ module.exports = (sequelize, DataTypes) => {
 
             }
         },
+        // image path stored here
         image: {
-            type: DataTypes.BLOB('long'),
+            type: DataTypes.STRING,
             allowNull:true,
-            defaultValue: null,
         },
         consistency: {
             type: DataTypes.STRING,
             allowNull: true,
             validate: {
                 isIn: [['SOLID', 'LIQUID', 'RAW']],
-
             }
         },
         // SL - Shelf Life
-        fridgeSL: {
+        shelfLife: {
             type: DataTypes.STRING,
             allowNull: true,
         },
-        cupboardSL: {
-            type: DataTypes.STRING,
-            allowNull: true,
-
-        },
-        freezerSL: {
-            type: DataTypes.STRING,
-            allowNull: true,
-
-        }
     },{
         sequelize,
         modelName: 'ingredient'

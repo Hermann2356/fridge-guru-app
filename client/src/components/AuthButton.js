@@ -1,10 +1,9 @@
 import React from 'react';
-import { withRouter, Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import {NavLink} from "reactstrap";
 import '../components_stylesheets/Navbar.css';
 import auth from '../services/auth';
 
-const classes = "btn btn-primary";
 
 const AuthButton = withRouter(({ history }) => {
     if(!auth.isAuthenticated) {

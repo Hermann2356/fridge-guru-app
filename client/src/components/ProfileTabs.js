@@ -66,23 +66,16 @@ function LinkTab(props) {
   );
 }
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-    backgroundColor: theme.palette.background.paper,
-  },
-}));
+ function NavTabs(props) {
 
-export default function NavTabs() {
-  const classes = useStyles();
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = React.useState(0 || parseInt(props.selectValue));
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
   return (
-    <div className={classes.root}>
+    <div>
       <AppBar position="static">
         <Tabs
           variant="fullWidth"
@@ -133,3 +126,4 @@ export default function NavTabs() {
     </div>
   );
 }
+export default NavTabs;

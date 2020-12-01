@@ -29,6 +29,7 @@ class AuthenticationPage extends React.Component {
         userError: false,
         emailError: false,
         failedMessage: "",
+        userid: null,
         username: "",
         email: "",
         password: "",
@@ -44,7 +45,11 @@ class AuthenticationPage extends React.Component {
         let {email, password} = this.state;
         auth.authenticate(email, password)
             .then((user) => {
-                this.setState({redirectToReferrer: true});
+                console.log(user.id);
+                this.setState({
+                    userId: user.id,
+                    redirectToReferrer: true
+                });
             })
             .catch((err) => {
                 this.setState({failed: true, failedMessage: "Login Failed"});
@@ -129,7 +134,8 @@ class AuthenticationPage extends React.Component {
         const {isLoginActive} = this.state;
         const current = isLoginActive ? "Register" : "Login";
         const currentActive = isLoginActive ? "login" : "register";
-        const {from} = this.props.location.state || {from: {pathname: '/'}};
+        const {from} = this.props.location.state ||
+        {from: {pathname: `/?userId=${this.state.userId}`}};
         const {redirectToReferrer, failed} = this.state;
 
         if (redirectToReferrer) {

@@ -3,8 +3,6 @@ import {
     BrowserRouter as Router,
     Switch,
     Route,
-    Link,
-    NavLink
 } from 'react-router-dom';
 import './App.css';
 import Home from "./pages/Home";
@@ -12,7 +10,6 @@ import CookingPage from "./pages/CookingPage";
 import AuthenticationPage from "./pages/AuthenticationPage"
 import Profile from "./pages/Profile";
 import RecipePage from "./pages/RecipePage";
-
 class App extends React.Component {
     render() {
         return (

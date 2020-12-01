@@ -1,22 +1,17 @@
-// Import Libraries
 import React from "react";
 import { Link } from "react-router-dom";
-// Import Styles
 import "../components_stylesheets/Leftbar.css";
-
-// import component
 import FilterItem from "./FilterItem";
-
-// import FakeData
 import FakeFilterItems from "../FakeData/FakeFilterItems";
 
-// Render Method
-const Leftbar = ({ checkedItems, setCheckedItems }) => {
+
+
+function Leftbar(props) {
+
   return (
     <div className="left__bar__container">
       <div className="clearfix"></div>
-
-      <Link className="nav__link" to="/profile">
+      <Link className="nav__link" to="/profile/0">
         <div className="left__bar__profile">
           <img
             src="https://randomuser.me/api/portraits/men/75.jpg"
@@ -24,14 +19,14 @@ const Leftbar = ({ checkedItems, setCheckedItems }) => {
             className="left__bar__user__image"
           />
           <div className="username__container">
-            <h5>Username</h5>
-            <p>Lv.10</p>
+            <h5>{props.username}</h5>
+            <p>Lv.{props.level}</p>
           </div>
         </div>
       </Link>
       <div className="left__bar__top__options">
-        <a href="#">Saved Recipes</a>
-        <a href="#">Following</a>
+        <a href="/profile/?tab=3">Saved Recipes</a>
+        <a href="/profile/?tab=1" >Following</a>
         <a href="#">Recipe Drafts</a>
       </div>
       <div className="left__bar__bottom__options">
@@ -41,8 +36,8 @@ const Leftbar = ({ checkedItems, setCheckedItems }) => {
             category={item.name}
             ingredients={item.ingredients}
             image={item.image}
-            checkedItems={checkedItems}
-            setCheckedItems={setCheckedItems}
+            checkedItems={props.checkedItems}
+            setCheckedItems={props.setCheckedItems}
           />
         ))}
       </div>

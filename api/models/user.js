@@ -11,8 +11,12 @@ module.exports = (sequelize, DataTypes) => {
     }
 
     User.init({
-        firstName: {type: DataTypes.STRING},
-        lastName: {type: DataTypes.STRING},
+        firstName: {
+            type: DataTypes.STRING
+        },
+        lastName: {
+            type: DataTypes.STRING
+        },
         email: {
             type: DataTypes.STRING,
             unique: true,
@@ -26,7 +30,6 @@ module.exports = (sequelize, DataTypes) => {
             unique: true,
             allowNull: false,
             validate: {
-                is:["^(?=[a-zA-Z0-9._]{8,20}$)(?!.*[_.]{2})[^_.].*[^_.]$"],
                 len: [8,20],
             }
         },
@@ -41,15 +44,6 @@ module.exports = (sequelize, DataTypes) => {
                 },
             },
         },
-        lvl: {
-            type: DataTypes.INTEGER,
-            defaultValue: 0,
-            validate: {},
-        },
-      status: {
-        type: DataTypes.STRING,
-        validate: {},
-      },
     }, {
         sequelize,
         modelName: 'user'
@@ -58,6 +52,8 @@ module.exports = (sequelize, DataTypes) => {
     User.associate = (models) => {
         // associations can be defined here
         models.User.belongsToMany(models.Ingredient, { through: 'fridge' });
+        models.User.belongsToMany(models.Recipe, { through: 'savedRecipe' });
+        models.User.belongsToMany(models.User, { as: 'follower_', foreignKey: 'username', through: 'follower' });
     };
 
     User.beforeSave((user, options) => {

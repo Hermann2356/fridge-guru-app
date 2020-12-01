@@ -11,6 +11,7 @@ import {
 import '../components_stylesheets/Navbar.css';
 import AuthLink from "./AuthButton";
 
+
 class NavbarComponent extends React.Component {
 
     state = {
@@ -39,13 +40,13 @@ class NavbarComponent extends React.Component {
                             <Collapse isOpen={this.state.isOpen} navbar>
                                 <Nav className="ml-auto" navbar>
                                     <NavItem className="active nav__item">
-                                        <NavLink href="#">Home</NavLink>
+                                        <NavLink href="/">Home</NavLink>
                                     </NavItem>
                                     <NavItem className="nav__item">
-                                        <NavLink href="#">Recipes</NavLink>
+                                        <NavLink href="/recipe">Recipes</NavLink>
                                     </NavItem>
                                     <NavItem className="nav__item">
-                                        <NavLink href="#">Profile</NavLink>
+                                        <NavLink href="/profile/">Profile</NavLink>
                                     </NavItem>
                                     <NavItem className="auth__item">
                                         <AuthLink />

@@ -32,7 +32,7 @@ module.exports = (sequelize, DataTypes) => {
     Recipe.associate = (models) => {
         // association can be defined here
         models.Recipe.belongsToMany(models.Category,{through: 'recipe_category'});
-
+        models.Recipe.belongsToMany(models.User, { through: 'savedRecipe'});
     }
     return Recipe;
 };
