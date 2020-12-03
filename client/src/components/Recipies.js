@@ -27,7 +27,7 @@ const Recipies = () => {
 
         try{
 
-            const response = await axios.post(`https://api.edamam.com/search?q=${query}&app_id=d13b1294&app_key=e13655ed917f91b44ca86cbe82fc7dd6&from=0&to=50&calories=${cal.minCal}-${cal.maxCal}`)
+            const response = await axios.post(`https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/complexSearch=${query}&app_id=d13b1294&app_key=0056010829msh4d04f8cc38de15dp1d2058jsn096cd683f0a6=${cal.includeIngredients}-${cal.excludeIngredients.}`)
             console.log(response)
             
             giveResponse = response.data.hits
