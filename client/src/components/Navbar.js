@@ -39,7 +39,7 @@ class NavbarComponent extends React.Component {
                         expand="md"
                     >
                         <div className="container ">
-                            <Link to="/"><NavbarBrand>FridgeGuru</NavbarBrand></Link>
+                            <Link to="/" className={this.props.homeActive+ " " + "nav__link navbar__header"} ><NavbarBrand >FridgeGuru</NavbarBrand></Link>
                             <NavbarToggler onClick={this.toggle}/>
                             <Collapse isOpen={this.state.isOpen} navbar>
                                 <Nav className="ml-auto" navbar>

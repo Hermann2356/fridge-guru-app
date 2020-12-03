@@ -6,6 +6,10 @@
   color: grey;
 }
 
+.navbar__header {
+  color: grey;
+}
+
 .auth__item {
   letter-spacing: 2px;
   font-size: 0.8rem;

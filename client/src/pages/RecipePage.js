@@ -9,8 +9,8 @@ import Navbar from "../components/Navbar";
 
 const RecipePage = () => {
 
-    var [data, setData] = useState([])
-    var [filterData, setFilterData] = useState([])
+    const [data, setData] = useState([])
+    const [filterData, setFilterData] = useState([])
     const [value, setValue] = useState('burger')
     const [cal, setCal] = useState({
         minCal: '0',
