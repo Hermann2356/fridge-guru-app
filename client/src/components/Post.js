@@ -1,15 +1,10 @@
 import React from "react";
 import { Collapse } from "reactstrap";
 import "../components_stylesheets/Post.css";
-
-// icons
 import { MdShare, MdFavorite } from "react-icons/md";
 import { GiSpoon } from "react-icons/gi";
 
-// asset
-import Fork from "../assets/fork.png";
-
-function Post({ image }) {
+function Post(props) {
   const [isOpen, setIsOpen] = React.useState(false);
 
   const toggle = () => setIsOpen(!isOpen);
@@ -28,12 +23,12 @@ function Post({ image }) {
           </span>
         </div>
       </div>
-      <img alt="post_image" class="card-img-top post__image" src={image} />
+      <img alt="post_image" class="card-img-top post__image" src={props.image} />
       <div className="card__actions">
         <div className="row">
           <div className="action col d-flex justify-content-center">
             <span className="action__icon">
-              <img src={Fork} className="icon" />
+              <img src="/public/assets/fork.png" className="icon" />
             </span>
             <span className="action__label">0</span>
           </div>
@@ -59,9 +54,7 @@ function Post({ image }) {
         <h5 className="card-title">Food Title</h5>
         <span
           className="post_show_more"
-          onClick={() => {
-            toggle();
-          }}
+          onClick={() => { toggle() }}
         >
           read more
         </span>

@@ -73,7 +73,7 @@ const RecipePage = () => {
 
     return (
         <div>
-            <Navbar />
+            <Navbar recipeActive="active" />
             <div className='container-fluid'>
                 <div className='row'>
                     {

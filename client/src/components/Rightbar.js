@@ -9,7 +9,7 @@ class Rightbar extends React.Component {
     return (
       <div className="right__bar_container">
         <div className="clearfix"></div>
-        <div className="d-flex justify-content-end mt-2">
+        <div className="d-flex justify-content-end mt-2 ">
           <BsBell className="notification__button" />
         </div>
         <div className="search__input__container">

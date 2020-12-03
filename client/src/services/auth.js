@@ -4,7 +4,7 @@
 // This version was modified to use real authentication implemented
 // in the backend api. It was also modified to return promises instead
 // of using callbacks `cb`.
-
+import React from "react";
 const auth = {
     isAuthenticated: false,
     userInfo: null,

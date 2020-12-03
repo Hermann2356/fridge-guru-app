@@ -1,4 +1,6 @@
 const fetch = require('node-fetch');
+const api_host = process.env.REACT_APP_API_HOST;
+const api_key = process.env.REACT_APP_API_KEY;
 const search = {
 
     getRecipeByIngredients: (ingredients, optional) => {
@@ -9,8 +11,8 @@ const search = {
             "&number=5&ranking=1&ignorePantry=true", {
             "method": "GET",
             "headers": {
-                "x-rapidapi-key": "0056010829msh4d04f8cc38de15dp1d2058jsn096cd683f0a6",
-                "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com"
+                "x-rapidapi-key": api_key,
+                "x-rapidapi-host": api_host,
             }
         });
     },

@@ -10,18 +10,26 @@ import CookingPage from "./pages/CookingPage";
 import AuthenticationPage from "./pages/AuthenticationPage"
 import Profile from "./pages/Profile";
 import RecipePage from "./pages/RecipePage";
+import MulterPage from "./pages/MulterPage";
+import PrivateRoute from "./components/PrivateRoute";
+
 class App extends React.Component {
     render() {
         return (
             <Router>
                 <div>
-                    <Switch>
-                        <Route path="/login" component={AuthenticationPage}/>
-                        <Route path="/recipe/cooking" component={CookingPage} />
-                        <Route path="/recipe" component={RecipePage} />
-                        <Route path="/profile" component={Profile} />
-                        <Route path="/" component={Home} />
-                    </Switch>
+                {/*<div className="container-fluid text-center">*/}
+                {/*    <div className="row justify-content-center">*/}
+                        <Switch>
+                            <Route path="/login" component={AuthenticationPage}/>
+                            <Route path="/recipe/cooking" component={CookingPage}/>
+                            <Route path="/recipe" component={RecipePage}/>
+                            <Route path="/profile" component={Profile}/>
+                            <Route path="/image" component={MulterPage}/>
+                            <PrivateRoute path="/" component={Home}/>
+                        </Switch>
+                {/*    </div>*/}
+                {/*</div>*/}
                 </div>
             </Router>
         );

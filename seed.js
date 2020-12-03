@@ -1,6 +1,6 @@
 
 const seed = (db) => {
-    const { Ingredient, Category, User, Profile } = db;
+    const { Ingredient, Category, User, Profile, Post } = db;
 
     const CATEGORY = [
         {id: 1, name: "fruit"},
@@ -39,12 +39,25 @@ const seed = (db) => {
         {ingredientId: 2, userId: 1},
     ]
 
+    const POST = [
+        {id:1, caption: "I lost some weight once, but I found it again in the fridge.", likes: 0, dislikes: 0, userId:1},
+        {id:2,caption: "I love pizza. ...", likes: 0, dislikes: 0, userId:2},
+        {id:3,caption: "I just want someone to look at me the way I look at food.", likes: 0, dislikes: 0, userId:2},
+        {id:4,caption: "Sorry—I'm in a relationship. ...", likes: 0, dislikes: 0, userId:1},
+        {id:5,caption: "Sugar, spice, and everything nice.", likes: 0, dislikes: 0, userId:2},
+        {id:6,caption: "My milkshake brings all the boys to the yard.", likes: 0, dislikes: 0, userId:1},
+    ]
+
     const PROFILE = [
-        {id: 1, bio: "Love to cook", userId: 1}
+        {id: 1, profileImage:'../assets/HeadShot.jpg', lvl: 0, status:"Cooking", bio: "Love to cook", userId: 1},
+        {id: 2, profileImage:'../assets/HeadShot.jpg', lvl: 0, status:"Cooking", bio: "Big Foodie", userId: 2}
+
     ]
 
     const USER = [
-        {id: 1, username: "hermann2356", firstName: "Hermann", lastName: "Sterling", email: "hermannsterling@gmail.com", password: "Hermann"}
+        {id: 1, username: "hermann2356", firstName: "Hermann", lastName: "Sterling", email: "hermannsterling@gmail.com", password: "Hermann"},
+        {id: 2, username: "marlon1234", firstName: "Marlon", lastName: "Jacques", email: "mar.jacq0296@gmail.com", password: "Marlon22"}
+
     ]
 
     return db.sequelize.sync({force: true})
@@ -53,10 +66,13 @@ const seed = (db) => {
             let userPromises = USER.map(u => User.create(u));
             let categoryPromises = CATEGORY.map(c => Category.create(c));
             let ingredientPromises = INGREDIENT.map(i => Ingredient.create(i));
-            let profilePromises = PROFILE.map(p => Profile.create(p));
 
-            return Promise.all([...ingredientPromises, ...categoryPromises, ...userPromises])
+            return Promise.all([...categoryPromises, ...userPromises, ...ingredientPromises,])
                 .then(() =>{
+
+                    let profilePromises = PROFILE.map(p => Profile.create(p));
+                    let postPromises = POST.map(p => Post.create(p));
+
                     // Create the associations
                     let associationPromises = FRIDGE.map(f =>{
                         let userPromise = User.findByPk(f.userId);
@@ -66,7 +82,7 @@ const seed = (db) => {
                                 return users.addIngredient(ingredients);
                             })
                     });
-                    return Promise.all([associationPromises, ...profilePromises]);
+                    return Promise.all([associationPromises, ...profilePromises, ...postPromises]);
                 });
         })
 

@@ -9,7 +9,8 @@ import {
     NavLink,
 } from "reactstrap";
 import '../components_stylesheets/Navbar.css';
-import AuthLink from "./AuthButton";
+import AuthLink from "./AuthLink";
+import {Link} from "react-router-dom";
 
 
 class NavbarComponent extends React.Component {
@@ -25,31 +26,42 @@ class NavbarComponent extends React.Component {
         })
     };
 
+
     render() {
+        let active = this.props.active;
+        console.log(active);
         return (
-            <div className="nav-div">
+            <div id="nav-div">
                 <header className="fixed-top">
                     <Navbar
                         className="bg-white border-bottom navbar__container"
                         light
                         expand="md"
                     >
-                        <div className="container">
-                            <NavbarBrand href="/">FridgeGuru</NavbarBrand>
+                        <div className="container ">
+                            <Link to="/"><NavbarBrand>FridgeGuru</NavbarBrand></Link>
                             <NavbarToggler onClick={this.toggle}/>
                             <Collapse isOpen={this.state.isOpen} navbar>
                                 <Nav className="ml-auto" navbar>
-                                    <NavItem className="active nav__item">
-                                        <NavLink href="/">Home</NavLink>
+                                    <NavItem className=" nav__item">
+                                        <Link className={this.props.homeActive+ " " + "nav__link"} to="/">
+                                            <NavLink>Home</NavLink>
+                                        </Link>
                                     </NavItem>
                                     <NavItem className="nav__item">
-                                        <NavLink href="/recipe">Recipes</NavLink>
+                                        <Link className={this.props.recipeActive + " " + "nav__link"} to="/recipe"><NavLink
+                                            className="nav__link">Recipes</NavLink></Link>
                                     </NavItem>
                                     <NavItem className="nav__item">
-                                        <NavLink href="/profile/">Profile</NavLink>
+                                        <Link className={this.props.profileActive + " " + "nav__link"} to="/profile">
+                                            <NavLink>Profile</NavLink>
+                                        </Link>
+                                    </NavItem>
+                                    <NavItem className="nav__item">
+                                        <Link className="nav__link" to="#"><NavLink>Setting</NavLink></Link>
                                     </NavItem>
                                     <NavItem className="auth__item">
-                                        <AuthLink />
+                                        <AuthLink/>
                                     </NavItem>
                                 </Nav>
                             </Collapse>

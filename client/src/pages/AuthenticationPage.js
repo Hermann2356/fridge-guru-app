@@ -2,7 +2,7 @@ import React from "react";
 import "../components_stylesheets/Authentication.scss"
 import Login from "../components/Login";
 import SignUp from "../components/SignUp";
-import auth from "../services/auth"
+import auth from '../services/auth';
 import {Redirect} from 'react-router-dom';
 
 function RightSide(props) {
@@ -29,7 +29,6 @@ class AuthenticationPage extends React.Component {
         userError: false,
         emailError: false,
         failedMessage: "",
-        userid: null,
         username: "",
         email: "",
         password: "",
@@ -45,10 +44,8 @@ class AuthenticationPage extends React.Component {
         let {email, password} = this.state;
         auth.authenticate(email, password)
             .then((user) => {
-                console.log(user.id);
                 console.log(auth.userInfo);
                 this.setState({
-                    userId: user.id,
                     redirectToReferrer: true
                 });
             })
@@ -136,7 +133,7 @@ class AuthenticationPage extends React.Component {
         const current = isLoginActive ? "Register" : "Login";
         const currentActive = isLoginActive ? "login" : "register";
         const {from} = this.props.location.state ||
-        {from: {pathname: `/?userId=${this.state.userId}`}};
+        {from: {pathname: '/'}};
         const {redirectToReferrer, failed} = this.state;
 
         if (redirectToReferrer) {
@@ -149,7 +146,7 @@ class AuthenticationPage extends React.Component {
         }
 
         return (
-            <div className="App">
+            <div id="main">
                 <div className="login">
                     <div className="container" ref={ref => (this.container = ref)}>
                         {isLoginActive && (

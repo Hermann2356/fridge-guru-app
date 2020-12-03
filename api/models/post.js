@@ -6,11 +6,28 @@ module.exports = (sequelize, DataTypes) => {
   class Post extends Model {}
 
   Post.init({
-    content: {
+    // image path stored here
+    postImage: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    caption: {
       type: DataTypes.STRING,
       validate: {
         len: [3, 250],
         notEmpty: true,
+      }
+    },
+    likes: {
+      type: DataTypes.INTEGER,
+      validate: {
+        isInt: true,
+      }
+    },
+    dislikes: {
+      type: DataTypes.INTEGER,
+      validate: {
+        isInt: true,
       }
     },
   }, {

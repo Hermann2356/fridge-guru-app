@@ -8,7 +8,7 @@ function CreatePostBox({ onClick }) {
         <div className="d-flex justify-content-center">
           <div className="mx-2 d-flex align-items-center">
             <img
-              src="https://randomuser.me/api/portraits/men/75.jpg"
+              src="/public/assets/HeadShot.jpg"
               alt="profile_pic"
               className="post_box_image"
             />
@@ -17,25 +17,25 @@ function CreatePostBox({ onClick }) {
             <input
               className="form-control post__input"
               type="search"
-              placeholder="Share your feast"
+              placeholder="Share your feast..."
               aria-label="Search"
               onClick={() => onClick()}
               readOnly
             />
           </div>
         </div>
-        <div className="row d-flex justify-content-end mr-2">
-          <div className="col-1">
-            <span className="post__icon">
-              <i className="far fa-images"></i>
-            </span>
-          </div>
-          <div className="col-1">
-            <span className="post__icon">
-              <i className="fas fa-video"></i>
-            </span>
-          </div>
-        </div>
+        {/*<div className="row d-flex justify-content-end mr-2">*/}
+        {/*  <div className="col-1">*/}
+        {/*    <span className="post__icon">*/}
+        {/*      <i className="far fa-images"></i>*/}
+        {/*    </span>*/}
+        {/*  </div>*/}
+        {/*  <div className="col-1">*/}
+        {/*    <span className="post__icon">*/}
+        {/*      <i className="fas fa-video"></i>*/}
+        {/*    </span>*/}
+        {/*  </div>*/}
+        {/*</div>*/}
       </div>
     </div>
   );

@@ -3,7 +3,6 @@ import React from "react";
 import { Collapse, Card, CardBody } from "reactstrap";
 import { FaChevronDown } from "react-icons/fa";
 import "../components_stylesheets/FilterItem.css";
-import Chili from "../assets/chili.png";
 
 const FilterItem = (props) => {
   const [isOpen, setIsOpen] = React.useState(false);

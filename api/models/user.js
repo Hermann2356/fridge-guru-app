@@ -53,6 +53,7 @@ module.exports = (sequelize, DataTypes) => {
         // associations can be defined here
         models.User.belongsToMany(models.Ingredient, { through: 'fridge' });
         models.User.belongsToMany(models.Recipe, { through: 'savedRecipe' });
+        models.User.hasMany(models.Post);
         models.User.belongsToMany(models.User, { as: 'follower_', foreignKey: 'username', through: 'follower' });
     };
 

@@ -32,10 +32,7 @@ module.exports = (sequelize, DataTypes) => {
 
     Profile.associate = (models) => {
         // associations can be defined here
-        Profile.belongsTo(models.User, {
-            foreignKey: 'username',
-            constraints: true,
-        });
+        Profile.belongsTo(models.User);
     };
 
     return Profile;

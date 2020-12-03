@@ -1,3 +1,16 @@
+#main-home {
+  width: 100%;
+  height: 47rem;
+  /*height: 47em;*/
+  background-image: url("/public/assets/lukas-blazek-f-TWhXOrLiU-unsplash.jpg");
+  background-size: cover;
+  /*text-align: center;*/
+  /*display: flex;*/
+  /*justify-content: center;*/
+  /*align-items: center;*/
+  /*font-family: "Open Sans", sans-serif;*/
+
+}
 .left__bar {
   height: 100vh;
   position: fixed;
@@ -6,8 +19,15 @@
   left: 0;
   margin-top: 40px;
 }
+.post__bar {
+  height: 100vh;
+  position: fixed;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  margin-top: 40px;
+}
 .news__feed {
-  z-index: 1;
+  position: fixed;
   margin-top: 80px;
 }
 .right__bar {
@@ -16,6 +36,9 @@
   overflow-y: scroll;
   right: 0;
   margin-top: 60px;
+}
+.post__bar::-webkit-scrollbar {
+  display: none;
 }
 
 .left__bar::-webkit-scrollbar {

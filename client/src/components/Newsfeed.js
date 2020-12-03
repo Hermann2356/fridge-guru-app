@@ -1,17 +1,10 @@
-// Import Libraries
 import React from "react";
-
-// Import Styles
 import "../components_stylesheets/Newsfeed.css";
-
-// Import Components
 import CreatePostBox from "./CreatePostBox";
 import CreatePostModal from "./CreatePostModal";
-import FoodCategory from "./FoodCategory";
 import Post from "./Post";
 
-// Render Method
-const Newsfeed = () => {
+function Newsfeed (props) {
   const [isOpen, setIsOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -25,16 +18,20 @@ const Newsfeed = () => {
   };
 
   return (
-    <div className="w-100">
+    <div className="w-100 news-container">
       <div className="clearfix"></div>
-      <CreatePostBox onClick={handleClickOpen} />
-      <CreatePostModal onClose={handleClickClose} isOpen={isOpen} />
-      <FoodCategory />
-      <Post image="https://specials-images.forbesimg.com/imageserve/5f748b1a267da47f7b3c2dfa/960x0.jpg?cropX1=0&cropX2=1252&cropY1=155&cropY2=1094" />
-      <Post image="https://spoonacular.com/application/frontend/images/food-api/dough.jpg" />
-      <Post image="https://spoonacular.com/application/frontend/images/food-api/dough.jpg" />
-      <Post image="https://spoonacular.com/application/frontend/images/food-api/dough.jpg" />
-      <Post image="https://spoonacular.com/application/frontend/images/food-api/dough.jpg" />
+        <div>
+            <CreatePostBox onClick={handleClickOpen} />
+            <CreatePostModal onClose={handleClickClose} isOpen={isOpen} />
+        </div>
+      {/*<FoodCategory />*/}
+      <div className="col-md-6 col-12 post__bar">
+          <Post image="https://specials-images.forbesimg.com/imageserve/5f748b1a267da47f7b3c2dfa/960x0.jpg?cropX1=0&cropX2=1252&cropY1=155&cropY2=1094" />
+          <Post image="https://spoonacular.com/application/frontend/images/food-api/dough.jpg" />
+          <Post image="https://spoonacular.com/application/frontend/images/food-api/dough.jpg" />
+          <Post image="https://spoonacular.com/application/frontend/images/food-api/dough.jpg" />
+          <Post image="https://spoonacular.com/application/frontend/images/food-api/dough.jpg" />
+      </div>
     </div>
   );
 };
