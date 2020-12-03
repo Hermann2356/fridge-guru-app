@@ -5,10 +5,7 @@ import { Link } from "react-router-dom";
 import "../components_stylesheets/Leftbar.css";
 
 // import component
-import FilterItem from "./FilterItem";
-
-// import FakeData
-import FakeFilterItems from "../FakeData/FakeFilterItems";
+import LeftbarTab from "./LeftbarTab";
 
 // Render Method
 const Leftbar = ({ checkedItems, setCheckedItems }) => {
@@ -35,16 +32,10 @@ const Leftbar = ({ checkedItems, setCheckedItems }) => {
         <a href="#">Recipe Drafts</a>
       </div>
       <div className="left__bar__bottom__options">
-        {FakeFilterItems.map((item, i) => (
-          <FilterItem
-            key={i}
-            category={item.name}
-            ingredients={item.ingredients}
-            image={item.image}
-            checkedItems={checkedItems}
-            setCheckedItems={setCheckedItems}
-          />
-        ))}
+        <LeftbarTab
+          checkedItems={checkedItems}
+          setCheckedItems={setCheckedItems}
+        />
       </div>
     </div>
   );

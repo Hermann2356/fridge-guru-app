@@ -1,0 +1,74 @@
+.drop_down {
+  position: relative;
+}
+
+.drop_down_input {
+  height: 50px;
+  width: 100%;
+  background-color: #fcf5eb;
+  border: 1px solid #858899;
+  outline: none;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  padding-left: 40px;
+  text-transform: capitalize;
+  border-radius: 8px;
+}
+
+.drop_down_input:focus {
+  background-color: #2b2b2b;
+  border: 1px solid #ffffff;
+  color: white;
+}
+
+.input_icon {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  font-size: 1.2rem;
+  color: #2b2b2b;
+}
+
+.drop_down_list {
+  height: 200px;
+  z-index: 1;
+  position: absolute;
+  width: 100%;
+  list-style: none;
+  border: 1px solid #cecbc3;
+  background-color: #fcf5eb;
+  border-radius: 6px;
+  margin: 5px 0;
+  padding: 10px 0;
+  cursor: pointer;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.drop_down_item {
+  padding: 10px 5px;
+  transition: 0.1s;
+}
+
+.drop_down_item:hover {
+  background-color: #2b2b2b;
+  color: white;
+}
+
+.drop_down_icon {
+  font-size: 20px;
+}
+
+/* styling scrollbar */
+.drop_down_list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.drop_down_list::-webkit-scrollbar-track {
+  margin: 2px 0;
+}
+
+.drop_down_list::-webkit-scrollbar-thumb {
+  background-color: #ccc; /* color of the scroll thumb */
+  border-radius: 30px; /* roundness of the scroll thumb */
+}

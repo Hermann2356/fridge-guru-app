@@ -1,5 +1,5 @@
 .left__bar {
-  height: 100vh;
+  height: calc(100vh - 100px);
   position: fixed;
   overflow-x: hidden;
   overflow-y: scroll;

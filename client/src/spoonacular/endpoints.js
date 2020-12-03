@@ -62,18 +62,7 @@ const search = {
                 "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com"
             }
         });
-    },
-    getRecipeInfo: (id) => {
-        return fetch("https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/" +
-            id +
-            "/information", {
-            "method": "GET",
-            "headers": {
-                "x-rapidapi-key": "0056010829msh4d04f8cc38de15dp1d2058jsn096cd683f0a6",
-                "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com"
-            }
-        });
-    },
+    }
 }
 
 const compute = {
