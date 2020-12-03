@@ -27,10 +27,107 @@ const Recipies = () => {
 
         try{
 
-            const response = await axios.post(`https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/complexSearch=${query}&app_id=d13b1294&app_key=0056010829msh4d04f8cc38de15dp1d2058jsn096cd683f0a6=${cal.includeIngredients}-${cal.excludeIngredients.}`)
-            console.log(response)
-            
-            giveResponse = response.data.hits
+            var unirest = require("unirest");
+
+var response = unirest("GET", "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/complexSearch");
+
+req.query({
+	"minAlcohol": "0",
+	"maxVitaminB2": "1000",
+	"minVitaminB6": "0",
+	"maxFolicAcid": "1000",
+	"minCalories": "150",
+	"excludeIngredients": "coconut, mango",
+	"maxVitaminB6": "1000",
+	"maxVitaminB1": "1000",
+	"maxPotassium": "1000",
+	"minPotassium": "0",
+	"maxPhosphorus": "1000",
+	"minVitaminE": "0",
+	"maxSodium": "1000",
+	"maxCarbs": "100",
+	"minCholine": "0",
+	"intolerances": "peanut, shellfish",
+	"minIron": "0",
+	"number": "10",
+	"minCaffeine": "0",
+	"maxFat": "100",
+	"minVitaminB12": "0",
+	"maxSaturatedFat": "50",
+	"maxVitaminE": "1000",
+	"maxIron": "1000",
+	"maxFolate": "1000",
+	"minCholesterol": "0",
+	"minCarbs": "5",
+	"minSugar": "0",
+	"maxIodine": "1000",
+	"maxCopper": "1000",
+	"minFolate": "0",
+	"maxCalories": "1500",
+	"minZinc": "0",
+	"minSodium": "0",
+	"maxCalcium": "1000",
+	"minMagnesium": "0",
+	"maxVitaminC": "1000",
+	"maxZinc": "1000",
+	"minVitaminK": "0",
+	"maxCaffeine": "1000",
+	"minVitaminA": "0",
+	"maxAlcohol": "1000",
+	"minFiber": "0",
+	"maxVitaminB5": "1000",
+	"maxVitaminK": "1000",
+	"minManganese": "0",
+	"minFluoride": "0",
+	"cuisine": "american",
+	"minCalcium": "0",
+	"minFolicAcid": "0",
+	"minCopper": "0",
+	"maxCholesterol": "1000",
+	"minSaturatedFat": "0",
+	"maxMagnesium": "1000",
+	"minVitaminC": "0",
+	"equipment": "pan",
+	"maxVitaminB12": "1000",
+	"offset": "0",
+	"minVitaminB5": "0",
+	"maxFiber": "1000",
+	"minSelenium": "0",
+	"minVitaminB2": "0",
+	"maxSugar": "1000",
+	"minFat": "5",
+	"minVitaminB1": "0",
+	"minVitaminD": "0",
+	"maxManganese": "1000",
+	"minPhosphorus": "0",
+	"maxCholine": "1000",
+	"maxFluoride": "1000",
+	"includeIngredients": "onions, lettuce, tomato",
+	"minIodine": "0",
+	"query": "burger",
+	"maxVitaminA": "5000",
+	"minVitaminB3": "0",
+	"type": "main course",
+	"maxSelenium": "1000",
+	"maxVitaminD": "1000",
+	"minProtein": "5",
+	"maxVitaminB3": "1000",
+	"ranking": "2",
+	"maxProtein": "100"
+});
+
+response.headers({
+	"x-rapidapi-key": "0056010829msh4d04f8cc38de15dp1d2058jsn096cd683f0a6",
+	"x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
+	"useQueryString": true
+});
+
+
+response.end(function (res) {
+	if (res.error) throw new Error(res.error);
+
+	console.log(res.body);
+});
             
 
 
