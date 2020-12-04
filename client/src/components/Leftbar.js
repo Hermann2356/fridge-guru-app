@@ -1,8 +1,7 @@
 import React from "react";
 import {Link} from "react-router-dom";
 import "../components_stylesheets/Leftbar.css";
-import FilterItem from "./FilterItem";
-import FakeFilterItems from "../FakeData/FakeFilterItems";
+import LeftbarTab from "./LeftbarTab";
 
 function Leftbar(props) {
 
@@ -29,16 +28,10 @@ function Leftbar(props) {
                 {/*<Link to="#">Recipe Drafts</Link>*/}
             </div>
             <div className="left__bar__bottom__options">
-                {FakeFilterItems.map((item, i) => (
-                    <FilterItem
-                        key={i}
-                        category={item.name}
-                        ingredients={item.ingredients}
-                        image={item.image}
-                        checkedItems={props.checkedItems}
-                        setCheckedItems={props.setCheckedItems}
-                    />
-                ))}
+                <LeftbarTab
+                    checkedItems={props.checkedItems}
+                    setCheckedItems={props.setCheckedItems}
+                />
             </div>
         </div>
     );
