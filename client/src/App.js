@@ -17,9 +17,7 @@ class App extends React.Component {
     render() {
         return (
             <Router>
-                <div>
-                {/*<div className="container-fluid text-center">*/}
-                {/*    <div className="row justify-content-center">*/}
+                <div className="App">
                         <Switch>
                             <Route path="/login" component={AuthenticationPage}/>
                             <Route path="/recipe/cooking" component={CookingPage}/>
@@ -28,8 +26,6 @@ class App extends React.Component {
                             <Route path="/image" component={MulterPage}/>
                             <PrivateRoute path="/" component={Home}/>
                         </Switch>
-                {/*    </div>*/}
-                {/*</div>*/}
                 </div>
             </Router>
         );

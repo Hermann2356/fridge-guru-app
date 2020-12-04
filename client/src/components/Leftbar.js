@@ -25,7 +25,7 @@ function Leftbar(props) {
             <div className="left__bar__top__options">
                 <Link className="nav__link" to="/profile/?tab=1">Following</Link>
                 <Link className="nav__link" to="/profile/?tab=2">Followers</Link>
-                <Link className="nav__link" o="/profile/?tab=3">Saved Recipes</Link>
+                <Link className="nav__link" to="/profile/?tab=3">Saved Recipes</Link>
                 {/*<Link to="#">Recipe Drafts</Link>*/}
             </div>
             <div className="left__bar__bottom__options">

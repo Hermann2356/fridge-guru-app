@@ -5,7 +5,7 @@ import Skeletoncom from '../components/Skeleton'
 import Search from '../components/Search'
 import FiltersBar from '../components/FiltersBar'
 import Navbar from "../components/Navbar";
-
+import '../components_stylesheets/RecipePage.css'
 
 const RecipePage = () => {
 
@@ -74,7 +74,7 @@ const RecipePage = () => {
     return (
         <div>
             <Navbar recipeActive="active" />
-            <div className='container-fluid'>
+            <div className='container-fluid recipe-container'>
                 <div className='row'>
                     {
                         console.log(cal)
