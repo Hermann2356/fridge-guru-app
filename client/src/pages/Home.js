@@ -24,7 +24,7 @@ class Home extends React.Component {
         // const userId = (auth.userInfo.id === null) ? 1 : auth.userInfo.id;
         // const username = (auth.userInfo.username === null) ? "hermannsterling@gmail.com" : auth.userInfo.username
         const userId = 1;
-        const username = "hermannsterling@gmail.com";
+        const username = "hermann2356";
         fetch('/api/profile/' + userId)
             .then(res => {
                 return res.json()

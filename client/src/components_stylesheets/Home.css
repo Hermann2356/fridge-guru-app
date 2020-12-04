@@ -12,12 +12,11 @@
 
 }
 .left__bar {
-  height: 100vh;
+  height: 90vh;
   position: fixed;
   overflow-x: hidden;
   overflow-y: scroll;
   left: 0;
-  margin-top: 40px;
 }
 .post__bar {
   height: 100vh;

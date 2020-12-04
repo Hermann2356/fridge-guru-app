@@ -50,25 +50,27 @@ const LeftbarTab = (props) => {
           </NavLink>
         </NavItem>
       </Nav>
-      <TabContent activeTab={activeTab}>
-        <TabPane tabId="1">
-          {/* my fridge tab */}
-          <ListItemTodo data={FakeTodoItems} />
-        </TabPane>
-        <TabPane tabId="2">
-          {/* ingredients tab */}
-          {FakeFilterItems.map((item, i) => (
-            <FilterItem
-              key={i}
-              category={item.name}
-              ingredients={item.ingredients}
-              image={item.image}
-              checkedItems={props.checkedItems}
-              setCheckedItems={props.setCheckedItems}
-            />
-          ))}
-        </TabPane>
-      </TabContent>
+      <div>
+        <TabContent activeTab={activeTab}>
+          <TabPane tabId="1">
+            {/* my fridge tab */}
+            <ListItemTodo data={FakeTodoItems} />
+          </TabPane>
+          <TabPane tabId="2">
+            {/* ingredients tab */}
+            {FakeFilterItems.map((item, i) => (
+                <FilterItem
+                    key={i}
+                    category={item.name}
+                    ingredients={item.ingredients}
+                    image={item.image}
+                    checkedItems={props.checkedItems}
+                    setCheckedItems={props.setCheckedItems}
+                />
+            ))}
+          </TabPane>
+        </TabContent>
+      </div>
     </div>
   );
 };
