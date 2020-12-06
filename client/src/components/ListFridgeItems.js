@@ -7,6 +7,7 @@ class ListFridgeItems extends React.Component {
 
     state = {
         itemList: [],
+        deletedList:[],
         loading: true,
     }
 
@@ -24,20 +25,52 @@ class ListFridgeItems extends React.Component {
         this.state.itemList[index].quantity = count;
         console.log(this.state.itemList);
 
+        this.updateItem(id);
+
+    }
+    updateItem = (id) => {
+        let userId = auth.userInfo.id;
+        let ingredientId = id;
+        let filerItem = this.state.itemList.filter((item) => item.id === id)[0];
+        fetch(`/api/fridge/${userId}/${ingredientId}/`, {
+            method: "put",
+            headers:{'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                quantity: filerItem.quantity,
+                expiration: filerItem.expiration
+            })
+        })
+            .then(res => console.log(res))
+            .then(() => {
+
+            })
+            .catch(err => {
+                console.log(err);
+            })
+
+
     }
 
-    deleteItem = id => {
-        // let userId = auth.userInfo.id;
-        // let ingredientId = id;
-        // fetch(`/api/fridge/${userId}/${ingredientId}/`, {
-        //     method: "DELETE"
-        // })
-        //     .then(res => console.log(res))
-        //     .then(() => {
-        //         console.log("deleted item");
-        //         let filterList = this.state.itemList.filter((item) => item.id !== id);
-        //         this.setState({itemList: filterList});
-        //     })
+    deleteItem = (id) => {
+        console.log("deleted item");
+        console.log(id);
+
+        let filterList = this.state.itemList.filter((item) => item.id !== id);
+        console.log(filterList);
+        this.setState({itemList: filterList});
+
+        let userId = auth.userInfo.id;
+        let ingredientId = id;
+        fetch(`/api/fridge/${userId}/${ingredientId}/`, {
+            method: "delete"
+        })
+            .then(res => console.log(res))
+            .then(() => {
+
+            })
+            .catch(err => {
+                console.log(err);
+            })
 
 
     };
@@ -56,13 +89,11 @@ class ListFridgeItems extends React.Component {
                             item={item}
                             count={item.quantity}
                             onClick={this.deleteItem}
+                            updateItem={this.updateItem.bind(this)}
                             handleCount={this.handleCount.bind(this)}
                         />
                     })}
                 </ul>
-                <button className="btn btn-success w-100 mt-5" onClick={this.saveItemList}>
-                    Save
-                </button>
             </div>
         );
     }

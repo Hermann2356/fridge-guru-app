@@ -79,7 +79,7 @@ class LeftbarTab extends React.Component {
                         .then(res => {
                             this.setState({
                                 fridgeIngredients: [{
-                                    ingredientId: item.ingredientId,
+                                    id: item.ingredientId,
                                     name: res.name,
                                     quantity: item.quantity,
                                     expiration: item.expiration,
