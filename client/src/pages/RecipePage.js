@@ -24,7 +24,6 @@ const RecipePage = () => {
         setLoading(true);
         try {
 
-            // const response = await axios.post(`https://api.edamam.com/search?q=${query}&app_id=d13b1294&app_key=e13655ed917f91b44ca86cbe82fc7dd6&from=0&to=50&calories=${cal.minCal}-${cal.maxCal}&includeIngredients=rice,tomato`)
             const options = {
                 method: 'GET',
                 url: 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/searchComplex',
