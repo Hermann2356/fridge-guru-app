@@ -1,96 +1,230 @@
 import React, { useState, useEffect } from 'react';
-import Recipiecard from '../components/Recipiecard';
-import Search from '../components/Search';
-import FiltersBar from '../components/FiltersBar';
-import RecipieFilter from '../components/RecipieFilter';
-import NavBar from '../components/Navbar';
-import { CircularProgress, Typography } from '@material-ui/core';
-import Alert from '@material-ui/lab/Alert';
-import { Row } from 'reactstrap';
-import { getRecipes } from '../services/apis';
-import { Skeleton } from '@material-ui/lab';
+import Recipiecard from '../components/Recipiecard'
+import axios from 'axios'
+import Skeletoncom from '../components/Skeleton'
+import Search from '../components/Search'
+import NavBar from "../components/Navbar"
+import { Typography } from '@material-ui/core';
 
 const RecipePage = () => {
-	const [searchKey, setSearchKey] = useState('burger');
-	const [recipes, setRecipes] = useState({
-		isLoading: true,
-		data: [],
-		error: null,
-	});
 
-	const handleSearch = (value) => {
-		setSearchKey(value);
-	};
+    var [data, setData] = useState([])
+    var [filterData, setFilterData] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [value, setValue] = useState('')
+    const [cal, setCal] = useState({
+        minCal: '0',
+        maxCal: '10000'
+    })
 
-	useEffect(() => {
-		handleFilter();
-	}, [searchKey]);
 
-	const handleRecipes = (status, data) => {
-		if (status === 'success') {
-			setRecipes({
-				...recipes,
-				isLoading: false,
-				data,
-			});
-		} else {
-			setRecipes({
-				isLoading: false,
-				data: [],
-				error: data,
-			});
-		}
-	};
+    const getResults = async (query) => {
 
-	const handleFilter = (data) => {
-		setRecipes({
-			...recipes,
-			isLoading: true,
-			error: null,
-		});
-		getRecipes(searchKey, data, handleRecipes);
-	};
+        let giveResponse
+        setLoading(true);
+        try {
 
-	console.log(recipes, searchKey, 'loading 12');
+            // const response = await axios.post(`https://api.edamam.com/search?q=${query}&app_id=d13b1294&app_key=e13655ed917f91b44ca86cbe82fc7dd6&from=0&to=50&calories=${cal.minCal}-${cal.maxCal}&includeIngredients=rice,tomato`)
+            const options = {
+                method: 'GET',
+                url: 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/searchComplex',
+                params: {
+                    query: query,
+                    minCalories: 0,
+                    maxCalories: 10000,
+                    instructionsRequired: true,
+                    addRecipeInformation: true,
+                    fillIngredients: true
+                },
+                headers: {
+                    'x-rapidapi-key': '0056010829msh4d04f8cc38de15dp1d2058jsn096cd683f0a6',
+                    'x-rapidapi-host': 'spoonacular-recipe-food-nutrition-v1.p.rapidapi.com'
+                }
+            };
+            const response = await axios.request(options)
+            console.log(response.data);
+            // giveResponse = response.data.results
+            const get = (id) => {
+                const options = {
+                    method: 'GET',
+                    url: `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${id}/ingredientWidget.json`,
+                    headers: {
+                        'x-rapidapi-key': '0056010829msh4d04f8cc38de15dp1d2058jsn096cd683f0a6',
+                        'x-rapidapi-host': 'spoonacular-recipe-food-nutrition-v1.p.rapidapi.com'
+                    }
+                };
+                return axios.request(options);
+            }
+            const res = await Promise.all(response.data.results.map(d => (get(d.id))));
+            const f = response.data.results.map((d, index) => {
+                const response = res[index];
+                d.ingredients = response.data.ingredients;
+                return d;
+            })
+            giveResponse = f;
 
-	return (
-		<>
-			<NavBar />
-			<div className='container-fluid pt-4'>
-				<div className='row justify-content-center '>
-					<div className='col-12 col-md-10'>
-						<br />
-						<br />
-						<div className='d-flex justify-content-between align-items-center'>
-							<Search value={searchKey} handleSearch={handleSearch} />
-							<RecipieFilter label='Filter' handleFilter={handleFilter} />
-						</div>
-						<br />
-						<br />
-						{recipes.isLoading ? (
-							<Row className='justify-content-center'>
-								<CircularProgress />
-							</Row>
-						) : recipes.error ? (
-							<Alert severity='error'>{recipes.error}</Alert>
-						) : recipes.data.length ? (
-							<div className='grid-container'>
-								{recipes.data.map((recipe) => (
-									<div className='grid-item'>
-										<Recipiecard cardData={recipe} />
-									</div>
-								))}
-							</div>
-						) : (
-							<Row className='align-content-center'>
-								<Typography>No Recipes Found</Typography>
-							</Row>
-						)}
-					</div>
-				</div>
-			</div>
-		</>
-	);
-};
+        } catch (err) {
+            console.log(err)
+        }
+
+
+        setLoading(false);
+        setData(giveResponse)
+        setFilterData(giveResponse)
+        console.log(giveResponse)
+        return giveResponse
+
+    }
+
+    const handleSearch = (value) => {
+        setValue(value)
+        console.log(value)
+
+    }
+
+    const handleCalories = (cal) => {
+        setCal(cal)
+
+    }
+
+
+    let handleFilters = async (filters, query) => {
+        setLoading(true);
+        let { time, ingredientsCount, includeIngredients, excludeIngredients, intolerances, nutritionFilters: { minCal,
+            maxCal,
+            minPro,
+            maxPro,
+            minFats,
+            maxFats,
+            minCarbs,
+            maxCarbs } } = filters
+        let giveResponse
+
+        try {
+            const options = {
+                method: 'GET',
+                url: 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/searchComplex',
+                params: {
+                    query: query,
+                    instructionsRequired: true,
+                    addRecipeInformation: true,
+                    fillIngredients: true,
+                    includeIngredients: includeIngredients.toString(),
+                    excludeIngredients: excludeIngredients.toString(),
+                    intolerances: intolerances.toString(),
+                    minCalories: Number(minCal) || 0,
+                    maxCalories: Number(maxCal) || 1000,
+                    minFat: Number(minFats) || 0,
+                    maxFat: Number(maxFats) || 1000,
+                    minProtein: Number(minPro) || 0,
+                    maxProtein: Number(maxPro) || 1000,
+                    minCarbs: Number(minCarbs) || 0,
+                    maxCarbs: Number(maxCarbs) || 1000
+                },
+                headers: {
+                    'x-rapidapi-key': '0056010829msh4d04f8cc38de15dp1d2058jsn096cd683f0a6',
+                    'x-rapidapi-host': 'spoonacular-recipe-food-nutrition-v1.p.rapidapi.com'
+                }
+            };
+            const response = await axios.request(options)
+            // console.log(response.data);
+            if (Number(ingredientsCount[1]) === 10)
+                ingredientsCount[1] = Infinity;
+            if (Number(time[1]) === 60)
+                time[1] = Infinity;
+            const get = (id) => {
+                const options = {
+                    method: 'GET',
+                    url: `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${id}/ingredientWidget.json`,
+                    headers: {
+                        'x-rapidapi-key': '0056010829msh4d04f8cc38de15dp1d2058jsn096cd683f0a6',
+                        'x-rapidapi-host': 'spoonacular-recipe-food-nutrition-v1.p.rapidapi.com'
+                    }
+                };
+                return axios.request(options);
+            }
+            const res = await Promise.all(response.data.results.map(d => (get(d.id))));
+            const f = response.data.results.filter((d, index) => {
+                const response = res[index];
+                const count = response.data.ingredients.length;
+                d.ingredients = response.data.ingredients;
+                if (count >= Number(ingredientsCount[0]) && count <= Number(ingredientsCount[1]) && d.readyInMinutes >= Number(time[0]) && d.readyInMinutes <= Number(time[1]))
+                    return d;
+                else return false;
+            })
+            giveResponse = f;
+        } catch (err) {
+            console.log(err)
+        }
+
+        setLoading(false);
+        setData(giveResponse)
+        setFilterData(giveResponse)
+        return giveResponse
+    }
+
+
+    useEffect(() => {
+        getResults(value)
+
+
+    }, [value, cal])
+
+    return (
+        <div className='container-fluid'>
+            <NavBar />
+            <div style={{ paddingTop: "10px" }} >
+                <div className='row'>
+                    {
+                        console.log(cal)
+                    }
+
+                    {/* <div className="col-12 col-md-3">
+                        <br />
+                        <br />
+                        <h3>Filters </h3>
+
+                        <FiltersBar handleCalories={handleCalories} handleFilters={handleFilters} />
+
+                    </div> */}
+
+                    <div className="col-12 col-md-12">
+                        <br />
+                        <br />
+                        <Search value={value} handleSearch={handleSearch} handleFilters={handleFilters} />
+                        <br />
+                        <br />
+                        {
+                            !loading ? (
+                                <>
+                                    {
+                                        filterData.length > 0 ? <div className="row">
+
+
+                                            {filterData.map((subData) => (
+
+                                                <div className="col-12 col-md-6 col-lg-4">
+                                                    <Recipiecard key={subData.id} cardData={subData} />
+
+                                                </div>
+                                            ))}
+
+                                        </div> : (
+                                                <div style={{ display: "flex", alignItems: "center", justifyContent: "center", width: '100%' }}>
+
+                                                    <Typography>No Recipes Found</Typography>
+                                                </div>
+                                            )
+                                    }
+                                </>) : <Skeletoncom />
+                        }
+                    </div>
+                </div>
+            </div>
+        </div >
+    )
+
+}
+
 
 export default RecipePage;
