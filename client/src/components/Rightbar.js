@@ -13,7 +13,7 @@ class Rightbar extends React.Component {
           <BsBell className="notification__button" />
         </div>
         <div className="search__input__container">
-          <Input className="search__input" placeholder="Search for recipes" />
+          {/* <Input className="search__input" placeholder="Search for recipes" /> */}
         </div>
         <div className="ingredients__container">
           {/* <h5>Top Ingredients</h5>

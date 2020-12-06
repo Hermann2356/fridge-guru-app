@@ -3,7 +3,7 @@ import "../components_stylesheets/Home.css";
 import NavBar from "../components/Navbar";
 import Leftbar from "../components/Leftbar";
 import Newsfeed from "../components/Newsfeed";
-import Rightbar from "../components/Rightbar";
+import Rightbar from "../components/RightBar";
 import FilterItem from "../components/FilterItem";
 import FilterContent from "../components/FilterContent";
 
