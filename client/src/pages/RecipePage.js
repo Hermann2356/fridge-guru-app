@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Recipiecard from '../components/Recipiecard'
+import Recipiecard from '../components/RecipeCard'
 import axios from 'axios'
 import Skeletoncom from '../components/Skeleton'
 import Search from '../components/Search'
