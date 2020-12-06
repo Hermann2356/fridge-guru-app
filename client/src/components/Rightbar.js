@@ -2,7 +2,6 @@ import React from "react";
 import { BsBell } from "react-icons/bs";
 import { Input } from "reactstrap";
 import '../components_stylesheets/Rightbar.css';
-import FilterItem from "./FilterItem";
 
 class Rightbar extends React.Component {
   render() {
@@ -12,28 +11,17 @@ class Rightbar extends React.Component {
         <div className="d-flex justify-content-end mt-2 ">
           <BsBell className="notification__button" />
         </div>
-        <div className="search__input__container">
-          <Input className="search__input" placeholder="Search for recipes" />
-        </div>
-        <div className="ingredients__container">
-          {/* <h5>Top Ingredients</h5>
-          <div className="d-flex justify-content-around align-items-center">
-            <div className="bottom__ingredient d-flex align-items-center justify-content-center meat__ingridient">
-              <p>Meat</p>
-            </div>
-            <div className="bottom__ingredient d-flex align-items-center justify-content-center fish__ingridient">
-              <p>Fish</p>
-            </div>
-          </div>
-          <div className="d-flex justify-content-around align-items-center">
-            <div className="bottom__ingredient d-flex align-items-center justify-content-center dairy__ingridient">
-              <p>Dairy</p>
-            </div>
-            <div className="bottom__ingredient d-flex align-items-center justify-content-center grains__ingridient">
-              <p>Grains</p>
-            </div>
-          </div> */}
-        </div>
+          {/*<NotifyMe*/}
+          {/*    data=""*/}
+          {/*    storageKey='notific_key'*/}
+          {/*    notific_key='timestamp'*/}
+          {/*    notific_value='update'*/}
+          {/*    heading='Notification Alerts'*/}
+          {/*    sortedByKey={false}*/}
+          {/*    showDate={true}*/}
+          {/*    size={64}*/}
+          {/*    color="yellow"*/}
+          {/*/>*/}
       </div>
     );
   }
