@@ -6,7 +6,7 @@ import ProfileHeader from "../components/ProfileHeader";
 import queryString from 'query-string';
 import Navbar from '../components/Navbar';
 import auth from "../services/auth";
-import Loading from "../components/loading";
+import Loading from "../components/Loading";
 
 class Profile extends React.Component {
     state ={

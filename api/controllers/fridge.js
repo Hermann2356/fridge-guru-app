@@ -1,18 +1,21 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../models');
-const { Fridge } = db;
+const { Fridge, Ingredient } = db;
 
 
-router.get('/', (req, res) => {
-    let user = req.userId;
-    Fridge.findAll({where: {userId: user}})
-        .then(fridge => res.json(fridge));
+router.get('/:userId', (req, res) => {
+    let { userId } = req.params;
+    Fridge.findAll({where: {userId: userId}})
+        .then(fridge => res.status(200).json(fridge))
+        .catch(err => {
+           res.status(404);
+    })
 });
 
-router.get('/ingredients', (req, res) => {
-    let user = req.userId;
-    Fridge.findAll({where: {userId: user}})
+router.get('/ingredients/:userId', (req, res) => {
+    let { userId } = req.params;
+    Fridge.findAll({where: {userId: userId}})
         .then(fridgeIngredients => {
             let ingredients = Promise
                 .all(fridgeIngredients.map(ingredient => {
@@ -27,10 +30,8 @@ router.get('/ingredients', (req, res) => {
 router.post('/',
 
     (req, res) => {
-        let {ingredientId} = req.body.ingredientId;
-        let {userId} = req.body.userId;
-        let {quantity} = req.body.quantity;
-        let {expiration} = req.body.expiration;
+
+        let{ ingredientId, userId, quantity, expiration } = req.body;
 
         Fridge.create({ingredientId, userId, quantity, expiration})
             .then(fridgeIngredient => {
@@ -81,10 +82,10 @@ router.put('/:id', (req, res) => {
 );
 
 
-router.delete('/:id', (req, res) => {
-        const user = req.body.userId;
-        const { id } = req.params;
-        Fridge.findOne({where: {userId: user, ingredientId: id}})
+router.delete('/:userId/:ingredientId', (req, res) => {
+
+        const { userId, ingredientId } = req.params;
+        Fridge.findOne({where: {userId: userId, ingredientId: ingredientId}})
             .then(fridgeIngredient => {
                 if (!fridgeIngredient) {
                     return res.sendStatus(404);

@@ -1,78 +1,174 @@
 import React from "react";
 import {
-  TabContent,
-  TabPane,
-  Nav,
-  NavItem,
-  NavLink,
-  Card,
-  Button,
-  CardTitle,
-  CardText,
-  Row,
-  Col,
+    TabContent,
+    TabPane,
+    Nav,
+    NavItem,
+    NavLink,
+    Card,
+    Button,
+    CardTitle,
+    CardText,
+    Row,
+    Col,
 } from "reactstrap";
 import classnames from "classnames";
 import FilterItem from "./FilterItem";
 import "../components_stylesheets/LeftbarTab.css";
 import FakeFilterItems from "../FakeData/FakeFilterItems";
 import FakeTodoItems from "../FakeData/FakeTodoItems";
-import ListItemTodo from "./ListItemTodo";
+import ListItems from "./ListItems";
+import auth from "../services/auth";
+import user from "../FakeData/user";
+import ListFridgeItems from "./ListFridgeItems";
 
-const LeftbarTab = (props) => {
-  const [activeTab, setActiveTab] = React.useState("1");
+class LeftbarTab extends React.Component {
 
-  const toggle = (tab) => {
-    if (activeTab !== tab) setActiveTab(tab);
-  };
+    state = {
+        activeTab: "1",
+        ingredients: [],
+        fridgeIngredients: [],
+        loading:true,
 
-  return (
-    <div className="container">
-      <Nav tabs style={{ cursor: "pointer" }}>
-        <NavItem>
-          <NavLink
-            className={classnames({ active: activeTab === "1" })}
-            onClick={() => {
-              toggle("1");
-            }}
-          >
-            My Fridge
-          </NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink
-            className={classnames({ active: activeTab === "2" })}
-            onClick={() => {
-              toggle("2");
-            }}
-          >
-            Ingredients
-          </NavLink>
-        </NavItem>
-      </Nav>
-      <div>
-        <TabContent activeTab={activeTab}>
-          <TabPane tabId="1">
-            {/* my fridge tab */}
-            <ListItemTodo data={FakeTodoItems} />
-          </TabPane>
-          <TabPane tabId="2">
-            {/* ingredients tab */}
-            {FakeFilterItems.map((item, i) => (
-                <FilterItem
-                    key={i}
-                    category={item.name}
-                    ingredients={item.ingredients}
-                    image={item.image}
-                    checkedItems={props.checkedItems}
-                    setCheckedItems={props.setCheckedItems}
-                />
-            ))}
-          </TabPane>
-        </TabContent>
-      </div>
-    </div>
-  );
+    }
+
+    getAllIngredients = () => {
+        fetch('/api/ingredients')
+            .then(res => res.json())
+            .then(ingredients => {
+                console.log(ingredients);
+                let ingredientsMap = {};
+                this.setState({
+                    ingredients: ingredients.map(ingredient => {
+                        return {
+                            id: ingredient.id,
+                            name: ingredient.name,
+                            shelfLife: ingredient.shelfLife,
+                            quantity: 0,
+                            expiration: null,
+                        };
+                    }),
+                });
+            })
+            .then(() => {
+                console.log(this.state.ingredients);
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    }
+
+    getAllFridgeIngredients = () => {
+        let userId = auth.userInfo.id;
+        let fridgeItems = [];
+        fetch('/api/fridge/' + userId)
+            .then(res => res.json())
+            .then(result => {
+                return result.map(item => {
+                    return {
+                        ingredientId: item.ingredientId,
+                        quantity: item.quantity,
+                        expiration: item.expiration,
+                    }
+                })
+            })
+            .then(itemRes => {
+                Promise.all( itemRes.map(item => {
+                    return fetch('/api/ingredients/' + item.ingredientId)
+                        .then(res => res.json())
+                        .then(res => {
+                            this.setState({
+                                fridgeIngredients: [{
+                                    ingredientId: item.ingredientId,
+                                    name: res.name,
+                                    quantity: item.quantity,
+                                    expiration: item.expiration,
+                                }, ...this.state.fridgeIngredients]
+                            })
+                        })
+                }))
+                    .then(()=> {
+                        console.log(this.state.fridgeIngredients);
+                        this.setState({
+                            loading: false,
+                        })
+                    });
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    }
+
+
+    componentDidMount() {
+        this.getAllIngredients();
+        this.getAllFridgeIngredients();
+    }
+
+    toggle = (tab) => {
+        if (this.state.activeTab !== tab) {
+            this.setState({
+                activeTab: tab,
+            })
+        }
+    };
+
+    render() {
+        let loading = this.state.loading;
+        if(loading) {
+            return (<div><p>...Loading</p></div>);
+        }
+        return (
+            <div className="container">
+                <Nav tabs style={{cursor: "pointer"}}>
+                    <NavItem>
+                        <NavLink
+                            className={classnames({active: this.state.activeTab === "1"})}
+                            onClick={() => {
+                                this.toggle("1");
+                            }}
+                        >
+                            ADD INGREDIENTS
+                        </NavLink>
+                    </NavItem>
+                    <NavItem>
+                        <NavLink
+                            className={classnames({active: this.state.activeTab === "2"})}
+                            onClick={() => {
+                                this.toggle("2");
+                            }}
+                        >
+                            MY FRIDGE
+                        </NavLink>
+                    </NavItem>
+                </Nav>
+                <div>
+                    <TabContent activeTab={this.state.activeTab}>
+                        <TabPane tabId="1">
+                            {/* my fridge tab */}
+                            <ListItems data={this.state.ingredients}/>
+                        </TabPane>
+                        <TabPane tabId="2">
+                            <ListFridgeItems fridgeIngredients = {this.state.fridgeIngredients}/>
+                            {/* ingredients tab */}
+                            {/*{FakeFilterItems.map((item, i) => (*/}
+                            {/*    <FilterItem*/}
+                            {/*        key={i}*/}
+                            {/*        category={item.name}*/}
+                            {/*        ingredients={item.ingredients}*/}
+                            {/*        image={item.image}*/}
+                            {/*        checkedItems={this.props.checkedItems}*/}
+                            {/*        setCheckedItems={this.props.setCheckedItems}*/}
+                            {/*    />*/}
+                            {/*))}*/}
+                        </TabPane>
+                    </TabContent>
+                </div>
+            </div>
+        );
+    }
+
+
 };
 
 export default LeftbarTab;

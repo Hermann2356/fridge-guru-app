@@ -61,8 +61,13 @@
   cursor: pointer;
 }
 
+.loading__container {
+  padding: 50px;
+}
+
 @media only screen and (max-width: 992px) {
   .news__feed {
     margin-top: 60px;
   }
 }
+

@@ -6,7 +6,7 @@ import Newsfeed from "../components/Newsfeed";
 import Rightbar from "../components/Rightbar";
 import FilterContent from "../components/FilterContent";
 import auth from "../services/auth";
-import Loading from "../components/loading";
+import Loading from "../components/Loading";
 import user from "../FakeData/user";
 
 
@@ -50,7 +50,7 @@ class Home extends React.Component {
         let loading = this.state.loading;
 
         if(loading) {
-            return <div><Loading/></div>
+            return <Loading/>
         }
 
         return (

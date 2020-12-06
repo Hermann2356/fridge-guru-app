@@ -27,16 +27,16 @@ const seed = (db) => {
     ];
 
     const FRIDGE = [
-        {ingredientId: 1, userId: 1},
-        {ingredientId: 3, userId: 1},
-        {ingredientId: 4, userId: 1},
-        {ingredientId: 5, userId: 1},
-        {ingredientId: 6, userId: 1},
-        {ingredientId: 7, userId: 1},
-        {ingredientId: 9, userId: 1},
-        {ingredientId: 12, userId: 1},
-        {ingredientId: 14, userId: 1},
-        {ingredientId: 2, userId: 1},
+        // {ingredientId: 1, userId: 1},
+        // {ingredientId: 3, userId: 1},
+        // {ingredientId: 4, userId: 1},
+        // {ingredientId: 5, userId: 1},
+        // {ingredientId: 6, userId: 1},
+        // {ingredientId: 7, userId: 1},
+        // {ingredientId: 9, userId: 1},
+        // {ingredientId: 12, userId: 1},
+        // {ingredientId: 14, userId: 1},
+        // {ingredientId: 2, userId: 1},
     ]
 
     const POST = [
@@ -82,7 +82,7 @@ const seed = (db) => {
                                 return users.addIngredient(ingredients);
                             })
                     });
-                    return Promise.all([associationPromises, ...profilePromises, ...postPromises]);
+                    return Promise.all([ ...profilePromises, ...postPromises]);
                 });
         })
 
