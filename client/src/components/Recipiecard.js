@@ -19,9 +19,7 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 import '../components_stylesheets/Card.css'
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    maxWidth: 345,
-  },
+
   media: {
     height: 0,
     paddingTop: '56.25%', // 16:9
@@ -41,9 +39,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function RecipeReviewCard({cardData}) {
-
-  console.log(cardData);
+export default function RecipeReviewCard({ cardData }) {
 
 
   const classes = useStyles();
@@ -52,54 +48,59 @@ export default function RecipeReviewCard({cardData}) {
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
-
+  console.log(cardData, "card")
   return (
-    <div className = "card" >
-      <Card className={classes.root}>
-      
-      <CardMedia
-        className={classes.media}
-        image= {cardData.image}
-        title={cardData.label}
-      />
-      <CardContent>
-        
-        <Typography variant="body2" color="textSecondary" component="p">
-        <strong>{cardData.label}</strong>
-          
-        </Typography>
-      </CardContent>
-      <CardActions disableSpacing>
-        <strong>Ingredients</strong>
-        {/* <IconButton aria-label="add to favorites">
+    <div className="card" >
+      <Card >
+
+        <CardMedia
+          className={classes.media}
+          image={cardData.image}
+          title={cardData.label}
+        />
+        <CardContent>
+
+          <Typography variant="body2" color="textSecondary" component="p">
+            <strong>{cardData.title}</strong>
+
+          </Typography>
+          <Typography variant="body3" color="textSecondary" component="p">
+            Calories : {cardData.calories}
+          </Typography>
+          <Typography variant="body3" color="textSecondary" component="p">
+            Cook Time : {cardData.readyInMinutes}
+          </Typography>
+        </CardContent>
+        <CardActions disableSpacing>
+          <strong>Ingredients</strong>
+          {/* <IconButton aria-label="add to favorites">
           <FavoriteIcon />
         </IconButton>
         <IconButton aria-label="share">
           <ShareIcon />
         </IconButton> */}
-        <IconButton
-          className={clsx(classes.expand, {
-            [classes.expandOpen]: expanded,
-          })}
-          onClick={handleExpandClick}
-          aria-expanded={expanded}
-          aria-label="show more"
-        >
-          <ExpandMoreIcon />
-        </IconButton>
-        
-      </CardActions>
-      <Collapse in={expanded} timeout="auto" unmountOnExit>
-        <CardContent>
-          <Typography paragraph>Ingredients:</Typography>
-          {cardData.ingredientLines.map(line => (
-            <Typography paragraph>
-            {line}
-          </Typography>
+          <IconButton
+            className={clsx(classes.expand, {
+              [classes.expandOpen]: expanded,
+            })}
+            onClick={handleExpandClick}
+            aria-expanded={expanded}
+            aria-label="show more"
+          >
+            <ExpandMoreIcon />
+          </IconButton>
 
-          ))}
-          
-          {/* <Typography paragraph>
+        </CardActions>
+        <Collapse in={expanded} timeout="auto" unmountOnExit>
+          <CardContent>
+            {cardData?.ingredients?.map(ingredient => (
+              <Typography paragraph>
+                {ingredient.name}
+              </Typography>
+
+            ))}
+
+            {/* <Typography paragraph>
             Heat oil in a (14- to 16-inch) paella pan or a large, deep skillet over medium-high
             heat. Add chicken, shrimp and chorizo, and cook, stirring occasionally until lightly
             browned, 6 to 8 minutes. Transfer shrimp to a large plate and set aside, leaving chicken
@@ -117,11 +118,11 @@ export default function RecipeReviewCard({cardData}) {
           <Typography>
             Set aside off of the heat to let rest for 10 minutes, and then serve.
           </Typography> */}
-        </CardContent>
-      </Collapse>
-      
-    </Card>
+          </CardContent>
+        </Collapse>
+
+      </Card>
     </div>
-    
+
   );
 }

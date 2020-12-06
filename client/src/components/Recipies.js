@@ -15,17 +15,8 @@ const Recipies = () => {
     var [filterData , setFilterData] = useState([])
     const [value , setValue] = useState('burger')
     const [cal , setCal] = useState( {
-            minCarbs: '0',
-            maxCarbs: '10000',
-            minFat: '0',
-            maxFats: '10000',
-            minProtein: '0',
-            maxProtein: '10000',
             minCal : '0',
-            maxCal  : '10000',
-            query : "",
-            
-
+            maxCal  : '10000'
     })
 
    
@@ -36,40 +27,10 @@ const Recipies = () => {
 
         try{
 
-            var unirest = require("unirest");
-
-var response = unirest("GET", "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/complexSearch");
-
-req.query({
-	"query": "",
-	"cuisine": "",
-	"includeIngredients": "",
-	"excludeIngredients": "",
-	"intolerances": "",
-	"type": "",
-	"ranking": "",
-	"minCalories": "",
-	"maxCalories": "",
-	"minFat": "",
-	"maxFat": "",
-	"minProtein": "",
-	"maxProtein": "",
-	"minCarbs": "",
-	"maxCarbs": ""
-});
-
-response.headers({
-	"x-rapidapi-key": "0056010829msh4d04f8cc38de15dp1d2058jsn096cd683f0a6",
-	"x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
-	"useQueryString": true
-});
-
-
-response.end(function (res) {
-	if (res.error) throw new Error(res.error);
-
-	console.log(res.body);
-});
+            const response = await axios.post(`https://api.edamam.com/search?q=${query}&app_id=d13b1294&app_key=e13655ed917f91b44ca86cbe82fc7dd6&from=0&to=50&calories=${cal.minCal}-${cal.maxCal}`)
+            console.log(response)
+            
+            giveResponse = response.data.hits
             
 
 

@@ -1,0 +1,19 @@
+.MuiInputBase-root.MuiInput-root.Mui-focused.MuiInputBase-formControl.MuiInput-formControl {
+  border: 2px solid #3498db;
+  border-radius: 4px;
+}
+.MuiInputBase-root.MuiInput-root.MuiInputBase-formControl.MuiInput-formControl {
+  border: 1px solid #3498db;
+  border-radius: 4px;
+}
+.MuiInputBase-root.MuiInput-root.MuiInputBase-formControl.MuiInput-formControl::before, 
+.MuiInputBase-root.MuiInput-root.MuiInputBase-formControl.MuiInput-formControl::after ,
+.MuiInputBase-root.MuiInput-root.Mui-focused.MuiInputBase-formControl.MuiInput-formControl:after, 
+.MuiInputBase-root.MuiInput-root.Mui-focused.MuiInputBase-formControl.MuiInput-formControl:before {
+  display: none;
+}
+.max-height-60vh {
+  max-height: 60vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
