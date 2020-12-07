@@ -7,22 +7,37 @@ import Collapse from '@material-ui/core/Collapse';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import {search} from "../spoonacular/endpoints";
 import Timer from "../components/Timer";
-import {Col, Container, Row} from "reactstrap";
 import Navbar from "../components/Navbar";
-
+import {search} from "../spoonacular/endpoints";
+import Loading from "../components/Loading";
+import '../components_stylesheets/CookingPage.css';
+import {Col} from "reactstrap";
+import {makeStyles} from "@material-ui/core/styles";
 
 function Ingredient(props) {
+    console.log(props.image)
     return (
         <Typography paragraph className="ingredient-typo">
-            {props.name}
+           <i><img className="ingredient-img"
+                   onError={(e)=>{
+                       e.target.onerror = null; e.target.src="/public/assets/img-not-available.jpg"}
+                   } src={"https://spoonacular.com/cdn/ingredients_100x100/" +props.image} /></i> {props.name}
         </Typography>
     )
 }
 
 function Step(props) {
+    const useStyles = makeStyles((theme) => ({
+       content: {
+           backgroundColor: "whitesmoke",
+       },
+        cardContent: {
+           textAlign: "center",
+        }
+    }));
 
+    const classes = useStyles();
     const [expanded, setExpanded] = React.useState(false);
 
     const handleExpandClick = () => {
@@ -35,12 +50,12 @@ function Step(props) {
 
     return (
         <div className="step-div">
-            <Card>
+            <Card className={classes.content}>
                 <CardHeader
                     title={props.instruction.name}
                 />
-                <CardContent>
-                    <Typography variant="body2" color="textSecondary" component="p">
+                <CardContent  className={classes.cardContent}>
+                    <Typography variant="body2" color="white " component="p">
                         {props.instruction.step}
                     </Typography>
                 </CardContent>
@@ -69,30 +84,32 @@ function Step(props) {
 
 function SideBar(props) {
     const ingredientMeasurements = props.measurements.map((measurement, ii) => {
-        return <li key={ii}>{measurement}</li>
+        return <li key={ii}><i className="fa fa-check-square-o" aria-hidden="true"></i>{" " + measurement}</li>
     });
 
     return (
-        <div id="side-bar-div">
+        <div id=" row col-12 side-bar-div">
+            <div className="col-12" id="ingredients-side-bar">
 
-            <div id="ingredients-side-bar">
-                <h3>Ingredients</h3>
-                <ul>
-                    {ingredientMeasurements}
-                </ul>
+                <div className="scrollable-content">
+                    <h3>Ingredients</h3>
+                   <ul className="ingredient-list">
+                       {ingredientMeasurements}
+                   </ul>
+               </div>
+
             </div>
         </div>
     );
 }
 
-
 class CookingPage extends React.Component {
-
     state = {
         title: "",
         recipe: null,
         steps: [],
         ingredientMeasurement: [],
+        loading: true,
 
     }
 
@@ -103,9 +120,8 @@ class CookingPage extends React.Component {
                 return res.json();
             })
             .then(info => {
-
+                console.log(info)
                 this.setState({
-                    title: info.title,
                     recipe: info,
                     steps: info.analyzedInstructions.map(i => {
                         return i.steps.map((s, ii) => {
@@ -120,7 +136,8 @@ class CookingPage extends React.Component {
                     }),
                     ingredientMeasurement: info.extendedIngredients.map(ingredient => {
                         return ingredient.original;
-                    })
+                    }),
+                    loading: false,
                 });
             })
             .catch(err => {
@@ -128,26 +145,38 @@ class CookingPage extends React.Component {
             });
     };
 
-    render() {
-        return (
-            <div className="">
-                <Navbar/>
-                <Container fluid="lg" id="main">
-                    <Row>
-                        <Col xs={12} sm={12} md={8} lg={8} xl={8}>
-                            <h3 id="title">{this.state.title}</h3>
-                            {this.state.steps}
-                        </Col>
-                        <Col sm={4} md={4} lg={4} xl={4}>
-                            <SideBar measurements={this.state.ingredientMeasurement}/>
-                        </Col>
-                    </Row>
-                </Container>
-            </div>
-        )
-            ;
-    }
 
+    render() {
+        let loading = this.state.loading;
+
+        if(loading) {
+            return (<div><Loading /></div>)
+        }
+
+        return (
+            <div className="container-fluid cooking-container">
+                <div className="row m2 col-12 cooking-nav-bar">
+                    <Navbar timerActive={true}/>
+                </div>
+                <div className="row col-12 container-content">
+                    <div className="col-8">
+                        <h3 id="title">{this.state.recipe.title}</h3>
+                        {this.state.steps}
+                    </div>
+                    <div className="col-4 ingredient-content">
+                        <SideBar measurements={this.state.ingredientMeasurement}/>
+                    </div>
+                </div>
+                <div className="row col-12">
+                    <div className="col-8">
+
+                    </div>
+
+                </div>
+            </div>
+
+        );
+    }
 }
 
 export default CookingPage;
