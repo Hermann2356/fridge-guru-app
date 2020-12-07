@@ -12,6 +12,7 @@ import '../components_stylesheets/Navbar.css';
 import AuthLink from "./AuthLink";
 import {Link} from "react-router-dom";
 import auth from "../services/auth";
+import Timer from "./Timer";
 
 
 class NavbarComponent extends React.Component {
@@ -51,6 +52,9 @@ class NavbarComponent extends React.Component {
                                                     <NavLink>Home</NavLink>
                                                 </Link>
                                             </NavItem>: ""
+                                    }
+                                    {
+                                        this.props.timerActive ? <Timer /> : ""
                                     }
 
                                     <NavItem className="nav__item">

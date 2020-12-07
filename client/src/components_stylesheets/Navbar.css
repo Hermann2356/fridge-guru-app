@@ -1,4 +1,6 @@
 .nav__item {
+  margin-top: auto;
+  margin-bottom: auto;
   letter-spacing: 2px;
   font-size: 0.8rem;
   text-transform: uppercase;
@@ -11,6 +13,8 @@
 }
 
 .auth__item {
+  margin-top: auto;
+  margin-bottom: auto;
   letter-spacing: 2px;
   font-size: 0.8rem;
   text-transform: uppercase;

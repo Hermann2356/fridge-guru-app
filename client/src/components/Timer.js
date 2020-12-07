@@ -45,20 +45,24 @@ function Timer() {
     }, [isActive, seconds]);
 
     return (
-        <div className="app">
-            <div className="time">
+        <div className="container-fluid app">
+            <div className=" row col-12 time">
                 {hours < 10 ? "0" + hours : hours}:
                 {minutes < 10 ? "0" + minutes : minutes}:
                 {seconds < 10 ? "0" + seconds : seconds}
             </div>
-            <div className="row">
-                <button className={`button button-primary button-primary-${isActive ? 'active' : 'inactive'}`}
-                        onClick={toggle}>
-                    {isActive ? 'Pause' : 'Start'}
-                </button>
-                <button className="button" onClick={reset}>
-                    Reset
-                </button>
+            <div className="row col-12">
+                <div className="col-6">
+                    <button className={`button button-primary button-primary-${isActive ? 'active' : 'inactive'}`}
+                            onClick={toggle}>
+                        {isActive ? 'Pause' : 'Start'}
+                    </button>
+                </div>
+                <div className="col-6">
+                    <button className="button" onClick={reset}>
+                        Reset
+                    </button>
+                </div>
             </div>
         </div>
     );

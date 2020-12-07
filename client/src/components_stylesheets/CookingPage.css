@@ -1,33 +1,30 @@
-.App {
-    /*background-image: url("../public/assets/fork.png");*/
-    background-size: cover;
-}
+
 #side-bar-div {
-    position: fixed;
-    overflow-y: scroll;
-    height: 80%;
-    margin-top: 100px;
+    height: 100%;
+    margin-top: 200px;
     margin-right: 20px;
-
-
+    padding-bottom: 40px;
 }
 
 #title {
+
     border-style: dashed;
     border-radius: 5px;
     background-color: snow;
     color: #82ae46;
     padding: 15px;
     text-align: center;
-    padding: 30px 0px 50px 0;
-    margin-top: 100px;
-    margin-right: 100px;
-    margin-bottom: 60px;
+    padding: 30px 10px 50px 10px;
+    margin: 100px auto 60px 10px;
+}
+.scrollable-content{
+    height: 60%;
+    overflow: auto;
 }
 
 #ingredients-side-bar {
     font-size: 1em;
-    position: absolute;
+    margin-top: 100px;
     padding: 50px 20px 200px 20px;
     border-top-color: #82ae46;
     border-bottom-color: #82ae46;
@@ -36,25 +33,25 @@
     border-top-width: 10px;
     border-bottom-width: 10px;
     background-color: white;
-    line-height: 35px;
+    line-height: 45px;
     text-align: left;
 }
 
 #ingredients-side-bar h3{
     text-align: center;
     margin-bottom: 20px;
+
 }
-
-
-#main {
-
+.ingredient-img {
+    width: 80px;
+    height: 80px;
 }
 
 
 .step-div {
     font-size: 30px;
     flexGrow: 1;
-    margin-right: 100px;
+    margin-left: 0px;
     margin-bottom: 50px;
     border-bottom-color: #82ae46;
     border-bottom-style: solid;
@@ -72,4 +69,23 @@
 
 .ingredient-typo {
     color: #888888;
+}
+
+.ingredient-list {
+    list-style: none;
+}
+
+.timer {
+    margin-top: 100px;
+    margin-left: 64%;
+    position: fixed;
+}
+
+.cooking-container {
+    background-image: url("/public/assets/pexels-lukas-349610.jpg");
+    background-size: contain;
+}
+
+.container-content {
+    margin-top: 50px;
 }
