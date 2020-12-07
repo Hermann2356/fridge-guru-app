@@ -115,7 +115,9 @@ class CookingPage extends React.Component {
 
 
     componentDidMount() {
-        search.getRecipeInfo(1457291)
+        let ingredientId = this.props.match.params.id;
+        console.log(ingredientId);
+        search.getRecipeInfo(ingredientId)
             .then(res => {
                 return res.json();
             })

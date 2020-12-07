@@ -134,7 +134,7 @@
 }
 
 .ingredient-title {
-    margin-left: 50px;
+    margin-left: 0px;
 }
 
 .recipe-des-summary {
@@ -180,4 +180,10 @@
     border-width: 5px;
     border-radius: 5px;
     border-color: slategray;
+}
+
+.start-cooking-btn {
+    margin-right: auto;
+    margin-left: auto;
+    color: white;
 }
