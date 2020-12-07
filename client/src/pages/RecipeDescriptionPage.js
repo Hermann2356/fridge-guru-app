@@ -62,54 +62,80 @@ function RecipeDescriptionPage() {
     }
     return (
 
-        <div className="container-fluid">
-            <div className="row m-2 col-12">
-                <div className="col-4">
-                    <div className="row col-12">
+        <div className="container-fluid recipe-main-container">
+            <div className="row m-2 col-12 w-100">
+                <Navbar className="recipe-description-nav"/>
+            </div>
+            <div className="row m-2 col-12 w-100 recipe-des-body">
+                <div className="col-4 w-100 ">
+                    <div className="row col-12 recipe-des-title theme">
                         <h1>{informationObj.title}</h1>
+                        <div className="row col-12">
+                            <span className="apple"> <strong>{informationObj.creditsText}</strong> </span>
+                            <p className="source">Source: <a target="_blank" rel="noopener noreferrer"
+                                                             href={informationObj.sourceUrl}>Recipe Site Page Here....</a>
+                            </p>
+                        </div>
                     </div>
-                    <div className="row col-12">
-                        <span className="apple"> <strong>{informationObj.creditsText}</strong> </span>
-                        <p className="source">Source: <a target="_blank" rel="noopener noreferrer"
-                                                         href={informationObj.sourceUrl}>Recipe Site Page Here....</a>
-                        </p>
-                    </div>
-                    <div className="row col-12">
-                        <p><strong>Total Time:</strong> {informationObj.readyInMinutes} mins</p>
+
+                    <div>
 
                     </div>
-                    <div className="row col-12">
-                        <p><strong>Cooking Time:</strong> {informationObj.cookingMinutes} mins</p>
+                    <div className="recipe-des-cooking theme">
+                        <div className="row col-12">
+                            <p><strong>Total Time:</strong> {informationObj.readyInMinutes} mins</p>
+
+                        </div>
+                        <div className="row col-12">
+                            <p><strong>Cooking Time:</strong> {informationObj.cookingMinutes} mins</p>
+                        </div>
+                        <div className="row col-12">
+                            <p><strong>Prep Time:</strong> {informationObj.preparationMinutes} mins</p>
+                        </div>
+                        <div className="row col-12">
+                            <p><strong>Servings:</strong> {informationObj.servings}</p>
+                        </div>
                     </div>
-                    <div className="row col-12">
-                        <p><strong>Prep Time:</strong> {informationObj.preparationMinutes} mins</p>
-                    </div>
-                    <div className="row col-12">
-                        <p><strong>Servings:</strong> {informationObj.servings}</p>
-                    </div>
+
 
                 </div>
-                <div className="col-8">
-                    <img src={informationObj.image}
+                <div className="col-8 recipe-des-image">
+                    <img src={informationObj.image }
                          alt="image"
+                         className="theme"
                     />
                 </div>
             </div>
-            <div className="row m2 col-12">
+            <div className="row m2 col-12 recipe-des-summary theme">
                 <div className="col-12">
                     <p>
                         {informationObj.summary}
                     </p>
                 </div>
             </div>
-            <div className="row m2 col-12 w-100">
-                <div className="row col-12 ">
-                    {informationObj.extendedIngredients.map(ingredient => {
-                        return <span style={{margin: '20px'}} ><div className="ingredients-list-inline"><i><img onError={(e)=>{
-                                              e.target.onerror = null; e.target.src="/public/assets/img-not-available.jpg"}
-                        } src={"https://spoonacular.com/cdn/ingredients_100x100/" + ingredient.image} /><br/></i> {ingredient.name}</div>
+            <div className="row m2 col-12 w-100 ingredients-des-container">
+                <div className="row col-12 w-100 ">
+                    <div className="row col-6 w-100 ingredient-des-props theme">
+                        <div className="row m2 col-12 ingredient-title">
+                            <h3>Ingredients</h3>
+                        </div>
+                        {informationObj.extendedIngredients.map(ingredient => {
+                            return <span style={{margin: '20px'}} ><div className="ingredients-list-inline"><i><img onError={(e)=>{
+                                e.target.onerror = null; e.target.src="/public/assets/img-not-available.jpg"}
+                            } src={"https://spoonacular.com/cdn/ingredients_100x100/" + ingredient.image} /><br/></i> {ingredient.name}</div>
                         </span>
-                    })}
+                        })}
+                    </div>
+
+                    <div className=" row col-6 w-100 theme ingredient-des-props">
+                        <div className="row col-12">
+                            <div>
+                                <h3>Directions</h3>
+                                {informationObj.instructions}
+                            </div>
+
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
