@@ -101,7 +101,7 @@ class CookingPage extends React.Component {
 
 
     componentDidMount() {
-        search.getRecipeInfo(479101)
+        search.getRecipeInfo(1457291)
             .then(res => {
                 return res.json();
             })

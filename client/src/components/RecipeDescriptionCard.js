@@ -11,14 +11,15 @@ import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles((theme) => ({
-
-    media: {
-        height: 0,
-        paddingTop: '56.25%', // 16:9
+    cardAction: {
+        width: 800,
+        backgroundColor: "slategray",
+        color: "whitesmoke"
     },
     expand: {
         transform: 'rotate(0deg)',
-        marginLeft: 'auto',
+        float:"right",
+        marginLeft:250,
         transition: theme.transitions.create('transform', {
             duration: theme.transitions.duration.shortest,
         }),
@@ -26,23 +27,20 @@ const useStyles = makeStyles((theme) => ({
     expandOpen: {
         transform: 'rotate(180deg)',
     },
-    avatar: {
-        backgroundColor: red[500],
-    },
 }));
 
 function RecipeDescriptionCard(props) {
     const classes = useStyles();
-    const [expanded, setExpanded] = React.useState(false);
+    const [expanded, setExpanded] = React.useState(true);
 
     const handleExpandClick = () => {
         setExpanded(!expanded);
     };
 
     return (
-        <div className="row m-2 col-12">
+        <div className="row m-2 col-12 description-card">
             <Card>
-                <CardActions disableSpacing>
+                <CardActions className={classes.cardAction} disableSpacing>
                     {/*<div className="col-12 border-bottom">*/}
                     <h6>{props.header}</h6>
                     <IconButton
@@ -53,7 +51,7 @@ function RecipeDescriptionCard(props) {
                         aria-expanded={expanded}
                         aria-label="show more"
                     >
-                        <ExpandMoreIcon/>
+                        <ExpandMoreIcon />
                     </IconButton>
                     {/*</div>*/}
                 </CardActions>

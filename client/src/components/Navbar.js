@@ -11,6 +11,7 @@ import {
 import '../components_stylesheets/Navbar.css';
 import AuthLink from "./AuthLink";
 import {Link} from "react-router-dom";
+import auth from "../services/auth";
 
 
 class NavbarComponent extends React.Component {
@@ -39,15 +40,19 @@ class NavbarComponent extends React.Component {
                         expand="md"
                     >
                         <div className="container ">
-                            <Link to="/" className={this.props.homeActive+ " " + "nav__link navbar__header"} ><NavbarBrand >FridgeGuru</NavbarBrand></Link>
+                            <Link to="/" className={this.props.homeActive+ " " + "navbar__header"} ><NavbarBrand >FridgeGuru</NavbarBrand></Link>
                             <NavbarToggler onClick={this.toggle}/>
                             <Collapse isOpen={this.state.isOpen} navbar>
                                 <Nav className="ml-auto" navbar>
-                                    <NavItem className=" nav__item">
-                                        <Link className={this.props.homeActive+ " " + "nav__link"} to="/">
-                                            <NavLink>Home</NavLink>
-                                        </Link>
-                                    </NavItem>
+                                    {
+                                        auth.userInfo !== null?
+                                            <NavItem className=" nav__item">
+                                                <Link className={this.props.homeActive+ " " + "nav__link"} to="/">
+                                                    <NavLink>Home</NavLink>
+                                                </Link>
+                                            </NavItem>: ""
+                                    }
+
                                     <NavItem className="nav__item">
                                         <Link className={this.props.recipeActive + " " + "nav__link"} to="/recipe"><NavLink
                                             className="nav__link">Recipes</NavLink></Link>
