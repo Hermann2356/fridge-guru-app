@@ -12,6 +12,7 @@ import Profile from "./pages/Profile";
 import RecipePage from "./pages/RecipePage";
 import MulterPage from "./pages/MulterPage";
 import PrivateRoute from "./components/PrivateRoute";
+import RecipeDescriptionPage from "./pages/RecipeDescriptionPage";
 
 class App extends React.Component {
     render() {
@@ -19,11 +20,13 @@ class App extends React.Component {
             <Router>
                 <div className="App">
                         <Switch>
+                            <Route path="/recipe/description/:ingredientId" component={RecipeDescriptionPage} />
                             <Route path="/login" component={AuthenticationPage}/>
                             <Route path="/recipe/cooking" component={CookingPage}/>
                             <Route path="/recipe" component={RecipePage}/>
-                            <Route path="/profile" component={Profile}/>
+                            <PrivateRoute path="/profile" component={Profile}/>
                             <Route path="/image" component={MulterPage}/>
+
                             <PrivateRoute path="/" component={Home}/>
                         </Switch>
                 </div>

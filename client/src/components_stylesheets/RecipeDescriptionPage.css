@@ -1,0 +1,44 @@
+.review {
+    border-bottom: 0.1px solid aqua;
+    margin-left: 10px;
+}
+.checked {
+    color: green;
+}
+
+.source {
+    margin-top: 10px;
+}
+
+.card {
+    border: 1px solid black;
+}
+
+.nutrition{
+    text-align: center;
+    border-bottom: 0.1px solid aqua;
+    margin: auto;
+}
+
+.love {
+    border: 1px solid black;
+}
+
+.red {
+    color: red;
+}
+.image-container img{
+    margin-left: 60px;
+    margin-right: 0;
+    width: 80%;
+    height: 100%;
+}
+
+.bottom-container {
+    margin-top: 50px;
+}
+
+.bottom-card {
+    width: 100%;
+    background-color: greenyellow;
+}

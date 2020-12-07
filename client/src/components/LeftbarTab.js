@@ -120,15 +120,15 @@ class LeftbarTab extends React.Component {
         }
         return (
             <div className="container">
-                <Nav tabs style={{cursor: "pointer"}}>
+                <Nav  className={"nav-tabs"} tabs style={{cursor: "pointer"}}>
                     <NavItem>
                         <NavLink
-                            className={classnames({active: this.state.activeTab === "1"})}
+                            className={ classnames({active: this.state.activeTab === "1"})}
                             onClick={() => {
                                 this.toggle("1");
                             }}
                         >
-                            ADD INGREDIENTS
+                            <span>Ingredients</span>
                         </NavLink>
                     </NavItem>
                     <NavItem>
@@ -138,7 +138,7 @@ class LeftbarTab extends React.Component {
                                 this.toggle("2");
                             }}
                         >
-                            MY FRIDGE
+                           <span>My Fridge</span>
                         </NavLink>
                     </NavItem>
                 </Nav>

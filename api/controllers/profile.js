@@ -30,7 +30,7 @@ router.get('/:userId', passport.isAuthenticated(), (req, res) => {
         });
 });
 
-router.put('/photo/:id', upload.single('profileImg'), (req, res) => {
+router.put('/photo/:id', passport.isAuthenticated(), upload.single('profileImg'), (req, res) => {
 
     const { id } = req.params;
 
