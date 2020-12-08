@@ -40,40 +40,47 @@ class NavbarComponent extends React.Component {
                         light
                         expand="md"
                     >
-                        <div className="container ">
-                            <Link to="/" className={this.props.homeActive+ " " + "navbar__header"} ><NavbarBrand >FridgeGuru</NavbarBrand></Link>
-                            <NavbarToggler onClick={this.toggle}/>
-                            <Collapse isOpen={this.state.isOpen} navbar>
-                                <Nav className="ml-auto" navbar>
-                                    {
-                                        this.props.timerActive ? <Timer /> : ""
-                                    }
-                                    {
-                                        auth.userInfo !== null?
-                                            <NavItem className=" nav__item">
-                                                <Link className={this.props.homeActive+ " " + "nav__link"} to="/">
-                                                    <NavLink>Home</NavLink>
-                                                </Link>
-                                            </NavItem>: ""
-                                    }
+                        <div className="container-fluid ">
+                            <div className="col-4">
+                                <Link to="/" className={this.props.homeActive+ " " + "navbar__header "} ><NavbarBrand className="header-tab">FridgeGuru</NavbarBrand></Link>
+                            </div>
+                            <div className="col-3">
+                                {
+                                    this.props.timerActive ? <Timer /> : ""
+                                }
+                            </div>
+                            <div className="col-4 right-tabs">
 
-                                    <NavItem className="nav__item">
-                                        <Link className={this.props.recipeActive + " " + "nav__link"} to="/recipe"><NavLink
-                                            className="nav__link">Recipes</NavLink></Link>
-                                    </NavItem>
-                                    <NavItem className="nav__item">
-                                        <Link className={this.props.profileActive + " " + "nav__link"} to="/profile">
-                                            <NavLink>Profile</NavLink>
-                                        </Link>
-                                    </NavItem>
-                                    <NavItem className="nav__item">
-                                        <Link className="nav__link" to="#"><NavLink>Setting</NavLink></Link>
-                                    </NavItem>
-                                    <NavItem className="auth__item">
-                                        <AuthLink/>
-                                    </NavItem>
-                                </Nav>
-                            </Collapse>
+                                <Collapse isOpen={this.state.isOpen} navbar>
+                                    <Nav className="ml-auto" navbar>
+
+
+                                        <NavItem className=" nav__item">
+                                            <Link className={this.props.homeActive+ " " + "nav__link "} to="/">
+                                                <NavLink>Home</NavLink>
+                                            </Link>
+                                        </NavItem>
+
+
+                                        <NavItem className="nav__item">
+                                            <Link className={this.props.recipeActive + " " + "nav__link"} to="/recipe"><NavLink
+                                                className="nav__link">Recipes</NavLink></Link>
+                                        </NavItem>
+                                        <NavItem className="nav__item">
+                                            <Link className={this.props.profileActive + " " + "nav__link"} to="/profile">
+                                                <NavLink>Profile</NavLink>
+                                            </Link>
+                                        </NavItem>
+                                        <NavItem className="nav__item">
+                                            <Link className="nav__link" to="#"><NavLink>Setting</NavLink></Link>
+                                        </NavItem>
+                                        <NavItem className="auth__item">
+                                            <AuthLink/>
+                                        </NavItem>
+                                    </Nav>
+                                </Collapse>
+                            </div>
+                            <NavbarToggler onClick={this.toggle}/>
                         </div>
                     </Navbar>
                 </header>

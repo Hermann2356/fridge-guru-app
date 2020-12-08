@@ -45,8 +45,8 @@ function Timer() {
     }, [isActive, seconds]);
 
     return (
-        <div className="container-fluid app">
-            <div className=" row col-12 time">
+        <div className="container-fluid w-100 app">
+            <div className=" row  col-12 time">
                 {hours < 10 ? "0" + hours : hours}:
                 {minutes < 10 ? "0" + minutes : minutes}:
                 {seconds < 10 ? "0" + seconds : seconds}
