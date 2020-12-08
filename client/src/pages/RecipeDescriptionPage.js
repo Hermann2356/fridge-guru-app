@@ -5,9 +5,27 @@ import {search} from '../spoonacular/endpoints'
 import Loading from "../components/Loading";
 import Navbar from '../components/Navbar'
 import {makeStyles} from "@material-ui/core/styles";
-import { Button } from 'reactstrap';
+import {Button} from 'reactstrap';
 
+function IngredientBox (props){
+    return (
+        <span className="span" style={{margin: '20px'}}>
+            <div  className=" col-3 ingredients-list-inline">
+                <i><img
+                        onError={(e) => {
+                                e.target.onerror = null;
+                                e.target.src = "/public/assets/img-not-available.jpg"
+                            }
+                        }
+                        src={"https://spoonacular.com/cdn/ingredients_100x100/" + props.ingredient.image}
+                    /><br/>
+                </i>
+            </div>
+           <p>{props.ingredient.name}</p>
+        </span>
+        );
 
+}
 
 function RecipeDescriptionPage() {
 
@@ -44,22 +62,18 @@ function RecipeDescriptionPage() {
                 <Navbar className="recipe-description-nav"/>
             </div>
             <div className="row m-2 col-12 w-100 recipe-des-body">
-                <div className="col-4 w-100 ">
-                    <div className="row col-12 recipe-des-title theme">
-                        <h1>{informationObj.title}</h1>
-                        <div className="row col-12">
+                <div className="row col-4 ">
+                    <div className="row col-12 recipe-des-title theme ">
+                        <div className="row col-12 h-100 ">
+                            <h3 className="title">{informationObj.title}</h3>
                             <span className="apple"> <strong>{informationObj.creditsText}</strong> </span>
-                            <p className="source">Source: <a target="_blank" rel="noopener noreferrer"
-                                                             href={informationObj.sourceUrl}>Recipe Site Page Here....</a>
-                            </p>
+                            <span>Source: <a target="_blank" rel="noopener noreferrer"
+                                             href={informationObj.sourceUrl}>Recipe Site Page Here....</a>
+                            </span>
                         </div>
                     </div>
-
-                    <div>
-
-                    </div>
-                    <div className="recipe-des-cooking theme">
-                        <div className="row col-12">
+                    <div className=" row col-12 strong-theme recipe-des-cooking theme">
+                        <div className="row  col-12">
                             <p><strong>Total Time:</strong> {informationObj.readyInMinutes} mins</p>
 
                         </div>
@@ -76,50 +90,77 @@ function RecipeDescriptionPage() {
 
 
                 </div>
-                <div className="col-8 recipe-des-image">
-                    <img src={informationObj.image }
+                <div className=" row col-8 recipe-des-image">
+                    <img src={informationObj.image}
                          alt="image"
                          className="theme"
                     />
                 </div>
-            </div>
-            <div className="row m2 col-12 recipe-des-summary theme">
-                <div className="col-12">
-                    <p>
-                        {informationObj.summary}
-                    </p>
-                </div>
-            </div>
-            <div className="row m2 col-12 w-100 ingredients-des-container">
-                <div className="row col-12 w-100 ">
-                    <div className="row col-6 w-100 ingredient-des-props theme">
-                        <div className="row m2 col-12 ingredient-title">
-                            <h3>Ingredients</h3>
-                        </div>
-                        {informationObj.extendedIngredients.map(ingredient => {
-                            return <span style={{margin: '20px'}} ><div className="ingredients-list-inline"><i><img onError={(e)=>{
-                                e.target.onerror = null; e.target.src="/public/assets/img-not-available.jpg"}
-                            } src={"https://spoonacular.com/cdn/ingredients_100x100/" + ingredient.image} /><br/></i> {ingredient.name}</div>
-                        </span>
-                        })}
-                    </div>
-
-                    <div className=" row col-6 w-100 theme ingredient-des-props">
+                <div className="row col-4 ">
+                    <div className="row col-12 strong-theme recipe-des-cooking recipe-des-summary theme">
                         <div className="row col-12">
-                            <div>
-                                <h3>Directions</h3>
-                                {informationObj.instructions}
-                            </div>
-                            <div className="col-3 start-cooking-btn">
-                                <form method="get" action={"/recipe/cooking" + informationObj.id}>
-                                    <Button  type={"submit"} color="primary">Start Cooking</Button>
-                                </form>
+                            <p><strong>Health Score:</strong>( {" " + informationObj.healthScore}/10)</p>
 
-                            </div>
+                        </div>
+                        <div className="row col-12">
+                            <p><strong>Dairy Free:</strong> {" " + informationObj.dairyFree?"YES":"NO"}</p>
+
+                        </div>
+                        <div className="row col-12">
+                            <p><strong>Gluten Free:</strong> {" " + informationObj.glutenFree?"YES":"NO"}</p>
+                        </div>
+                        <div className="row col-12">
+                            <p><strong>Vegan:</strong> {" " + informationObj.vegan?"YES":"NO"}</p>
+                        </div>
+                        <div className="row col-12">
+                            <p><strong>Vegetarian:</strong>{" " + informationObj.vegetarian?"YES":"NO"}</p>
+                        </div>
+                    </div>
+
+                </div>
+                <div className="row col-8 ">
+                    <div className="w-100 recipe-des-summary theme">
+                        <h3 className="des-header">Description</h3>
+                        <p>
+                            <p className="content-padding" dangerouslySetInnerHTML={{__html: informationObj.summary}}/>
+                        </p>
+                    </div>
+                </div>
+                <div className="row col-6 ingredient-col margin-bottom">
+                    <div className="w-100 recipe-des-summary theme">
+                        <h3 className="des-header w-100">Ingredients</h3>
+                        <div className="row col-12">
+                            {informationObj.extendedIngredients.map(ingredient => {
+                                return <IngredientBox ingredient={ingredient} />
+                        //         return <span style={{margin: '20px'}}><div className="ingredients-list-inline"><i><img
+                        //             onError={(e) => {
+                        //                 e.target.onerror = null;
+                        //                 e.target.src = "/public/assets/img-not-available.jpg"
+                        //             }
+                        //             }
+                        //             src={"https://spoonacular.com/cdn/ingredients_100x100/" + ingredient.image}/><br/></i> {ingredient.name}</div>
+                        // </span>
+                            })}
+                        </div>
+                    </div>
+                </div>
+                <div className="row m2 col-6 ingredient-col margin-bottom ">
+                    <div className="w-100 recipe-des-summary theme">
+                        <h3 className="des-header">Directions</h3>
+                        <div className="row col-12 ">
+                            <p className="content-padding">{informationObj.instructions}</p>
+                        </div>
+                        <div className="row col-12 start-cooking-btn">
+                            <form className="button-form" method="get" action={"/recipe/cooking" + informationObj.id}>
+                                <Button type={"submit"} color="primary">Start Cooking</Button>
+                            </form>
+
                         </div>
                     </div>
                 </div>
             </div>
+
+
         </div>
 
     )
