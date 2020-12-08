@@ -19,7 +19,7 @@ function Post(props) {
             className="post__profile_image"
           />
           <span className="post__username">
-            David.S <span className="post__label">shared a</span>feast
+            David.S <span className="post__label">shared a</span>post
           </span>
         </div>
       </div>

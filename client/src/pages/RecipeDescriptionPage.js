@@ -102,21 +102,21 @@ function RecipeDescriptionPage() {
                 <div className="row col-4 ">
                     <div className="row col-12 strong-theme recipe-des-cooking recipe-des-summary theme">
                         <div className="row col-12">
-                            <p><strong>Health Score:</strong> {" " + informationObj.healthScore}</p>
+                            <p><strong>Health Score:</strong> {informationObj.healthScore}</p>
 
                         </div>
                         <div className="row col-12">
-                            <p><strong>Dairy Free:</strong> {" " + informationObj.dairyFree?"YES":"NO"}</p>
+                            <p><strong>Dairy Free:</strong> {informationObj.dairyFree?"YES":"NO"}</p>
 
                         </div>
                         <div className="row col-12">
-                            <p><strong>Gluten Free:</strong> {" " + informationObj.glutenFree?"YES":"NO"}</p>
+                            <p><strong>Gluten Free:</strong> {informationObj.glutenFree?"YES":"NO"}</p>
                         </div>
                         <div className="row col-12">
-                            <p><strong>Vegan:</strong> {" " + informationObj.vegan?"YES":"NO"}</p>
+                            <p><strong>Vegan:</strong> {informationObj.vegan?"YES":"NO"}</p>
                         </div>
                         <div className="row col-12">
-                            <p><strong>Vegetarian:</strong>{" " + informationObj.vegetarian?"YES":"NO"}</p>
+                            <p><strong>Vegetarian:</strong>{informationObj.vegetarian?"YES":"NO"}</p>
                         </div>
                     </div>
 

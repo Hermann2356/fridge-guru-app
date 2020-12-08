@@ -17,7 +17,7 @@ function CreatePostBox({ onClick }) {
             <input
               className="form-control post__input"
               type="search"
-              placeholder="Share your feast..."
+              placeholder="Share your post..."
               aria-label="Search"
               onClick={() => onClick()}
               readOnly
