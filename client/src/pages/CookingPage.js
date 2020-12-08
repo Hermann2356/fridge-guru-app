@@ -74,7 +74,7 @@ function Step(props) {
                 <Collapse in={expanded} timeout="auto" unmountOnExit>
                     <CardContent id="ingredients-content">
                         <Typography paragraph>Ingredients Needed:</Typography>
-                        {ingredients}
+                       {ingredients}
                     </CardContent>
                 </Collapse>
             </Card>

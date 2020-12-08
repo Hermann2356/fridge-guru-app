@@ -102,7 +102,7 @@ function RecipeDescriptionPage() {
                 <div className="row col-4 ">
                     <div className="row col-12 strong-theme recipe-des-cooking recipe-des-summary theme">
                         <div className="row col-12">
-                            <p><strong>Health Score:</strong>( {" " + informationObj.healthScore}/5)</p>
+                            <p><strong>Health Score:</strong> {" " + informationObj.healthScore}</p>
 
                         </div>
                         <div className="row col-12">

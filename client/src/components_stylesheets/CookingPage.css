@@ -21,6 +21,11 @@
     overflow: auto;
 }
 
+.scrollable-content h3 {
+    background-color: #82ae46;
+    padding: 20px;
+}
+
 #ingredients-side-bar {
     font-size: 1em;
     margin-top: 100px;
@@ -93,3 +98,4 @@
     width: 40px;
     height: 40px;
 }
+
