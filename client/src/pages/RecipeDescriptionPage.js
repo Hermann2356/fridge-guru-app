@@ -66,10 +66,12 @@ function RecipeDescriptionPage() {
                     <div className="row col-12 recipe-des-title theme ">
                         <div className="row col-12 h-100 ">
                             <h3 className="title">{informationObj.title}</h3>
-                            <span className="apple"> <strong>{informationObj.creditsText}</strong> </span>
-                            <span>Source: <a target="_blank" rel="noopener noreferrer"
-                                             href={informationObj.sourceUrl}>Recipe Site Page Here....</a>
+                            <div className="row col-12">
+                                <span className="apple"> <strong>{informationObj.creditsText}</strong> </span>
+                                <span>Source: <a target="_blank" rel="noopener noreferrer"
+                                                 href={informationObj.sourceUrl}>Recipe Site Page Here....</a>
                             </span>
+                            </div>
                         </div>
                     </div>
                     <div className=" row col-12 strong-theme recipe-des-cooking theme">
@@ -99,7 +101,7 @@ function RecipeDescriptionPage() {
                 <div className="row col-4 ">
                     <div className="row col-12 strong-theme recipe-des-cooking recipe-des-summary theme">
                         <div className="row col-12">
-                            <p><strong>Health Score:</strong>( {" " + informationObj.healthScore}/10)</p>
+                            <p><strong>Health Score:</strong>( {" " + informationObj.healthScore}/5)</p>
 
                         </div>
                         <div className="row col-12">
