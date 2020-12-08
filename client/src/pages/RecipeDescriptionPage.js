@@ -6,6 +6,7 @@ import Loading from "../components/Loading";
 import Navbar from '../components/Navbar'
 import {makeStyles} from "@material-ui/core/styles";
 import {Button} from 'reactstrap';
+import {Link} from "react-router-dom";
 
 function IngredientBox (props){
     return (
@@ -153,10 +154,9 @@ function RecipeDescriptionPage() {
                             <p className="content-padding">{informationObj.instructions}</p>
                         </div>
                         <div className="row col-12 start-cooking-btn">
-                            <form className="button-form" method="get" action={"/recipe/cooking" + informationObj.id}>
-                                <Button type={"submit"} color="primary">Start Cooking</Button>
-                            </form>
-
+                            <Link to={"/recipe/cooking" + informationObj.id}> <Button type={"submit"} color="primary">
+                                    Start Cooking
+                                </Button></Link>
                         </div>
                     </div>
                 </div>

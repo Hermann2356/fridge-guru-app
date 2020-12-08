@@ -25,7 +25,7 @@ class App extends React.Component {
                             <Route path={"/recipe/cooking:id"} render={(props) => <CookingPage {...props} />} />
                             {/*<Route path="/recipe/cooking:id" component={CookingPage}/>*/}
                             <Route path="/recipe" component={RecipePage}/>
-                            <Route path="/profile" component={Profile}/>
+                            <PrivateRoute path="/profile" component={Profile}/>
                             <Route path="/image" component={MulterPage}/>
                             <PrivateRoute path="/" component={Home}/>
                         </Switch>

@@ -33,6 +33,7 @@ function Step(props) {
            backgroundColor: "whitesmoke",
        },
         cardContent: {
+           fontSize: "x-large",
            textAlign: "center",
         }
     }));
@@ -83,9 +84,22 @@ function Step(props) {
 }
 
 function SideBar(props) {
+    // const ingredientMeasurements = props.measurements.map((measurement, ii) => {
+    //     return <li key={ii}><i className="fa fa-check-square-o" aria-hidden="true"></i>{" " + measurement}</li>
+    // });
+
     const ingredientMeasurements = props.measurements.map((measurement, ii) => {
-        return <li key={ii}><i className="fa fa-check-square-o" aria-hidden="true"></i>{" " + measurement}</li>
+        return <li key={ii}>
+                    <i>
+                        <img className="ingredient-img-2"
+                             onError={(e)=>{
+                                        e.target.onerror = null; e.target.src="/public/assets/img-not-available.jpg"}
+                                    }
+                             src={"https://spoonacular.com/cdn/ingredients_100x100/" +measurement.image} />
+                    </i> {" " +  measurement.name}
+                </li>
     });
+
 
     return (
         <div id=" row col-12 side-bar-div">
@@ -137,10 +151,11 @@ class CookingPage extends React.Component {
                         });
                     }),
                     ingredientMeasurement: info.extendedIngredients.map(ingredient => {
-                        return ingredient.original;
+                        return {name : ingredient.original, image: ingredient.image}
                     }),
                     loading: false,
                 });
+                console.log(this.state.recipe)
             })
             .catch(err => {
                 console.log(err)

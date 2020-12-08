@@ -46,15 +46,15 @@ class NavbarComponent extends React.Component {
                             <Collapse isOpen={this.state.isOpen} navbar>
                                 <Nav className="ml-auto" navbar>
                                     {
+                                        this.props.timerActive ? <Timer /> : ""
+                                    }
+                                    {
                                         auth.userInfo !== null?
                                             <NavItem className=" nav__item">
                                                 <Link className={this.props.homeActive+ " " + "nav__link"} to="/">
                                                     <NavLink>Home</NavLink>
                                                 </Link>
                                             </NavItem>: ""
-                                    }
-                                    {
-                                        this.props.timerActive ? <Timer /> : ""
                                     }
 
                                     <NavItem className="nav__item">

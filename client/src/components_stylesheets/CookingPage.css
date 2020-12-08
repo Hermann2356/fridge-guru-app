@@ -7,18 +7,17 @@
 }
 
 #title {
-
     border-style: dashed;
     border-radius: 5px;
     background-color: snow;
-    color: #82ae46;
+    color: black;
+    border-color: #82ae46;
     padding: 15px;
     text-align: center;
     padding: 30px 10px 50px 10px;
     margin: 100px auto 60px 10px;
 }
 .scrollable-content{
-    height: 60%;
     overflow: auto;
 }
 
@@ -88,4 +87,9 @@
 
 .container-content {
     margin-top: 50px;
+}
+
+.ingredient-img-2 {
+    width: 40px;
+    height: 40px;
 }
