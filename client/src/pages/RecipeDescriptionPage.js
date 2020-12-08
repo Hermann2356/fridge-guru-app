@@ -154,9 +154,14 @@ function RecipeDescriptionPage() {
                             <p className="content-padding">{informationObj.instructions}</p>
                         </div>
                         <div className="row col-12 start-cooking-btn">
-                            <Link to={"/recipe/cooking" + informationObj.id}> <Button type={"submit"} color="primary">
-                                    Start Cooking
-                                </Button></Link>
+                            <div className={"button-form"}>
+                                <Link to={"/recipe/cooking" + informationObj.id}>
+                                    <Button type={"submit"} color="primary">
+                                        Start Cooking
+                                    </Button>
+                                </Link>
+                            </div>
+
                         </div>
                     </div>
                 </div>
