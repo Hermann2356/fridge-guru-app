@@ -16,7 +16,7 @@ function AddedFridgeItems(props) {
             <div className="d-flex flex-column p-0 m-0">
                 <p className="m-0 item_title">{props.item.name}</p>
                 <p className="m-0">
-                    <strong>Expire in</strong> - {props.item.date}
+                    <strong>Expire in</strong> - {props.item.expiration}
                 </p>
 
                 <div className="d-flex justify-content-between align-items-center">

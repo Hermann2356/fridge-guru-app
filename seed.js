@@ -1,6 +1,6 @@
 
 const seed = (db) => {
-    const { Ingredient, Category, User, Profile, Post } = db;
+    const { Ingredient, Category, User, Profile, Post, Fridge } = db;
 
     const CATEGORY = [
         {id: 1, name: "fruit"},
@@ -27,16 +27,16 @@ const seed = (db) => {
     ];
 
     const FRIDGE = [
-        {ingredientId: 1, userId: 1},
-        {ingredientId: 3, userId: 1},
-        {ingredientId: 4, userId: 1},
-        {ingredientId: 5, userId: 1},
-        {ingredientId: 6, userId: 1},
-        {ingredientId: 7, userId: 1},
-        {ingredientId: 9, userId: 1},
-        {ingredientId: 12, userId: 1},
-        {ingredientId: 14, userId: 1},
-        {ingredientId: 2, userId: 1},
+        {ingredientId: 1, userId: 1,expiration:1/22/2021,quantity: 4},
+        {ingredientId: 3, userId: 1, expiration:1/22/2021, quantity: 2},
+        {ingredientId: 4, userId: 1,expiration:1/22/2021, quantity: 2},
+        {ingredientId: 5, userId: 1,expiration:1/22/2021, quantity: 1},
+        {ingredientId: 6, userId: 1,expiration:1/22/2021, quantity: 8},
+        {ingredientId: 7, userId: 1,expiration:1/22/2021, quantity: 7},
+        {ingredientId: 9, userId: 1,expiration:1/22/2021, quantity: 1},
+        {ingredientId: 12, userId: 1,expiration:1/22/2021, quantity: 1},
+        {ingredientId: 14, userId: 1,expiration:1/22/2021, quantity: 2},
+        {ingredientId: 2, userId: 1,expiration:1/22/2021, quantity: 1},
     ]
 
     const POST = [
@@ -72,6 +72,7 @@ const seed = (db) => {
 
                     let profilePromises = PROFILE.map(p => Profile.create(p));
                     let postPromises = POST.map(p => Post.create(p));
+                    let fridgePromises = FRIDGE.map(f => Fridge.create(f));
 
                     // Create the associations
                     let associationPromises = FRIDGE.map(f =>{
@@ -82,7 +83,7 @@ const seed = (db) => {
                                 return users.addIngredient(ingredients);
                             })
                     });
-                    return Promise.all([ ...profilePromises, ...postPromises]);
+                    return Promise.all([...fridgePromises, ...profilePromises, ...postPromises]);
                 });
         })
 
