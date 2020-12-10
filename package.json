@@ -30,6 +30,7 @@
     "sequelize": "^5.22.3",
     "sqlite3": "^4.2.0"
   },
+  "heroku-postbuild": "npm install && cd client && npm install --only-dev && npm install && npm run build",
   "devDependencies": {
     "dotenv": "^8.2.0",
     "nodemon": "^1.19.4"

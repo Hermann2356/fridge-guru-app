@@ -1,5 +1,6 @@
 
 import React from "react";
+import {convertTimeStamp} from '../services/utils';
 
 import "../components_stylesheets/ItemTodo.css";
 
@@ -15,9 +16,12 @@ function AddedFridgeItems(props) {
 
             <div className="d-flex flex-column p-0 m-0">
                 <p className="m-0 item_title">{props.item.name}</p>
-                <p className="m-0">
-                    <strong>Expire in</strong> - {props.item.expiration}
-                </p>
+                {props.defaultExp?
+                    <p className="m-0">
+                        <strong>Expire in</strong> - {convertTimeStamp(props.item.expiration)}
+                    </p> : ""
+                }
+
 
                 <div className="d-flex justify-content-between align-items-center">
                     <p><strong>Quantity</strong></p>

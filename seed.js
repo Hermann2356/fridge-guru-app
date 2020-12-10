@@ -27,16 +27,16 @@ const seed = (db) => {
     ];
 
     const FRIDGE = [
-        {ingredientId: 1, userId: 1,expiration:1/22/2021,quantity: 4},
-        {ingredientId: 3, userId: 1, expiration:1/22/2021, quantity: 2},
-        {ingredientId: 4, userId: 1,expiration:1/22/2021, quantity: 2},
-        {ingredientId: 5, userId: 1,expiration:1/22/2021, quantity: 1},
-        {ingredientId: 6, userId: 1,expiration:1/22/2021, quantity: 8},
-        {ingredientId: 7, userId: 1,expiration:1/22/2021, quantity: 7},
-        {ingredientId: 9, userId: 1,expiration:1/22/2021, quantity: 1},
-        {ingredientId: 12, userId: 1,expiration:1/22/2021, quantity: 1},
-        {ingredientId: 14, userId: 1,expiration:1/22/2021, quantity: 2},
-        {ingredientId: 2, userId: 1,expiration:1/22/2021, quantity: 1},
+        {ingredientId: 1, userId: 1,expiration:'1/22/2021',quantity: 4},
+        {ingredientId: 3, userId: 1, expiration:'2/04/2021', quantity: 2},
+        {ingredientId: 4, userId: 1,expiration:'2/01/2021', quantity: 2},
+        {ingredientId: 5, userId: 1,expiration:'1/26/2021', quantity: 1},
+        {ingredientId: 6, userId: 1,expiration:'2/09/2021', quantity: 8},
+        {ingredientId: 7, userId: 1,expiration:'5/22/2021', quantity: 7},
+        {ingredientId: 9, userId: 1,expiration:'1/02/2021', quantity: 1},
+        {ingredientId: 12, userId: 1,expiration:'1/20/2021', quantity: 1},
+        {ingredientId: 14, userId: 1,expiration:'1/21/2021', quantity: 2},
+        {ingredientId: 2, userId: 1,expiration:'1/15/2021', quantity: 1},
     ]
 
     const POST = [

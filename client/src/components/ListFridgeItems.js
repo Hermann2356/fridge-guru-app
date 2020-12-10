@@ -85,6 +85,7 @@ class ListFridgeItems extends React.Component {
                 <ul className="list-group">
                     {this.state.itemList.map((item, i) => {
                         return <AddedFridgeItems
+                            defaultExp="true"
                             key={item.id}
                             item={item}
                             count={item.quantity}
