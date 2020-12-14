@@ -10,28 +10,36 @@ router.get('/', (req, res) => {
 });
 
 
-router.post('/',
+router.post('/', (req, res) => {
 
-    (req, res) => {
-        let { name } = req.body.name;
-        let { pointValue } = req.body.pointValue;
+    let { name, pointValue } = req.body;
+
+     Category.max('id')
+         .then(lastPk => {
+
+             let id = lastPk + 1;
+
+             Category.create({ id, name, pointValue })
+                 .then(category => {
+                     console.log(category.toJSON());
+                     res.status(201).json(category);
+                 })
+                 .catch(err => {
+                     console.log(err)
+                     res.status(400).json(err);
+                 });
+         });
 
 
-        Category.create({ name, pointValue })
-            .then(category => {
-                res.status(201).json(category);
-            })
-            .catch(err => {
-                res.status(400).json(err);
-            });
     }
 );
 
 
 
-router.get('/:id', (req, res) => {
-    const { id } = req.params;
-    Category.findByPk(id)
+router.get('/:categoryId', (req, res) => {
+
+    const { categoryId } = req.params;
+    Category.findByPk(categoryId)
         .then(category => {
             if (!category) {
                 return res.sendStatus(404);
@@ -42,9 +50,9 @@ router.get('/:id', (req, res) => {
 });
 
 
-router.put('/:id', (req, res) => {
-        const { id } = req.params;
-        Category.findByPk(id)
+router.put('/:categoryId', (req, res) => {
+        const { categoryId } = req.params;
+        Category.findByPk(categoryId)
             .then(category => {
                 if (!category) {
                     return res.sendStatus(404);
@@ -65,15 +73,17 @@ router.put('/:id', (req, res) => {
 );
 
 
-router.delete('/:id', (req, res) => {
-        const { id } = req.params;
-        Category.findByPk(id)
+router.delete('/:categoryId', (req, res) => {
+        const { categoryId } = req.params;
+        Category.findByPk(categoryId)
             .then(category => {
+
                 if (!category) {
                     return res.sendStatus(404);
                 }
-
                 category.destroy();
+                console.log('DELETED:');
+                console.log(category.toJSON());
                 res.sendStatus(204);
             });
     }

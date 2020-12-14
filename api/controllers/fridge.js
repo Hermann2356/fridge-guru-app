@@ -27,9 +27,7 @@ router.get('/ingredients/:userId', (req, res) => {
 });
 
 
-router.post('/',
-
-    (req, res) => {
+router.post('/', (req, res) => {
 
         let{ ingredientId, userId, quantity, expiration } = req.body;
 
@@ -44,10 +42,9 @@ router.post('/',
 );
 
 
-router.get('/:id', (req, res) => {
-    const user = req.body.userId;
-    const {id} = req.params;
-    Fridge.findOne({where: {userId: user, ingredientId: id}})
+router.get('/:userId/:ingredientId', (req, res) => {
+    const {  userId, ingredientId } = req.params;
+    Fridge.findOne({where: { userId: userId, ingredientId: ingredientId }})
         .then(fridgeIngredient => {
             if (!fridgeIngredient) {
                 return res.sendStatus(404);

@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../models');
-const { Ingredient } = db;
+const {Ingredient} = db;
 
 
 router.get('/', (req, res) => {
@@ -10,31 +10,34 @@ router.get('/', (req, res) => {
 });
 
 
-router.post('/',
+router.post('/', (req, res) => {
 
-    (req, res) => {
-        let {name} = req.body.name;
-        let {consistency} = req.body.consistency;
-        let {fridgeSL} = req.body.fridgeSL;
-        let {cupboardSL} = req.body.cupboardSL;
-        let {freezerSL} = req.body.freezerSL;
-        let {categoryId} = req.body.categoryId;
+        const {name, image, consistency, shelfLife, categoryId} = req.body;
 
-        Ingredient.create({name, consistency, fridgeSL, cupboardSL, freezerSL, categoryId})
-            .then(ingredient => {
-                res.status(201).json(ingredient);
+        Ingredient.max('id')
+            .then(lastPK => {
+
+                const id = lastPK + 1;
+
+                Ingredient.create({id, name, image, consistency, shelfLife, categoryId})
+                    .then(ingredient => {
+                        console.log(ingredient.toJSON());
+                        res.status(201).json(ingredient);
+                    })
+                    .catch(err => {
+                        console.log(err);
+                        res.status(400).json(err);
+                    });
             })
-            .catch(err => {
-                res.status(400).json(err);
-            });
     }
 );
 
 
+router.get('/:ingredientId', (req, res) => {
 
-router.get('/:id', (req, res) => {
-    const {id} = req.params;
-    Ingredient.findByPk(id)
+    const {ingredientId} = req.params;
+
+    Ingredient.findByPk(ingredientId)
         .then(ingredient => {
             if (!ingredient) {
                 return res.sendStatus(404);
@@ -45,9 +48,9 @@ router.get('/:id', (req, res) => {
 });
 
 
-router.put('/:id', (req, res) => {
-        const {id} = req.params;
-        Ingredient.findByPk(id)
+router.put('/:ingredientId', (req, res) => {
+        const {ingredientId} = req.params;
+        Ingredient.findByPk(ingredientId)
             .then(ingredient => {
                 if (!ingredient) {
                     return res.sendStatus(404);
@@ -55,12 +58,12 @@ router.put('/:id', (req, res) => {
 
                 ingredient.name = req.body.name;
                 ingredient.consistency = req.body.consistency;
-                ingredient.fridgeSL = req.body.fridgeSL;
-                ingredient.cupboardSL = req.body.cupboardSL;
-                ingredient.freezerSL = req.body.freezerSL;
+                ingredient.shelfLife = req.body.shelfLife;
                 ingredient.categoryId = req.body.categoryId;
+
                 ingredient.save()
                     .then(ingredient => {
+                        console.log(ingredient.toJSON());
                         res.json(ingredient);
                     })
                     .catch(err => {
@@ -71,15 +74,19 @@ router.put('/:id', (req, res) => {
 );
 
 
-router.delete('/:id', (req, res) => {
-        const { id } = req.params;
-        Ingredient.findByPk(id)
+router.delete('/:ingredientId', (req, res) => {
+
+        const {ingredientId} = req.params;
+        Ingredient.findByPk(ingredientId)
             .then(ingredient => {
+
                 if (!ingredient) {
                     return res.sendStatus(404);
                 }
 
                 ingredient.destroy();
+                console.log('DELETED:');
+                console.log(ingredient.toJSON());
                 res.sendStatus(204);
             });
     }

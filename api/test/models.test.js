@@ -5,7 +5,6 @@ const { search } = require('../../client/src/spoonacular/endpoints');
 const { CRUD } = require('./models');
 
 
-
 describe('1) Model Usage', () => {
     beforeAll(() => {
         return seed(db);
@@ -109,14 +108,14 @@ describe('1) Model Usage', () => {
     //     expect(recipes).toBe(10);
     // });
 
-    test('get instructions of recipe', async () => {
-
-        instructions = await search.getRecipeInstruction(324694)
-            .then(res => {
-                return res.json();
-            });
-        expect(instructions).toBe(10);
-    });
+    // test('get instructions of recipe', async () => {
+    //
+    //     instructions = await search.getRecipeInstruction(324694)
+    //         .then(res => {
+    //             return res.json();
+    //         });
+    //     expect(instructions).toBe(10);
+    // });
 
     test('get number of user returned by email', async () => {
         user = await CRUD.getUserByEmail();

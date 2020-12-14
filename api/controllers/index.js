@@ -3,14 +3,16 @@ const router = express.Router();
 
 
 // Load each controller
-const authController = require('./auth');
+const authController = require('./auth.js');
 const postsController = require('./posts.js');
 const appConfigController = require('./appConfig.js');
-const ingredientsController = require('./ingredients');
-const fridgeController = require('./fridge');
-const recipeController = require('./recipe');
-const userController = require('./user');
-const profileController = require('./profile');
+const ingredientsController = require('./ingredients.js');
+const fridgeController = require('./fridge.js');
+const recipeController = require('./recipe.js');
+const userController = require('./user.js');
+const profileController = require('./profile.js');
+const categoryController = require('./category.js')
+
 // Mount each controller under a specific route. These
 // will be prefixes to all routes defined inside the controller
 router.use('/auth', authController);
@@ -21,4 +23,6 @@ router.use('/fridge', fridgeController);
 router.use('/recipe', recipeController);
 router.use('/user', userController);
 router.use('/profile', profileController);
+router.use('/category', categoryController);
+
 module.exports = router;
