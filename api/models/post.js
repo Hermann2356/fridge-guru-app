@@ -37,6 +37,8 @@ module.exports = (sequelize, DataTypes) => {
 
   Post.associate = (models) => {
     // associations can be defined here
+    models.Post.belongsTo(models.User);
+
   };
 
   return Post;

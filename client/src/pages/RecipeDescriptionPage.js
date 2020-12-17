@@ -4,7 +4,6 @@ import '../components_stylesheets/RecipeDescriptionPage.css'
 import {search} from '../spoonacular/endpoints'
 import Loading from "../components/Loading";
 import Navbar from '../components/Navbar'
-import {makeStyles} from "@material-ui/core/styles";
 import {Button} from 'reactstrap';
 import {Link} from "react-router-dom";
 

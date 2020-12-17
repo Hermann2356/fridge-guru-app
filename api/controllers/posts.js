@@ -1,94 +1,86 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../models');
-const passport = require('../middlewares/authentication');
-const { Post } = db;
+// const passport = require('../middlewares/authentication');
+const {Post} = db;
 
-// This is a simple example for providing basic CRUD routes for
-// a resource/model. It provides the following:
-//    GET    /posts
-//    POST   /posts
-//    GET    /posts/:id
-//    PUT    /posts/:id
-//    DELETE /posts/:id 
+router.get('/:userId', (req, res) => {
 
-// There are other styles for creating these route handlers, we typically
-// explore other patterns to reduce code duplication.
-// TODO: Can you spot where we have some duplication below?
-
-
-router.get('/', (req,res) => {
-  Post.findAll({})
-    .then(posts => res.json(posts));
+    const { userId } = req.params;
+    Post.findAll({where:{userId: userId}})
+        .then(posts => res.json(posts));
 });
 
 
-router.post('/',
-  passport.isAuthenticated(),
-  (req, res) => {
-    let { content } = req.body;
-    
-    Post.create({ content })
-      .then(post => {
-        res.status(201).json(post);
-      })
-      .catch(err => {
-        res.status(400).json(err);
-      });
-  }
+router.post('/', (req, res) => {
+        let {postImage, caption, likes, dislikes, userId} = req.body;
+        Post.max('id')
+            .then(lastPk => {
+                const id = lastPk + 1;
+
+                Post.create({id, postImage, caption, likes, dislikes, userId})
+                    .then(post => {
+                        res.status(201).json(post);
+                    })
+                    .catch(err => {
+                        res.status(400).json(err);
+                    });
+            })
+    }
 );
 
 
-router.get('/:id', (req, res) => {
-  const { id } = req.params;
-  Post.findByPk(id)
-    .then(post => {
-      if(!post) {
-        return res.sendStatus(404);
-      }
+router.get('/post/:postId', (req, res) => {
 
-      res.json(post);
-    });
-});
+    const { postId } = req.params;
+    Post.findByPk(postId)
+        .then(post => {
+            if (!post) {
+                return res.sendStatus(404);
+            }
 
-
-router.put('/:id',
-  passport.isAuthenticated(),
-  (req, res) => {
-    const { id } = req.params;
-    Post.findByPk(id)
-      .then(post => {
-        if(!post) {
-          return res.sendStatus(404);
-        }
-
-        post.content = req.body.content;
-        post.save()
-          .then(post => {
             res.json(post);
-          })
-          .catch(err => {
-            res.status(400).json(err);
-          });
-      });
-  }
+        });
+});
+
+
+router.put('/:postId', (req, res) => {
+        const { postId } = req.params;
+        Post.findByPk(postId)
+            .then(post => {
+                if (!post) {
+                    return res.sendStatus(404);
+                }
+
+                post.postImage = req.body.postImage;
+                post.caption = req.body.caption;
+                post.likes = req.body.likes;
+                post.dislikes = req.body.dislikes;
+
+                post.save()
+                    .then(post => {
+                        res.json(post);
+                    })
+                    .catch(err => {
+                        res.status(400).json(err);
+                    });
+            });
+    }
 );
 
 
-router.delete('/:id',
-  passport.isAuthenticated(),
-  (req, res) => {
-    const { id } = req.params;
-    Post.findByPk(id)
-      .then(post => {
-        if(!post) {
-          return res.sendStatus(404);
-        }
+router.delete('/:postId', (req, res) => {
+        const { postId } = req.params;
+        Post.findByPk(postId)
+            .then(post => {
+                if (!post) {
+                    return res.sendStatus(404);
+                }
 
-        post.destroy();
-        res.sendStatus(204);
-      });
-  }
+                post.destroy();
+                res.sendStatus(204);
+            });
+    }
 );
 
 

@@ -4,6 +4,7 @@ const baseURL = 'http://localhost:' + PORT;
 let categoryRoute = baseURL + "/api/category/";
 let ingredientRoute = baseURL + "/api/ingredients/";
 let fridgeRoute = baseURL + "/api/fridge/";
+let postRoute = baseURL + "/api/posts/";
 
 describe('1) Category Controller Usage', () => {
 
@@ -122,7 +123,7 @@ describe('2) Ingredients Controller Usage', () => {
 
     });
 
-    /*test('find apple ingredient', async () => {
+    test('find apple ingredient', async () => {
 
         let ingredients = await fetch(ingredientRoute + 1)
             .then(res =>{
@@ -132,7 +133,6 @@ describe('2) Ingredients Controller Usage', () => {
         expect(ingredients.name).toEqual('apple');
 
     });
-*/
 
     test('update ingredient shelfLife of apple', async () => {
         let ingredient = await fetch(ingredientRoute + 1, {
@@ -154,16 +154,16 @@ describe('2) Ingredients Controller Usage', () => {
 
 });
 
-describe('2) Fridge Controller Usage', () => {
+describe('3) Fridge Controller Usage', () => {
 
     /*Tests for fridge controller*/
-    test('get the number of hermann ingredients ', async () => {
+    test('get the number of Hermann ingredients ', async () => {
         const ingredients = await fetch(fridgeRoute + 1).then(res => res.json());
         expect(ingredients.length).toBe(10);
     });
 
 
-    test('insert a new ingredient in hermann fridge', async () => {
+    test('insert a new ingredient in Hermann fridge', async () => {
 
         let ingredients = await fetch(fridgeRoute, {
             method: 'post',
@@ -196,7 +196,7 @@ describe('2) Fridge Controller Usage', () => {
 
     });
 
-    test('find how many apples are in hermann fridge', async () => {
+    test('find how many apples are in Hermann fridge', async () => {
 
         let ingredient = await fetch(fridgeRoute + 1 + "/" + 1)
             .then(res =>{
@@ -208,7 +208,7 @@ describe('2) Fridge Controller Usage', () => {
     });
 
 
-    test('update quantity of apple in hermann fridge', async () => {
+    test('update quantity of apple in Hermann fridge', async () => {
         let ingredient = await fetch(fridgeRoute + 1 + "/" + 1, {
             method: 'put',
             body: JSON.stringify({
@@ -224,6 +224,70 @@ describe('2) Fridge Controller Usage', () => {
 
 
         expect(ingredient.quantity).toEqual(20);
+
+    });
+
+});
+
+describe('4) Post Controller Usage', () => {
+
+    /*Tests for post controller*/
+    test('get the number post Hermann has ', async () => {
+        const posts = await fetch(postRoute + 1).then(res => res.json());
+        expect(posts.length).toBe(3);
+    });
+
+
+    test('insert a new post for Hermann', async () => {
+
+        let posts = await fetch(postRoute, {
+            method: 'post',
+            body: JSON.stringify({
+                postImage: "/public/assets/dough-post.jpg",
+                userId: 1,
+                caption: "This is a caption for testing",
+                likes: 25,
+                dislikes: 3,
+            }),
+            headers: {'Content-Type': 'application/json'}
+        })
+            .then(() => {
+                return fetch(postRoute + 1).then(res => res.json())
+            });
+
+        expect(posts.length).toEqual(4);
+    });
+
+
+    test('delete last post from Hermann', async () => {
+        let posts = await fetch(postRoute + 4 , {
+            method: 'delete',
+        })
+            .then(() => {
+                return fetch(postRoute + 1).then(res => res.json())
+            });
+
+
+        expect(posts.length).toEqual(3);
+
+    });
+
+    test('update Hermann post', async () => {
+        let post = await fetch(postRoute + 3, {
+            method: 'put',
+            body: JSON.stringify({
+                likes: 24,
+                dislikes: 2,
+            }),
+            headers: { 'Content-Type' : 'application/json' }
+
+        })
+            .then(() => {
+                return fetch(postRoute + "post/" + 3).then(res => res.json())
+            });
+
+
+        expect(post.likes).toEqual(24);
 
     });
 

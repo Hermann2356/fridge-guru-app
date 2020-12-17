@@ -24,13 +24,13 @@ function Newsfeed (props) {
             <CreatePostBox onClick={handleClickOpen} />
             <CreatePostModal onClose={handleClickClose} isOpen={isOpen} />
         </div>
-      {/*<FoodCategory />*/}
+
       <div className="col-md-6 col-12 post__bar">
-          <Post image="https://specials-images.forbesimg.com/imageserve/5f748b1a267da47f7b3c2dfa/960x0.jpg?cropX1=0&cropX2=1252&cropY1=155&cropY2=1094" />
-          <Post image="https://spoonacular.com/application/frontend/images/food-api/dough.jpg" />
-          <Post image="https://spoonacular.com/application/frontend/images/food-api/dough.jpg" />
-          <Post image="https://spoonacular.com/application/frontend/images/food-api/dough.jpg" />
-          <Post image="https://spoonacular.com/application/frontend/images/food-api/dough.jpg" />
+          <Post image="/public/assets/chicken-broccoli-pasta-post.jpg" />
+          <Post image="/public/assets/dough-post.jpg" />
+          <Post image="/public/assets/dough-post.jpg" />
+          <Post image="/public/assets/dough-post.jpg" />
+          <Post image="/public/assets/dough-post.jpg" />
       </div>
     </div>
   );

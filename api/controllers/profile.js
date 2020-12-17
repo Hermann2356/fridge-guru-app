@@ -6,7 +6,6 @@ const passport = require('../middlewares/authentication');
 const path = require('path');
 const multer  = require('multer');
 const assets = path.join(__dirname, '../public/assets');
-// const upload = multer({ dest: assets });
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -15,7 +14,6 @@ const storage = multer.diskStorage({
     filename: function (req, file, cb) {
         const fileName = file.originalname.toLowerCase().split(' ').join('-');
         const uniqueSuffix = Date.now() ;
-            // + '-' + Math.round(Math.random() * 1E9)
         cb(null, uniqueSuffix + '-' + fileName)
     }
 })

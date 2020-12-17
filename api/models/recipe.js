@@ -12,18 +12,6 @@ module.exports = (sequelize, DataTypes) => {
                 isIn: [['YES','NO','PENDING']]
             }
         },
-        shares: {
-            type: DataTypes.INTEGER,
-            validate: {
-                isInt: true,
-            }
-        },
-        likes: {
-            type: DataTypes.INTEGER,
-            validate: {
-                isInt: true,
-            }
-        }
     }, {
         sequelize,
         modelName: 'recipe'
