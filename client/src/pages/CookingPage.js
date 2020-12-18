@@ -9,7 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Timer from "../components/Timer";
 import Navbar from "../components/Navbar";
-import {search} from "../spoonacular/endpoints";
+import {search} from "../api/spoonacular/endpoints";
 import Loading from "../components/Loading";
 import '../components_stylesheets/CookingPage.css';
 import {Col} from "reactstrap";

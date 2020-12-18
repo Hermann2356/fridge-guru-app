@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-const {getRecipeByIngredients} = require('../spoonacular/endpoints');
+const {getRecipeByIngredients} = require('../api/spoonacular/endpoints');
 
 class IndexPage extends React.Component {
     state = {

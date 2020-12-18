@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {useParams} from "react-router";
 import '../components_stylesheets/RecipeDescriptionPage.css'
-import {search} from '../spoonacular/endpoints'
+import {search} from '../api/spoonacular/endpoints'
 import Loading from "../components/Loading";
 import Navbar from '../components/Navbar'
 import {Button} from 'reactstrap';

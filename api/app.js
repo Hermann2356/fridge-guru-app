@@ -10,7 +10,6 @@ const PORT = process.env.PORT || 8080;
 const seed = require('../seed');
 const cors = require("cors");
 
-
 // this lets us parse 'application/json' content in http requests
 app.use(bodyParser.json())
 

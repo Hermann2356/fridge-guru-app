@@ -1,7 +1,7 @@
 const seed = require('../../seed');
 const {Ingredient, Category, User, Fridge} = require('../models');
 const db = require('../models');
-const { search } = require('../../client/src/spoonacular/endpoints');
+const { search } = require('../../client/src/api/spoonacular/endpoints');
 const { CRUD } = require('./models');
 
 

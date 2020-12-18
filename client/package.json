@@ -29,7 +29,8 @@
     "start": "set PORT=3006 && react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "dev": "dotenv/config"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -47,5 +48,7 @@
     ]
   },
   "proxy": "http://localhost:8080",
-  "devDependencies": {}
+  "devDependencies": {
+    "dotenv": "^8.2.0"
+  }
 }
