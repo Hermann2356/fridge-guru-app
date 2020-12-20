@@ -5,6 +5,8 @@ import Skeletoncom from '../components/Skeleton'
 import Search from '../components/Search'
 import NavBar from "../components/Navbar"
 import { Typography } from '@material-ui/core';
+const api_host = process.env.REACT_APP_SPOONACULAR_HOST;
+const api_key = process.env.REACT_APP_SPOONACULAR_KEY;
 const RecipePage = () => {
 
     var [data, setData] = useState([])
@@ -35,8 +37,8 @@ const RecipePage = () => {
                     fillIngredients: true
                 },
                 headers: {
-                    'x-rapidapi-key': '0056010829msh4d04f8cc38de15dp1d2058jsn096cd683f0a6',
-                    'x-rapidapi-host': 'spoonacular-recipe-food-nutrition-v1.p.rapidapi.com'
+                    'x-rapidapi-key': api_key,
+                    'x-rapidapi-host': api_host,
                 }
             };
             const response = await axios.request(options)
@@ -47,8 +49,8 @@ const RecipePage = () => {
                     method: 'GET',
                     url: `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${id}/ingredientWidget.json`,
                     headers: {
-                        'x-rapidapi-key': '0056010829msh4d04f8cc38de15dp1d2058jsn096cd683f0a6',
-                        'x-rapidapi-host': 'spoonacular-recipe-food-nutrition-v1.p.rapidapi.com'
+                        'x-rapidapi-key': api_key,
+                        'x-rapidapi-host': api_host,
                     }
                 };
                 return axios.request(options);
@@ -120,8 +122,8 @@ const RecipePage = () => {
                     maxCarbs: Number(maxCarbs) || 1000
                 },
                 headers: {
-                    'x-rapidapi-key': '0056010829msh4d04f8cc38de15dp1d2058jsn096cd683f0a6',
-                    'x-rapidapi-host': 'spoonacular-recipe-food-nutrition-v1.p.rapidapi.com'
+                    'x-rapidapi-key': api_key,
+                    'x-rapidapi-host': api_host,
                 }
             };
             const response = await axios.request(options)
@@ -135,8 +137,8 @@ const RecipePage = () => {
                     method: 'GET',
                     url: `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${id}/ingredientWidget.json`,
                     headers: {
-                        'x-rapidapi-key': '0056010829msh4d04f8cc38de15dp1d2058jsn096cd683f0a6',
-                        'x-rapidapi-host': 'spoonacular-recipe-food-nutrition-v1.p.rapidapi.com'
+                        'x-rapidapi-key': api_key,
+                        'x-rapidapi-host': api_host,
                     }
                 };
                 return axios.request(options);
